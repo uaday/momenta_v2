@@ -115,6 +115,33 @@ class Find extends CI_Controller
         }
         echo "</select>";
     }
+    public function find_doctor()
+    {
+        $business_code=$this->input->POST('business_code');
+        $result=$this->medicine_literature_model->get_doctor_type_by_business_code($business_code);
+        echo "<script type=\"text/javascript\">
+											$(\"#doc_type\").select2({
+												placeholder: 'Select Doctor Type...',
+												allowClear: true
+											}).on('select2-open', function()
+											{
+												// Adding Custom Scrollbar
+												$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										
+									</script>";
+        echo "<select class='form-control doc_type' name=\"doc_type\" id='doc_type' onchange=\"version_find(this.value,'version');\">";
+        echo "<option value='-1'>Select Doctor Type</option>";
+        if($result)
+        {
+
+            foreach ($result as $row)
+            {
+                echo "<option value='$row[doc_type_id]'>$row[type_name]</option>";
+            }
+        }
+        echo "</select>";
+    }
     public function find_drugs()
     {
         $gen_id=$this->input->POST('gen_id');
@@ -130,12 +157,33 @@ class Find extends CI_Controller
 											});
 										
 									</script>";
-        echo "<select class=\"form-control generic_name1\" id=\"drug1\" name=\"drug_id\" onchange=\"drug_no(this.value);\">";
+        echo "<select class=\"form-control drug1\" id=\"drug1\" name=\"drug_id\" onchange=\"drug_no(this.value);\">";
         echo "<option value='-1'>Select Drug Name</option>";
         foreach ($result as $row)
         {
             echo "<option value='$row[drug_id]'>$row[drug_name]</option>";
         }
+    }
+    public function file_type()
+    {
+        echo "<script type=\"text/javascript\">
+                                jQuery(document).ready(function($)
+                                {
+                                    $(\"#type\").selectBoxIt().on('open', function()
+                                    {
+                                        // Adding Custom Scrollbar
+                                        $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                    });
+                                });
+                            </script>
+
+                            <select class=\"form-control type\" name=\"upload_file_type\" id=\"type\" onchange=\"drug_des(this.value, 'typee');\">
+                                <option value=\"-1\">Select Upload Type</option>
+                                <option value=\"1\">Full Book</option>
+                                <option value=\"2\">Feature & Benefit</option>
+                                <option value=\"3\">Drug Image</option>
+
+                            </select>";
     }
     public function find_drugss()
     {

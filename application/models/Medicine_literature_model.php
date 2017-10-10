@@ -37,6 +37,13 @@ class Medicine_literature_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+    public function get_doctor_type_by_business_code($business_code)
+    {
+        $sql="SELECT * FROM tbl_doctor_type d,tbl_business b  WHERE b.business_code=d.tbl_business_business_code AND  b.business_code='$business_code' ORDER BY d.doc_type_id";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
     public function get_drug_by_gen_id($gen_id)
     {
         $sql="SELECT * FROM tbl_drug WHERE tbl_drug_generic_name_gen_id='$gen_id' ORDER BY drug_name";

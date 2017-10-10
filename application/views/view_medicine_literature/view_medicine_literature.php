@@ -88,16 +88,14 @@
 
                             <select class="form-control business" id="business" onchange="gen_list(this.value, 'generic_name');">
                                 <option value="-1">Select Business</option>
-                                <?php foreach ($business as $business){?>
-                                    <?php if($this->session->userdata('business_code')=='00'&& $business['business_code']!='00'){?>
-                                        <option value="<?= $business['business_code']?>"><?= $business['business_name'] ?></option>
+                                <?php foreach ($business as $bus){?>
+                                    <?php if($this->session->userdata('business_code')=='00'&& $bus['business_code']!='00'){?>
+                                        <option value="<?= $bus['business_code']?>"><?= $bus['business_name'] ?></option>
                                     <?php } else {?>
-                                        <?php if($this->session->userdata('business_code')==$business['business_code'] && $business['business_code']!='00'){?>
-                                            <option value="<?= $business['business_code']?>"><?= $business['business_name'] ?></option>
+                                        <?php if($this->session->userdata('business_code')==$bus['business_code'] && $bus['business_code']!='00'){?>
+                                            <option value="<?= $bus['business_code']?>"><?= $bus['business_name'] ?></option>
                                             <?php }?>
-
                                     <?php }?>
-
                                 <?php }?>
                             </select>
 
@@ -154,7 +152,7 @@
 
                         <div class="form-group">
                             <label class="control-label">Simple Upload Type</label>
-
+                            <div class="file_type">
                             <script type="text/javascript">
                                 jQuery(document).ready(function($)
                                 {
@@ -168,11 +166,8 @@
 
                             <select class="form-control type" name="upload_file_type" id="type" onchange="drug_des(this.value, 'typee');">
                                 <option value="-1">Select Upload Type</option>
-                                <option value="1">Full Book</option>
-                                <option value="2">Feature & Benefit</option>
-                                <option value="3">Drug Image</option>
-
                             </select>
+                            </div>
 
                         </div>
 
@@ -253,7 +248,7 @@
 
                 <div class="panel-body">
 
-                    <form method="post" action="<?php echo base_url()?>medicine_literature/drug_dse_version_upload" id="upload_form"  enctype="multipart/form-data">
+                    <form method="post" action="<?php echo base_url()?>medicine_literature/drug_dse_version_upload" onsubmit="return check_upload_version()" id="upload_form"  enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label class="control-label">Select Business</label>
@@ -273,9 +268,15 @@
 
                             <select class="form-control business11" id="business11" onchange="gen_list1(this.value, 'generic_name11');">
                                 <option value="-1">Select Business</option>
-                                {business}
-                                <option value="{business_code}">{business_name}</option>
-                                {/business}
+                                <?php foreach ($business as $buss){?>
+                                    <?php if($this->session->userdata('business_code')=='00'&& $buss['business_code']!='00'){?>
+                                        <option value="<?= $buss['business_code']?>"><?= $buss['business_name'] ?></option>
+                                    <?php } else {?>
+                                        <?php if($this->session->userdata('business_code')==$buss['business_code'] && $buss['business_code']!='00'){?>
+                                            <option value="<?= $buss['business_code']?>"><?= $buss['business_name'] ?></option>
+                                        <?php }?>
+                                    <?php }?>
+                                <?php }?>
                             </select>
 
                         </div>
@@ -332,27 +333,22 @@
                         <div class="form-group">
                             <label class="control-label">Select Doctor Type</label>
 
-                            <div class="">
+                            <div class="doc_typee">
                                 <script type="text/javascript">
                                     jQuery(document).ready(function($)
                                     {
-                                        $("#doc_type").select2({
-                                            placeholder: 'Select Doctor Type',
-                                            allowClear: true
-                                        }).on('select2-open', function()
+                                        $("#doc_type11").selectBoxIt({
+                                            showFirstOption: false
+                                        }).on('open', function()
                                         {
                                             // Adding Custom Scrollbar
-                                            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
                                         });
-
                                     });
                                 </script>
 
-                                <select class="form-control doc_type" name="doc_type" id="doc_type" onchange="version_find(this.value,'version')">
+                                <select class="form-control doc_type11" name="doc_type11" id="doc_type11" onchange="version_find(this.value,'version')">
                                     <option value="-1">Select Doctor Type</option>
-                                    {docs}
-                                    <option value="{doc_type_id}">{type_name}</option>
-                                    {/docs}
                                 </select>
                             </div>
 

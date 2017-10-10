@@ -154,7 +154,7 @@
 
                 <div class="login-header">
                     <a href="dashboard-1.html" class="logo">
-                        <img src="<?php echo base_url()?>assets/images/logo@2x.png" alt="" width="80" />
+                        <img src="<?php echo base_url()?>assets/images/momenta_large.png" alt="" width="80" />
                         <span>log in</span>
                     </a>
 

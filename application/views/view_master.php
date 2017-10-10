@@ -143,11 +143,11 @@
                 <!-- logo -->
                 <div class="logo">
                     <a href="<?php echo base_url()?>home" class="logo-expanded">
-                        <img src="<?php echo base_url()?>assets/images/logo@2x.png" width="80" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/momenta_large.png" width="80" alt="" />
                     </a>
 
                     <a href="<?php echo base_url()?>home" class="logo-collapsed">
-                        <img src="<?php echo base_url()?>assets/images/logo-collapsed@2x.png" width="40" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/momenta_small.png" width="40" alt="" />
                     </a>
                 </div>
 
@@ -629,6 +629,7 @@
     var drug_idd2;
     var upload_type;
     var doc_typee;
+    var business_code_new;
     function gen_list(business_code, result) {
         $.ajax(
             {
@@ -636,6 +637,8 @@
                 data: {business_code: business_code},
                 url: "<?php echo site_url('find/find_gen')?>",
                 success: function (result) {
+//                    $('.drug1').prop('selectedIndex',0);
+                    document.getElementById('typee').innerHTML='';
                     $('.generic_name').html(result);
                 },
                 error: function (result) {
@@ -645,6 +648,7 @@
         )
     }
     function gen_list1(business_code, result) {
+        business_code_new=business_code;
         $.ajax(
             {
                 type: 'POST',
@@ -721,6 +725,18 @@
     }
     function drug_no(drug_id) {
         drug_idd = drug_id;
+        $.ajax(
+            {
+                url: "<?php echo site_url('find/file_type')?>",
+                success: function (result) {
+                    document.getElementById('typee').innerHTML='';
+                    $('.file_type').html(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            }
+        )
     }
     function drug_no1(drug_id) {
         $('.doc_type,.version1').val('-1');
@@ -729,6 +745,25 @@
         document.getElementById('version_delete').style.visibility='hidden';
         document.getElementById('new_version_alert').style.display='none';
         drug_idd = drug_id;
+        $.ajax(
+            {
+                type: 'POST',
+                data: {business_code: business_code_new},
+                url: "<?php echo site_url('find/find_doctor')?>",
+                success: function (result) {
+                    $('.doc_type,.version1,drug11').val('-1');
+                    $('.point1,.point2,.point3,.audio1,.audio2,.audio3,.drug_des_image').val('');
+                    document.getElementById('files1').innerHTML='';
+                    document.getElementById('version_delete').style.visibility='hidden';
+                    document.getElementById('new_version_alert').style.display='none';
+                    $('.doc_typee').html(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            }
+        )
+
     }
 
     function version_find(doc_type, result) {
@@ -900,6 +935,32 @@
         }
         else if ($('#pdf').val() == '') {
             alert("Please Select a File");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    function check_upload_version() {
+
+        if ($('.business11').val() == null) {
+            alert("Please Select Business");
+            return false;
+        }
+        else if ($('#generic_name11').val() == '-1') {
+            alert("Please Select Generic Name");
+            return false;
+        }
+        else if ($('#drug11').val() == '-1') {
+            alert("Please Select Drug");
+            return false;
+        }
+        else if ($('#doc_type').val() == '-1') {
+            alert("Please Select Doctor Type");
+            return false;
+        }
+        else if ($('#version1').val() == '-1') {
+            alert("Please Select Version");
             return false;
         }
         else {
