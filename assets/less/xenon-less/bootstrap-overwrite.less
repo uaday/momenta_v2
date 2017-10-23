@@ -75,10 +75,20 @@ h1, h2, h3, h4, h5, h6,
 // Alerts
 .alert {
 	
+	&.alert-dismissable {
+		padding-right: 20px;
+		
+		.close {
+			right: -10px;
+			top: 0px;
+		}
+	}
+	
 	.close {
 		position: relative;
 		margin-top: -2px;
 		outline: 0;
+		color: #000;
 		
 		span {
 			text-shadow: none;

@@ -7,6 +7,7 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
+@gray-base:              #000;
 @gray-darker:            lighten(#000, 13.5%); // #222
 @gray-dark:              lighten(#000, 20%);   // #333
 @gray:                   lighten(#000, 33.5%); // #555
@@ -33,6 +34,8 @@
 @link-color:            #373e4a; // Modified by Arlind Nushi
 //** Link hover color set via `darken()` function.
 @link-hover-color:      darken(@link-color, 15%);
+//** Link hover decoration.
+@link-hover-decoration: underline;
 
 
 //== Typography
@@ -185,6 +188,15 @@
 @input-border-radius:            @border-radius-base;
 //** Border color for inputs on focus
 @input-border-focus:             fade(#68b828, 50%);// darken(@input-border, 10%);//#ccc;;
+
+
+// TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
+//** Default `.form-control` border radius
+@input-border-radius:            @border-radius-base;
+//** Large `.form-control` border radius
+@input-border-radius-large:      @border-radius-large;
+//** Small `.form-control` border radius
+@input-border-radius-small:      @border-radius-small;
 
 //** Placeholder text color
 @input-color-placeholder:        @gray-light;
@@ -628,6 +640,8 @@
 @progress-bg:                 #eee;
 //** Progress bar text color
 @progress-bar-color:          #fff;
+//** Variable for setting rounded corners on progress bar.
+@progress-border-radius:      @border-radius-base;
 
 //** Default progress bar color
 @progress-bar-bg:             @brand-primary;
@@ -844,3 +858,8 @@
 @hr-border:                   @gray-lighter;
 
 
+
+// NEW BOOTSTRAP
+
+//** Disabled cursor for form controls and buttons.
+@cursor-disabled:                not-allowed;

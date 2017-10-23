@@ -40,10 +40,10 @@
 
 
 </head>
-<body class="page-body login-page">
+<body class="page-body login-page login-light" style="background-image: url(<?= base_url()?>assets/images/bg.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
 
 
-<div class="login-container">
+<div class="login-container" >
 
     <div class="row">
 
@@ -154,7 +154,7 @@
 
                 <div class="login-header">
                     <a href="dashboard-1.html" class="logo">
-                        <img src="<?php echo base_url()?>assets/images/momenta_large.png" alt="" width="80" />
+                        <img src="<?php echo base_url()?>assets/images/logo-white-bg.png" alt="" width="80" />
                         <span>log in</span>
                     </a>
 
@@ -164,16 +164,16 @@
 
                 <div class="form-group">
                     <label class="control-label" for="userid">User ID</label>
-                    <input type="text" class="form-control input-dark" name="userid" id="userid" autocomplete="off" />
+                    <input type="text" class="form-control " name="userid" id="userid" autocomplete="off" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="passwd">Password</label>
-                    <input type="password" class="form-control input-dark" name="passwd" id="passwd" autocomplete="off" />
+                    <input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" />
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-dark  btn-block text-left">
+                    <button type="submit" class="btn btn-primary btn-block text-left">
                         <i class="fa-lock"></i>
                         Log In
                     </button>
@@ -183,7 +183,7 @@
                     <a href="#">Forgot your password?</a>
 
                     <div class="info-links">
-                        <p >&copy; <?php echo date("Y")?> Renata Limited. All Rights Reserved. Designed and Developed by <a target="_blank" style="text-decoration: none; color: white" href="http://www.appinionbd.com/"> Appinion BD Limited.</a></p>
+                        <p >&copy; <?php echo date("Y")?> Renata Limited. All Rights Reserved. Designed and Developed by <a target="_blank" style="text-decoration: none; " href="http://www.appinionbd.com/"> Appinion BD Limited.</a></p>
                     </div>
 
                 </div>

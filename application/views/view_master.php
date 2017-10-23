@@ -284,23 +284,23 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="<?php if($this->session->userdata('main_menu')=='medicine_info') echo "active opened "?>">
                     <a href="extra-gallery.html">
                         <i class="linecons-beaker"></i>
                         <span class="title">Medicine Info</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="extra-icons-fontawesome.html">
+                        <li  class="<?php if($this->session->userdata('sub_menu')=='generic_name') echo "active "?>">
+                            <a href="<?= base_url()?>med_info/generic_name">
                                 <span class="title">Generic Name</span>
                             </a>
                         </li>
-                        <li>
+                        <li  class="<?php if($this->session->userdata('sub_menu')=='drug_name') echo "active "?>">
                             <a href="extra-maps-google.html">
                                 <span class="title">Drug Name</span>
                             </a>
                         </li>
-                        <li>
+                        <li  class="<?php if($this->session->userdata('sub_menu')=='doctor_type') echo "active "?>">
                             <a href="extra-gallery.html">
                                 <span class="title">Doctor Type</span>
                             </a>
@@ -361,7 +361,7 @@
 <script src="<?php echo base_url()?>assets/js/joinable.js"></script>
 <script src="<?php echo base_url()?>assets/js/xenon-api.js"></script>
 <script src="<?php echo base_url()?>assets/js/xenon-toggles.js"></script>
-<!--<script src="--><?php //echo base_url()?><!--assets/js/datatables/js/jquery.dataTables.min.js"></script>-->
+<script src="<?php echo base_url()?>assets/js/datatables/js/jquery.dataTables.min.js"></script>
 
 
 <!-- Imported scripts on this page -->
@@ -414,16 +414,6 @@
 
 <!-- JavaScripts plugins -->
 <script src="<?php echo base_url()?>assets/js/tables/jquery-datatable.js"></script>
-
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="<?php echo base_url()?>assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
 
 

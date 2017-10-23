@@ -12,7 +12,7 @@ class Medicine_literature_model extends CI_Model {
     }
     public function getAllGen()
     {
-        $sql="SELECT * FROM tbl_drug_generic_name";
+        $sql="SELECT * FROM tbl_drug_generic_name g, tbl_business b WHERE  b.business_code=g.tbl_business_business_code ";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

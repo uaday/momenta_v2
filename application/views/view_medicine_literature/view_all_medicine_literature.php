@@ -9,7 +9,7 @@
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
-    <?php echo $user_profile;?>
+    <?php echo $user_profile; ?>
     <div class="page-title">
 
         <div class="title-env">
@@ -53,55 +53,49 @@
             </div>
         </div>
         <div class="panel-body">
-
-            <div class="body">
-                <div class="table-responsive">
-<!--                    <script type="text/javascript">-->
-<!--                        jQuery( document ).ready( function( $ ) {-->
-<!--                            var $table4 = jQuery( "#table-4" );-->
-<!---->
-<!--                            $table4.DataTable( {-->
-<!--                                dom: 'Bfrtip',-->
-<!--                                buttons: [-->
-<!--                                    'copyHtml5',-->
-<!--                                    'excelHtml5',-->
-<!--                                    'csvHtml5',-->
-<!--                                    'pdfHtml5'-->
-<!--                                ]-->
-<!--                            } );-->
-<!--                        } );-->
-<!--                    </script>-->
-                    <table class="table table-bordered table-striped table-hover js-basic-example " >
-                        <thead>
-                        <tr>
-                            <th>Drug Image</th>
-                            <th>Drug Name</th>
-                            <th>Full Book</th>
-                            <th>Feature & Benefit</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Drug Image</th>
-                            <th>Drug Name</th>
-                            <th>Full Book</th>
-                            <th>Feature & Benefit</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                        {meds}
-                        <tr>
-                            <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px"></td>
-                            <td>{drug_name}</td>
-                            <td><a target="_blank" class="btn btn-primary center-block"  href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a></td>
-                            <td><a target="_blank" class="btn btn-primary center-block"  href="https://docs.google.com/viewerng/viewer?url={benefits_feature}">Feature & Benefit</a></td>
-                        </tr>
-                        {/meds}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
+            <div class="table-responsive">
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    $("#example-1").dataTable({
+                        aLengthMenu: [
+                            [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
+                        ]
+                    });
+                });
+            </script>
+            <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Drug Image</th>
+                    <th>Drug Name</th>
+                    <th>Full Book</th>
+                    <th>Feature & Benefit</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Drug Image</th>
+                    <th>Drug Name</th>
+                    <th>Full Book</th>
+                    <th>Feature & Benefit</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                {meds}
+                <tr>
+                    <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px">
+                    </td>
+                    <td>{drug_name}</td>
+                    <td><a target="_blank" class="btn btn-primary center-block"
+                           href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a></td>
+                    <td><a target="_blank" class="btn btn-primary center-block"
+                           href="https://docs.google.com/viewerng/viewer?url={benefits_feature}">Feature & Benefit</a>
+                    </td>
+                </tr>
+                {/meds}
+                </tbody>
+            </table>
+        </div>
         </div>
     </div>
 
@@ -110,8 +104,8 @@
     <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
     <!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
     <!-- Or class "fixed" to  always fix the footer to the end of page -->
-    <?php if(isset($footer)){
+    <?php if (isset($footer)) {
 
         echo $footer;
-    }?>
+    } ?>
 </div>

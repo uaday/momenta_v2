@@ -2,9 +2,9 @@
 
 class Med_info_model extends CI_Model
 {
-    public function add_gen_name($gen_name)
+    public function add_gen_name($bcode,$gen_name)
     {
-        $sql="INSERT INTO tbl_drug_generic_name(gen_name) VALUES (N'$gen_name')";
+        $sql="INSERT INTO tbl_drug_generic_name(gen_name,tbl_business_business_code) VALUES (N'$gen_name',N'$bcode')";
         $this->db->query($sql);
     }
     public function add_doc_type($doc_type)
@@ -18,7 +18,7 @@ class Med_info_model extends CI_Model
         $this->db->query($sql);
     }
 
-    public function edit_gen_name($gen_id,$gen_name)
+    public function edit_gen_name($bcode,$gen_id,$gen_name)
     {
         $sql1="SELECT * FROM tbl_drug_generic_name WHERE gen_name='$gen_name' AND gen_id<>'$gen_id'";
         $result=$this->db->query($sql1);
@@ -28,7 +28,7 @@ class Med_info_model extends CI_Model
         }
         else
         {
-            $sql2="UPDATE tbl_drug_generic_name SET gen_name='$gen_name' WHERE gen_id='$gen_id'";
+            $sql2="UPDATE tbl_drug_generic_name SET gen_name=N'$gen_name',tbl_business_business_code=N'$bcode' WHERE gen_id='$gen_id'";
             $this->db->query($sql2);
             return 1;
         }
@@ -73,9 +73,10 @@ class Med_info_model extends CI_Model
 
     public function delete_gen_name($gen_id,$password)
     {
+
         $query = $this->db->get_where('tbl_login', array('renata_id' => $this->session->userdata('employee_id'),'password' => md5($password)));
 
-        if($query->num_rows>0)
+        if($query->num_rows()>0)
         {
             $sql="DELETE FROM tbl_drug_generic_name WHERE gen_id='$gen_id'";
             $this->db->query($sql);
@@ -84,7 +85,7 @@ class Med_info_model extends CI_Model
             $this->db->query($sql1);
             return 1;
         }
-        else if($query->num_rows==0)
+        else if($query->num_rows()==0)
         {
             return 0;
         }
@@ -93,7 +94,7 @@ class Med_info_model extends CI_Model
     {
         $query = $this->db->get_where('tbl_login', array('renata_id' => $this->session->userdata('employee_id'),'password' => md5($password)));
 
-        if($query->num_rows>0)
+        if($query->num_rows()>0)
         {
             $sql="DELETE FROM tbl_drug WHERE drug_id='$drug_id'";
             $this->db->query($sql);
@@ -102,7 +103,7 @@ class Med_info_model extends CI_Model
             $this->db->query($sql1);
             return 1;
         }
-        else if($query->num_rows==0)
+        else if($query->num_rows()==0)
         {
             return 0;
         }
@@ -110,7 +111,7 @@ class Med_info_model extends CI_Model
     public function delete_doc_type($doc_type_id,$password)
     {
         $query = $this->db->get_where('tbl_login', array('renata_id' => $this->session->userdata('employee_id'),'password' => md5($password)));
-        if($query->num_rows>0)
+        if($query->num_rows()>0)
         {
             $sql="DELETE FROM tbl_doctor_type WHERE doc_type_id='$doc_type_id'";
             $this->db->query($sql);
@@ -119,7 +120,7 @@ class Med_info_model extends CI_Model
             $this->db->query($sql1);
             return 1;
         }
-        else if($query->num_rows==0)
+        else if($query->num_rows()==0)
         {
             return 0;
         }
