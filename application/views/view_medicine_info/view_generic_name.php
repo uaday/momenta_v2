@@ -7,6 +7,7 @@
  */
 $i = 0;
 ?>
+
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -39,31 +40,36 @@ $i = 0;
     <!-- Basic Setup -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Basic Setup</h3>
-
-            <div class="panel-options">
-                <a href="#" data-toggle="panel">
-                    <span class="collapse-icon">&ndash;</span>
-                    <span class="expand-icon">+</span>
-                </a>
-                <a href="#" data-toggle="remove">
-                    &times;
-                </a>
-            </div>
+            <h3 class="panel-title">All Generic Name</h3>
         </div>
         <div align="center">
             <?php if ($this->session->userdata('delete_pso_exams') == 'Pso Test Delete Successful') { ?>
-                <div class="alert alert-success"><strong><?php echo 'Pso Test Delete Successful'; ?></strong></div>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo 'Pso Test Delete Successful'; ?></strong>
+                </div>
                 <?php $this->session->unset_userdata('delete_pso_exams');
             } ?>
             <?php if ($this->session->userdata('add_gen')) { ?>
-                <div class="alert alert-success"><strong><?php echo $this->session->userdata('add_gen'); ?></strong>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('add_gen'); ?></strong>
                 </div>
                 <?php $this->session->unset_userdata('add_gen');
             } ?>
 
             <?php if ($this->session->userdata('pass_issue')) { ?>
                 <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
                     <strong><?php echo $this->session->userdata('pass_issue'); ?></strong>
                 </div>
                 <?php $this->session->unset_userdata('pass_issue');
@@ -71,6 +77,10 @@ $i = 0;
 
             <?php if ($this->session->userdata('delete_gen')) { ?>
                 <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
                     <strong><?php echo $this->session->userdata('delete_gen'); ?></strong>
                 </div>
                 <?php $this->session->unset_userdata('delete_gen');
@@ -78,6 +88,10 @@ $i = 0;
 
             <?php if ($this->session->userdata('gen_error')) { ?>
                 <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
                     <strong><?php echo $this->session->userdata('gen_error'); ?></strong>
                 </div>
                 <?php $this->session->unset_userdata('gen_error');
@@ -88,7 +102,7 @@ $i = 0;
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <form action="<?php echo base_url() ?>med_info/add_gen_name" method="post">
+                <form  onsubmit="return add_generic_name()" action="<?php echo base_url() ?>med_info/add_gen_name" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close cross_btn no_back_btn"
@@ -101,15 +115,31 @@ $i = 0;
 
                             <div class="form-group">
                                 <label class="text-bold">Business</label>
-                                <select name="bcode" id="business" class="form-control">
-                                    <?php foreach ($business as $business) { if($business['business_code']!='00'){?>
-                                        <option value="<?= $business['business_code'] ?>"><?= $business['business_name'] ?></option>
+
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function($)
+                                    {
+                                        $("#business").selectBoxIt({
+                                            showFirstOption: false
+                                        }).on('open', function()
+                                        {
+                                            // Adding Custom Scrollbar
+                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                        });
+                                    });
+                                </script>
+
+                                <select  required="required" name="bcode" class="form-control business" id="business" >
+                                    <option value="-1">Select Business</option>
+                                    <?php foreach ($business as $bus) { if($bus['business_code']!='00'){?>
+                                        <option value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
                                     <?php } }?>
                                 </select>
+
                             </div>
                             <div class="form-group">
                                 <label class="text-bold">Generic Name</label>
-                                <input name="gen_name" type="text" placeholder="Generic name" class="form-control">
+                                <input required="required" name="gen_name" type="text" placeholder="Generic name" class="form-control">
                             </div>
                         </div>
 
@@ -192,9 +222,8 @@ $i = 0;
                                                 <div class="form-group">
                                                     <label class="text-bold text-primary">Business</label>
                                                     <select name="bcode" id="business" class="form-control">
-                                                        <?php foreach ($business as $business) { if($business['business_code']!='00'){?>
-                                                            <option <?php if ($business['business_code'] == $gen['tbl_business_business_code']) echo 'selected' ?>
-                                                                    value="<?= $business['business_code'] ?>"><?= $business['business_name'] ?></option>
+                                                        <?php foreach ($business as $bus1) { if($bus1['business_code']!='00'){?>
+                                                            <option <?php if($bus1['business_code']==$gen['tbl_business_business_code']) echo 'selected'?> value="<?= $bus1['business_code'] ?>"><?= $bus1['business_name'] ?></option>
                                                         <?php } }?>
                                                     </select>
                                                 </div>

@@ -50,12 +50,16 @@ class Med_info extends CI_Controller {
         $data['main_content'] =$this->parser->parse('view_medicine_info/view_generic_name',$data,TRUE);
         $this->load->view('view_master',$data);
     }
-    public function medicine_name()
+    public function drug_name()
     {
-        $data['gens']=$this->medicine_literature_model->getAllGen();
+        $this->session->set_userdata('sub_menu','drug_name');
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['drugs']=$this->med_info_model->getAllDrugs();
-        $this->parser->parse('view_medicine_info/view_drug_name',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_medicine_info/view_drug_name',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
     public function doc_type()
     {
@@ -106,12 +110,12 @@ class Med_info extends CI_Controller {
         {
             $this->med_info_model->add_drug_name($drug_name,$gen_id,$pm_name,$pm_phone);
             $this->session->set_userdata('add_gen','Drug Name Successfully Added');
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
         else
         {
             $this->session->set_userdata('gen_error',validation_errors());
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
 
     }
@@ -160,12 +164,12 @@ class Med_info extends CI_Controller {
         if($result==0)
         {
             $this->session->set_userdata('gen_error','This Drug Name is Already Available');
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
         else
         {
             $this->session->set_userdata('add_gen','Drug Name Successfully Updated');
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
     }
     public function delete_generic_name()
@@ -192,12 +196,12 @@ class Med_info extends CI_Controller {
         if($result=='1')
         {
             $this->session->set_userdata('delete_drug','Drug Name Successfully Deleted');
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
         else if($result=='0')
         {
             $this->session->set_userdata('pass_issue','User Password Does not Match');
-            redirect(base_url() . 'med_info/medicine_name', 'refresh');
+            redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
     }
     public function delete_doc_type()

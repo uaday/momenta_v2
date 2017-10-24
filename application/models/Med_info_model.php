@@ -65,7 +65,7 @@ class Med_info_model extends CI_Model
     }
 
     public function getAllDrugs(){
-        $sql="SELECT * FROM tbl_drug d,tbl_drug_generic_name g WHERE g.gen_id=d.tbl_drug_generic_name_gen_id";
+        $sql="SELECT * FROM tbl_drug d,tbl_drug_generic_name g,tbl_business b WHERE b.business_code=g.tbl_business_business_code AND  b.business_code=d.tbl_business_business_code AND  g.gen_id=d.tbl_drug_generic_name_gen_id";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

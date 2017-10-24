@@ -296,7 +296,7 @@
                             </a>
                         </li>
                         <li  class="<?php if($this->session->userdata('sub_menu')=='drug_name') echo "active "?>">
-                            <a href="extra-maps-google.html">
+                            <a href="<?= base_url()?>med_info/drug_name">
                                 <span class="title">Drug Name</span>
                             </a>
                         </li>
@@ -951,6 +951,16 @@
         }
         else if ($('#version1').val() == '-1') {
             alert("Please Select Version");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    function add_generic_name() {
+
+        if ($('.business').val() ==null) {
+            alert("Please Select Business");
             return false;
         }
         else {
