@@ -627,8 +627,6 @@
                 data: {business_code: business_code},
                 url: "<?php echo site_url('find/find_gen')?>",
                 success: function (result) {
-//                    $('.drug1').prop('selectedIndex',0);
-                    document.getElementById('typee').innerHTML='';
                     $('.generic_name').html(result);
                 },
                 error: function (result) {
@@ -1483,14 +1481,30 @@
 
 
     function  check_drug_insert() {
-        if($('#drug_name').val()=='')
+
+        if($('#business').val()==null)
+        {
+            alert('Please Select Business Name');
+            return false;
+        }
+        if($('.generic_name1').val()==null)
+        {
+            alert('Please Select Generic Name');
+            return false;
+        }
+        else if($('#drug_name').val()=='')
         {
             alert('Please Insert Drug Name');
             return false;
         }
-        else if($('#gen_id').val()=='-1')
+        else if($('#pm_name').val()=='')
         {
-            alert('Please Select Generic Name');
+            alert('Please Insert Product Manager Name');
+            return false;
+        }
+        else if($('#pm_phone').val()=='')
+        {
+            alert('Please Insert Product Manager Phone Number');
             return false;
         }
         else

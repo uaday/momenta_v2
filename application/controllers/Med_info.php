@@ -102,15 +102,21 @@ class Med_info extends CI_Controller {
     }
     public function add_drug_name()
     {
-        $drug_name=$this->input->post('drug_name');
-        $gen_id=$this->input->post('gen_id');
-        $pm_name=$this->input->post('pm_name');
-        $pm_phone=$this->input->post('pm_phone');
+        $data['drug_name']=$this->input->post('drug_name');
+        $data['tbl_drug_generic_name_gen_id']=$this->input->post('gen_id');
+        $data['pm_name']=$this->input->post('pm_name');
+        $data['pm_phone']= preg_replace('/[^A-Za-z0-9\-]/', '', $this->input->post('pm_phone'));
+        $data['tbl_business_business_code']=$this->input->post('business');
+        print_r($data);
+        exit();
         if ($this->form_validation->run('add_drug_name'))
         {
-            $this->med_info_model->add_drug_name($drug_name,$gen_id,$pm_name,$pm_phone);
-            $this->session->set_userdata('add_gen','Drug Name Successfully Added');
-            redirect(base_url() . 'med_info/drug_name', 'refresh');
+            $result=$this->med_info_model->add_drug_name($data);
+            if($result=='1')
+            {
+                $this->session->set_userdata('add_gen','Drug Name Successfully Added');
+                redirect(base_url() . 'med_info/drug_name', 'refresh');
+            }
         }
         else
         {

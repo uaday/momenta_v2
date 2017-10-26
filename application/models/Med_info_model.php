@@ -12,10 +12,17 @@ class Med_info_model extends CI_Model
         $sql="INSERT INTO tbl_doctor_type(type_name) VALUES (N'$doc_type')";
         $this->db->query($sql);
     }
-    public function add_drug_name($drug_name,$gen_id,$pm_name,$pm_phone)
+    public function add_drug_name($data)
     {
-        $sql="INSERT INTO tbl_drug(drug_name,tbl_drug_generic_name_gen_id,pm_name,pm_phone) VALUES (N'$drug_name',N'$gen_id',N'$pm_name',N'$pm_phone')";
-        $this->db->query($sql);
+        $result=$this->db->insert('tbl_drug', $data);
+        if($result)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public function edit_gen_name($bcode,$gen_id,$gen_name)
