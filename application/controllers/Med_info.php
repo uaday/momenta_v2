@@ -55,6 +55,7 @@ class Med_info extends CI_Controller {
         $this->session->set_userdata('sub_menu','drug_name');
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['drugs']=$this->med_info_model->getAllDrugs();
+        $data['gens']=$this->medicine_literature_model->getAllGen();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
@@ -105,16 +106,15 @@ class Med_info extends CI_Controller {
         $data['drug_name']=$this->input->post('drug_name');
         $data['tbl_drug_generic_name_gen_id']=$this->input->post('gen_id');
         $data['pm_name']=$this->input->post('pm_name');
-        $data['pm_phone']= preg_replace('/[^A-Za-z0-9\-]/', '', $this->input->post('pm_phone'));
+        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pm_phone'));
+        $data['pm_phone']= preg_replace('/\s+/','', $phone);
         $data['tbl_business_business_code']=$this->input->post('business');
-        print_r($data);
-        exit();
         if ($this->form_validation->run('add_drug_name'))
         {
             $result=$this->med_info_model->add_drug_name($data);
             if($result=='1')
             {
-                $this->session->set_userdata('add_gen','Drug Name Successfully Added');
+                $this->session->set_userdata('add_drug','Drug Name Successfully Added');
                 redirect(base_url() . 'med_info/drug_name', 'refresh');
             }
         }
@@ -161,12 +161,17 @@ class Med_info extends CI_Controller {
     }
     public function edit_drug_name()
     {
+
+        $data['tbl_business_business_code']=$this->input->post('business');
+        $data['tbl_drug_generic_name_gen_id']=$this->input->post('gen_id');
+        $data['drug_name']=$this->input->post('drug_name');
+        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pm_phone'));
+        $data['pm_phone']= preg_replace('/\s+/','', $phone);
+        $data['pm_name']=$this->input->post('pm_name');
         $drug_id=$this->input->post('drug_id');
-        $gen_id=$this->input->post('gen_id');
-        $drug_name=$this->input->post('drug_name');
-        $pm_name=$this->input->post('pm_name');
-        $pm_phone=$this->input->post('pm_phone');
-        $result=$this->med_info_model->edit_drug_name($drug_id,$drug_name,$gen_id,$pm_name,$pm_phone);
+        print_r($data);
+        exit();
+        $result=$this->med_info_model->edit_drug_name($drug_id,$data);
         if($result==0)
         {
             $this->session->set_userdata('gen_error','This Drug Name is Already Available');

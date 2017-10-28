@@ -49,16 +49,6 @@ $i = 0;
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">All Drug Name</h3>
-
-            <div class="panel-options">
-                <a href="#" data-toggle="panel">
-                    <span class="collapse-icon">&ndash;</span>
-                    <span class="expand-icon">+</span>
-                </a>
-                <a href="#" data-toggle="remove">
-                    &times;
-                </a>
-            </div>
         </div>
         <div align="center">
             <?php if ($this->session->userdata('add_drug')) { ?>
@@ -211,7 +201,7 @@ $i = 0;
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-md-offset-11 col-md-1" style="margin-bottom: 10px;">
+            <div  style="float: inherit; margin-bottom: 10px;">
                 <a href="javascript:;"
                    onclick="jQuery('#add_drug').modal('show', {backdrop: 'fade'});"
                    class="btn btn-primary btn-single "><i class="fa fa-plus-circle"> </i> Add New</a>
@@ -271,50 +261,110 @@ $i = 0;
                             </td>
                         </tr>
 
-                        <div class="modal fade" id="edit_drug-<?= $i ?>">
+                        <div class="modal fade" id="edit_drug-<?= $i?>" role="dialog">
                             <div class="modal-dialog">
-                                <form action="<?php echo base_url() ?>med_info/edit_drug_name" method="post">
+
+                                <!-- Modal content-->
+                                <form onsubmit="return check_drug_update()" action="<?php echo base_url() ?>med_info/edit_drug_name" method="post">
                                     <div class="modal-content">
-
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
+                                            <button type="button" class="close cross_btn no_back_btn"
+                                                    data-dismiss="modal">&times;
                                             </button>
-                                            <h3 class="modal-title text-bold text-primary"><i class="fa fa-edit"></i>
-                                                Edit Drug Name</h3>
-                                        </div>
+                                            <h3 class="modal-title text-bold">Edit Drug Name</h3>
 
+                                        </div>
                                         <div class="modal-body">
-                                            <div>
-                                                <div class="form-group">
-                                                    <label class="text-bold text-primary">Business</label>
-                                                    <select name="bcode" id="business" class="form-control">
-                                                        <?php foreach ($business as $bus1) {
-                                                            if ($bus1['business_code'] != '00') { ?>
-                                                                <option <?php if ($bus1['business_code'] == $drug['tbl_business_business_code']) echo 'selected' ?>
-                                                                        value="<?= $bus1['business_code'] ?>"><?= $bus1['business_name'] ?></option>
-                                                            <?php }
-                                                        } ?>
+
+                                            <div class="form-group">
+                                                <label class="text-bold">Business</label>
+                                                <script type="text/javascript">
+                                                        $("#business_update").selectBoxIt({
+                                                            showFirstOption: false
+                                                        }).on('open', function () {
+                                                            // Adding Custom Scrollbar
+                                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                                        });
+                                                </script>
+
+                                                <select name="business" class="form-control business_update" id="business_update"
+                                                        onchange="gen_list_for_drug_update(this.value, 'generic_name',<?= $drug['tbl_drug_generic_name_gen_id']?>);">
+                                                    <?php foreach ($business as $bus) { ?>
+                                                        <?php if ($this->session->userdata('business_code') == '00' && $bus['business_code'] != '00') { ?>
+                                                            <option <?php if($drug['business_code']==$bus['business_code']) echo "selected"?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                                        <?php } else { ?>
+                                                            <?php if ($this->session->userdata('business_code') == $bus['business_code'] && $bus['business_code'] != '00') { ?>
+                                                                <option <?php if($drug['business_code']==$bus['business_code']) echo "selected"?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                                            <?php } ?>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="text-bold">Generic Name</label>
+                                                <div class="generic_name">
+                                                    <script type="text/javascript">
+                                                        $("#generic_name").select2({
+                                                            placeholder: 'Select Generic Name...',
+                                                            allowClear: true
+                                                        }).on('select2-open', function()
+                                                        {
+                                                            // Adding Custom Scrollbar
+                                                            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                                                        });
+
+                                                    </script>
+                                                    <select class="form-control generic_name1" name="gen_id" id="generic_name">
+                                                        <option value='-1'>Select Generic Name</option>
+                                                        <?php foreach ($gens as $gen){ if($gen['tbl_business_business_code']==$drug['tbl_business_business_code']){?>
+                                                            <option <?php if($gen['gen_id']==$drug['tbl_drug_generic_name_gen_id']) echo "SELECTED"?> value="<?= $gen['gen_id']?>"><?= $gen['gen_name']?></option>
+                                                        <?php }}?>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="text-bold text-primary">Drug Name</label>
-                                                    <input type="hidden" name="drug_id"
-                                                           value="<?php echo $drug['drug_id'] ?>">
-                                                    <input name="drug_name" type="text" placeholder="Drug name"
-                                                           value="<?php echo $drug['drug_name'] ?>"
-                                                           class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="text-bold">Drug Name</label>
+                                                <div class="input-group input-group-sm input-group-minimal">
+										<span class="input-group-addon">
+											<i class="fa fa-flask"></i>
+										</span>
+                                                    <input  name="drug_id" id="drug_name" type="hidden" placeholder="Drug name" class="form-control" value="<?= $drug['drug_id']?>">
+                                                    <input  name="drug_name" id="drug_name_update" type="text" placeholder="Drug name" class="form-control" value="<?= $drug['drug_name']?>">
                                                 </div>
+                                                <p style="float: right" class="help-block">Ex: Estracon</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="text-bold">Product Manager Name</label>
+                                                <div class="input-group input-group-sm input-group-minimal">
+										<span class="input-group-addon">
+											<i class="linecons-user"></i>
+										</span>
+                                                    <input id="pm_name_update" name="pm_name" type="text" placeholder="Product Manager Name"
+                                                           class="form-control" value="<?= $drug['pm_name']?>">
+                                                </div>
+                                                <p style="float: right" class="help-block">Ex: Mr.Khayrul Islam</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="text-bold">Product Manager Phone Number</label>
+                                                <div class="input-group input-group-sm input-group-minimal">
+										<span class="input-group-addon">
+											<i class="linecons-mobile"></i>
+										</span>
+                                                    <input type="text" class="form-control" id="pm_phone_update" name="pm_phone"
+                                                           placeholder="Phone Number"
+                                                           data-mask="phone" value="<?= substr($drug['pm_phone'],1,10)?>"/>
+                                                </div>
+                                                <p style="float: right" class="help-block">Ex: 183 587 9587</p>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <!--                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>-->
-                                            <button type="submit" class="btn btn-primary btn-block">Save changes
-                                            </button>
+                                            <input type="submit" class="btn btn-primary btn-block" value="Save Drug Name">
+
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                         <div class="modal fade" id="delete_drug-<?= $i ?>">

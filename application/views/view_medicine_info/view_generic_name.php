@@ -153,7 +153,7 @@ $i = 0;
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-md-offset-11 col-md-1" style="margin-bottom: 10px;">
+            <div class="" style="margin-bottom: 10px;">
                 <a  href="javascript:;"
                     onclick="jQuery('#add_gen').modal('show', {backdrop: 'fade'});"
                     class="btn btn-primary btn-single "><i class="fa fa-plus-circle"> </i> Add New</a>

@@ -55,8 +55,9 @@ class Med_info_model extends CI_Model
             return 1;
         }
     }
-    public function edit_drug_name($drug_id,$drug_name,$gen_id,$pm_name,$pm_phone)
+    public function edit_drug_name($drug_id,$data)
     {
+        $drug_name=$data['drug_name'];
         $sql1="SELECT * FROM tbl_drug WHERE drug_name='$drug_name' AND drug_id<>'$drug_id'";
         $result=$this->db->query($sql1);
         if($result->num_rows>0)
@@ -65,8 +66,8 @@ class Med_info_model extends CI_Model
         }
         else
         {
-            $sql2="UPDATE tbl_drug SET drug_name=N'$drug_name' ,tbl_drug_generic_name_gen_id='$gen_id',pm_name='$pm_name',pm_phone='$pm_phone' WHERE drug_id='$drug_id'";
-            $this->db->query($sql2);
+            $this->db->where('drug_id',$drug_id);
+            $this->db->update('tbl_drug',$data);
             return 1;
         }
     }

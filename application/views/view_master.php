@@ -635,6 +635,39 @@
             }
         )
     }
+    function gen_list_for_drug_add(business_code, result) {
+
+        $.ajax(
+            {
+                type: 'POST',
+                data: {business_code: business_code},
+                url: "<?php echo site_url('find/find_gen_for_add_drug')?>",
+                success: function (result) {
+                    $('.generic_name').html(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            }
+        )
+    }
+    function gen_list_for_drug_update(business_code, result,gen_id) {
+
+        $.ajax(
+            {
+                type: 'POST',
+                data: {business_code: business_code,gen_id: gen_id},
+                url: "<?php echo site_url('find/find_gen_for_update_drug')?>",
+                success: function (result) {
+                    alert(result);
+                    $('.generic_name').html(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            }
+        )
+    }
     function gen_list1(business_code, result) {
         business_code_new=business_code;
         $.ajax(
@@ -1487,7 +1520,7 @@
             alert('Please Select Business Name');
             return false;
         }
-        if($('.generic_name1').val()==null)
+        if($('#generic_name1').val()=='-1')
         {
             alert('Please Select Generic Name');
             return false;
@@ -1514,14 +1547,24 @@
     }
     function  check_drug_update() {
 
-        if($('#drug_name1').val()=='')
+        if($('#business_update').val()==null)
+        {
+            alert('Please Select Business Name');
+            return false;
+        }
+        else if($('#drug_name_update').val()=='')
         {
             alert('Please Insert Drug Name');
             return false;
         }
-        else if($('#gen_id1').val()=='-1')
+        else if($('#pm_name_update').val()=='')
         {
-            alert('Please Select Generic Name');
+            alert('Please Insert Product Manager Name');
+            return false;
+        }
+        else if($('#pm_phone_update').val()=='')
+        {
+            alert('Please Insert Product Manager Phone Number');
             return false;
         }
         else
