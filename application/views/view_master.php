@@ -659,8 +659,7 @@
                 data: {business_code: business_code,gen_id: gen_id},
                 url: "<?php echo site_url('find/find_gen_for_update_drug')?>",
                 success: function (result) {
-                    alert(result);
-                    $('.generic_name').html(result);
+                    $('.generic_name_update').html(result);
                 },
                 error: function (result) {
                     alert(result);
@@ -1547,9 +1546,15 @@
     }
     function  check_drug_update() {
 
+
         if($('#business_update').val()==null)
         {
             alert('Please Select Business Name');
+            return false;
+        }
+        else if($('#generic_name_update').val()=='-1')
+        {
+            alert('Please Select Generic Name');
             return false;
         }
         else if($('#drug_name_update').val()=='')
@@ -1635,6 +1640,11 @@
             $("#psos").val("<option value='-1'>No Result</option>");
             $("#psos").multiselect('rebuild');
         }
+    }
+
+    function gen_echo(vale) {
+        alert(vale);
+
     }
 
 

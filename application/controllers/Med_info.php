@@ -169,8 +169,6 @@ class Med_info extends CI_Controller {
         $data['pm_phone']= preg_replace('/\s+/','', $phone);
         $data['pm_name']=$this->input->post('pm_name');
         $drug_id=$this->input->post('drug_id');
-        print_r($data);
-        exit();
         $result=$this->med_info_model->edit_drug_name($drug_id,$data);
         if($result==0)
         {
@@ -179,7 +177,7 @@ class Med_info extends CI_Controller {
         }
         else
         {
-            $this->session->set_userdata('add_gen','Drug Name Successfully Updated');
+            $this->session->set_userdata('add_drug','Drug Name Successfully Updated');
             redirect(base_url() . 'med_info/drug_name', 'refresh');
         }
     }

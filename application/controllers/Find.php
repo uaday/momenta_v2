@@ -110,9 +110,7 @@ class Find extends CI_Controller
 
             foreach ($result as $row)
             {
-
-                    echo "<option  value='$row[gen_id]'>$row[gen_name]</option>";
-
+                echo "<option  value='$row[gen_id]'>$row[gen_name]</option>";
             }
         }
         echo "</select>";
@@ -120,31 +118,18 @@ class Find extends CI_Controller
     public function find_gen_for_update_drug()
     {
         $business_code=$this->input->POST('business_code');
+        $gen_id=$this->input->POST('gen_id');
         $result=$this->medicine_literature_model->get_gen_by_business_code($business_code);
-        echo "<script type=\"text/javascript\">
-											$(\"#generic_name1\").select2({
-												placeholder: 'Select Generic Name...',
-												allowClear: true
-											}).on('select2-open', function()
-											{
-												// Adding Custom Scrollbar
-												$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
-											});
-										
-									</script>";
-        echo "<select class='form-control generic_name1' name=\"gen_id\" id='generic_name1' >";
-//        echo "<option value='-1'>Select Generic Name</option>";
         if($result)
         {
-
             foreach ($result as $row)
             {
-
+                if ($gen_id==$row['gen_id'])
+                    echo "<option selected='selected' value='$row[gen_id]'>$row[gen_name]</option>";
+                else
                     echo "<option  value='$row[gen_id]'>$row[gen_name]</option>";
-
             }
         }
-        echo "</select>";
     }
     public function find_genn()
     {
