@@ -64,9 +64,14 @@ class Med_info extends CI_Controller {
     }
     public function doc_type()
     {
+        $this->session->set_userdata('sub_menu','doc_type');
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['docs']=$this->medicine_literature_model->getAllDoc();
-        $this->parser->parse('view_medicine_info/view_doc_type',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_medicine_info/view_doc_type',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
     public function add_gen_name()
     {

@@ -301,7 +301,7 @@
                             </a>
                         </li>
                         <li  class="<?php if($this->session->userdata('sub_menu')=='doctor_type') echo "active "?>">
-                            <a href="extra-gallery.html">
+                            <a href="<?= base_url()?>med_info/doc_type">
                                 <span class="title">Doctor Type</span>
                             </a>
                         </li>

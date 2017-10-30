@@ -197,11 +197,11 @@ $i = 0;
                             <td>
                                 <a href="javascript:;"
                                    onclick="jQuery('#edit_gen-<?= $i ?>').modal('show');"
-                                   class="btn btn-primary btn-single btn-sm">Edit</a>
+                                   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-left btn-sm"><i class="fa fa-edit "></i> <span class="hidden-xs text-uppercase"> Edit</span></a>
                                 <span class="table_insider"> | </span>
                                 <a href="javascript:;"
                                    onclick="jQuery('#delete_gen-<?= $i ?>').modal('show', {backdrop: 'fade'});"
-                                   class="btn btn-danger btn-single btn-sm">Delete</a>
+                                   class="btn btn-danger btn-icon btn-icon-standalone btn-icon-standalone-left btn-sm"><i class="fa fa-trash "></i> <span class="hidden-xs text-uppercase"> Delete</span></a>
                             </td>
                         </tr>
 

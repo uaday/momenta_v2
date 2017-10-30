@@ -19,7 +19,7 @@ class Medicine_literature_model extends CI_Model {
     }
     public function getAllDoc()
     {
-        $sql="SELECT * FROM tbl_doctor_type";
+        $sql="SELECT * FROM tbl_doctor_type d , tbl_business b WHERE  b.business_code=d.tbl_business_business_code";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
