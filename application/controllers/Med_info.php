@@ -6,17 +6,8 @@ class Med_info extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
-        $data['tincentives']=$this->home_model->total_incentives();
-        $data['texam']=$this->home_model->total_exam();
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
-        $data['tdrug']=$this->home_model->total_drug();
-        $this->session->set_userdata('i','8');
         $this->session->set_userdata('main_menu','medicine_info');
-
         if($this->session->userdata('change_pass_status')=='0')
         {
             redirect(base_url().'change_password');

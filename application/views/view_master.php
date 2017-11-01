@@ -190,12 +190,12 @@
                     </a>
                     <ul>
                         <li  class="<?php if($this->session->userdata('sub_menu')=='medicine_literature_update') echo "active "?>">
-                            <a href="<?php echo base_url()?>update_medicine_literature">
+                            <a href="<?php echo base_url()?>medicine_literature/update_medicine_literature">
                                 <span class="title">Update Medicine Literature</span>
                             </a>
                         </li>
                         <li class="<?php if($this->session->userdata('sub_menu')=='view_all_medicine_literature') echo "active "?>">
-                            <a href="<?php echo base_url()?>view_all_medicine_literature">
+                            <a href="<?php echo base_url()?>medicine_literature/view_all_medicine_literature">
                                 <span class="title">View Medicine Literature</span>
                             </a>
                         </li>
@@ -225,14 +225,14 @@
                     </ul>
                 </li>
 
-                <li>
+                <li  class="<?php if($this->session->userdata('main_menu')=='renata_shop') echo "active opened "?>">
                     <a href="mailbox-main.html">
                         <i class="linecons-mail"></i>
                         <span class="title">Renata Shop</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="mailbox-main.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='create_incentive') echo "active "?>">
+                            <a href="<?= base_url()?>renata_shop/create_incentive">
                                 <span class="title">Create Incentive</span>
                             </a>
                         </li>

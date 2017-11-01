@@ -5,32 +5,18 @@ class Tar_shop extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
-        $data['tincentives']=$this->home_model->total_incentives();
-        $data['texam']=$this->home_model->total_exam();
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
-        $data['tdrug']=$this->home_model->total_drug();
-        $this->session->set_userdata('i','4');
-
+        $this->session->set_userdata('main_menu','renata_shop');
         if($this->session->userdata('change_pass_status')=='0')
         {
-            redirect(base_url().'settings/change_password');
+            redirect(base_url().'change_password');
         }
-
         if($data['login_id']!=null)
         {
-            $this->load->view('view_dashboard',$data);
         }
         else
         {
             redirect(base_url().'login');
-        }
-        if($this->session->userdata('user_type')!='1'&&$this->session->userdata('user_type')!='2'&&$this->session->userdata('user_type')!='3'&&$this->session->userdata('user_type')!='4')
-        {
-            redirect(base_url().'access_denied');
         }
     }
 
@@ -38,14 +24,15 @@ class Tar_shop extends CI_Controller {
     {
         redirect(base_url().'tar_shop/create_target');
     }
-    public function create_target()
+    public function create_incentive()
     {
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
-        $data['psos'] = $this->tar_shop_model->get_pso($user_type,$employee_id);
-        $this->load->view('view_renata_shop/view_create_target',$data);
-        $this->load->view('view_footer');
+        $this->session->set_userdata('sub_menu','create_incentive');
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_renata_shop/view_create_incentive',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
     public function track_incentive()
     {
@@ -56,7 +43,7 @@ class Tar_shop extends CI_Controller {
         $this->load->view('view_renata_shop/view_track_incentive',$data);
         $this->load->view('view_footer');
     }
-    public function create_incentive()
+    public function add_incentive()
     {
         $in_title=$this->input->post('title');
         $in_description=$this->input->post('description');

@@ -50,8 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Login';
-$route['update_medicine_literature'] = 'medicine_literature/index';
+$route['medicine_literature/update_medicine_literature'] = 'medicine_literature/index';
 $route['change_password'] = 'settings/change_password';
-$route['view_all_medicine_literature'] = 'medicine_literature/all_literature';
+$route['medicine_literature/view_all_medicine_literature'] = 'medicine_literature/all_literature';
+$route['renata_shop/create_incentive'] = 'tar_shop/create_incentive';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

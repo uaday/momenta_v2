@@ -1,6 +1,5 @@
 <div class="main-content">
 
-    <!-- User Info, Notifications and Menu Bar -->
     <?php echo $user_profile;?>
     <div class="page-title">
 
@@ -191,7 +190,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Save</button>
-                            <button type="reset" class="btn btn-white">Reset</button>
+<!--                            <button type="reset" class="btn btn-white">Reset</button>-->
                         </div>
 
 
@@ -415,9 +414,9 @@
                             <input id="image_test" name="image_test" type="hidden">
                         </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Save</button>
-                            <button type="reset" class="btn btn-white">Reset</button>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-success ">Save</button>
+<!--                            <button type="reset" class="btn btn-white">Reset</button>-->
                             <a onclick="return delete_version();" id="version_delete" style="visibility: hidden" class="btn btn-danger btn-icon btn-icon-standalone btn-sm">
                                 <i class="fa-trash"></i>
                                 <span>Delete Version</span>
