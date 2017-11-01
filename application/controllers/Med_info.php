@@ -64,7 +64,7 @@ class Med_info extends CI_Controller {
     }
     public function doc_type()
     {
-        $this->session->set_userdata('sub_menu','doc_type');
+        $this->session->set_userdata('sub_menu','doctor_type');
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['docs']=$this->medicine_literature_model->getAllDoc();
         $data['hero_header'] = TRUE;
@@ -92,12 +92,16 @@ class Med_info extends CI_Controller {
     }
     public function add_doc_type()
     {
-        $doc_type=$this->input->post('doc_type');
+        $data['type_name']=$this->input->post('doc_type');
+        $data['tbl_business_business_code']=$this->input->post('bcode');
         if ($this->form_validation->run('add_doc_type'))
         {
-            $this->med_info_model->add_doc_type($doc_type);
-            $this->session->set_userdata('add_gen','Doctor Type Successfully Added');
-            redirect(base_url() . 'med_info/doc_type', 'refresh');
+            $result=$this->med_info_model->add_doc_type($data);
+            if($result=='1')
+            {
+                $this->session->set_userdata('add_gen','Doctor Type Successfully Added');
+                redirect(base_url() . 'med_info/doc_type', 'refresh');
+            }
         }
         else
         {
@@ -150,9 +154,10 @@ class Med_info extends CI_Controller {
     }
     public function edit_doc_type()
     {
-        $doc_type=$this->input->post('doc_type');
+        $data['tbl_business_business_code']=$this->input->post('bcode');
+        $data['type_name']=$this->input->post('doc_type');
         $doc_type_id=$this->input->post('doc_type_id');
-        $result=$this->med_info_model->edit_doc_type($doc_type,$doc_type_id);
+        $result=$this->med_info_model->edit_doc_type($data,$doc_type_id);
         if($result==0)
         {
             $this->session->set_userdata('gen_error','This Doctor Type is Already Available');

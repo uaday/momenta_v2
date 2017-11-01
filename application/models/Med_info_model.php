@@ -7,10 +7,17 @@ class Med_info_model extends CI_Model
         $sql="INSERT INTO tbl_drug_generic_name(gen_name,tbl_business_business_code) VALUES (N'$gen_name',N'$bcode')";
         $this->db->query($sql);
     }
-    public function add_doc_type($doc_type)
+    public function add_doc_type($data)
     {
-        $sql="INSERT INTO tbl_doctor_type(type_name) VALUES (N'$doc_type')";
-        $this->db->query($sql);
+        $result=$this->db->insert('tbl_doctor_type', $data);
+        if($result)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     public function add_drug_name($data)
     {
@@ -29,7 +36,7 @@ class Med_info_model extends CI_Model
     {
         $sql1="SELECT * FROM tbl_drug_generic_name WHERE gen_name='$gen_name' AND gen_id<>'$gen_id'";
         $result=$this->db->query($sql1);
-        if($result->num_rows>0)
+        if($result->num_rows()>0)
         {
             return 0;
         }
@@ -40,18 +47,19 @@ class Med_info_model extends CI_Model
             return 1;
         }
     }
-    public function edit_doc_type($doc_type,$doc_type_id)
+    public function edit_doc_type($data,$doc_type_id)
     {
+        $doc_type=$data['type_name'];
         $sql1="SELECT * FROM tbl_doctor_type WHERE type_name='$doc_type' AND doc_type_id<>'$doc_type_id'";
         $result=$this->db->query($sql1);
-        if($result->num_rows>0)
+        if($result->num_rows()>0)
         {
             return 0;
         }
         else
         {
-            $sql2="UPDATE tbl_doctor_type SET type_name='$doc_type' WHERE doc_type_id='$doc_type_id'";
-            $this->db->query($sql2);
+            $this->db->where('doc_type_id',$doc_type_id);
+            $this->db->update('tbl_doctor_type',$data);
             return 1;
         }
     }
@@ -60,7 +68,7 @@ class Med_info_model extends CI_Model
         $drug_name=$data['drug_name'];
         $sql1="SELECT * FROM tbl_drug WHERE drug_name='$drug_name' AND drug_id<>'$drug_id'";
         $result=$this->db->query($sql1);
-        if($result->num_rows>0)
+        if($result->num_rows()>0)
         {
             return 0;
         }

@@ -309,7 +309,7 @@ $i = 0;
                                             <div class="form-group">
                                                 <label class="text-bold">Generic Name</label>
                                                 <select class="form-control generic_name_update" name="gen_id"
-                                                        id="generic_name_update">
+                                                        id=" ">
                                                     <option value='-1'>Select Generic Name</option>
                                                     <?php foreach ($gens as $gen) {
                                                         if ($gen['tbl_business_business_code'] == $drug['tbl_business_business_code']) { ?>

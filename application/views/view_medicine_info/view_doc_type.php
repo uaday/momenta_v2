@@ -16,8 +16,8 @@ $i = 0;
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">Generic Name</h1>
-            <p class="description">Maintain the generic name of the drugs</p>
+            <h1 class="title">Doctor Type</h1>
+            <p class="description">Maintain the doctors for drugs</p>
         </div>
 
         <div class="breadcrumb-env">
@@ -76,15 +76,15 @@ $i = 0;
                 <?php $this->session->unset_userdata('pass_issue');
             } ?>
 
-            <?php if ($this->session->userdata('delete_gen')) { ?>
+            <?php if ($this->session->userdata('delete_doc_type')) { ?>
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    <strong><?php echo $this->session->userdata('delete_gen'); ?></strong>
+                    <strong><?php echo $this->session->userdata('delete_doc_type'); ?></strong>
                 </div>
-                <?php $this->session->unset_userdata('delete_gen');
+                <?php $this->session->unset_userdata('delete_doc_type');
             } ?>
 
             <?php if ($this->session->userdata('gen_error')) { ?>
@@ -103,13 +103,13 @@ $i = 0;
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <form  onsubmit="return add_generic_name()" action="<?php echo base_url() ?>med_info/add_gen_name" method="post">
+                <form  onsubmit="return add_generic_name()" action="<?php echo base_url() ?>med_info/add_doc_type" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close cross_btn no_back_btn"
                                     data-dismiss="modal">&times;
                             </button>
-                            <h3 class="modal-title text-bold">Add Generic Name</h3>
+                            <h3 class="modal-title text-bold">Add Doctor Type</h3>
 
                         </div>
                         <div class="modal-body" >
@@ -139,13 +139,13 @@ $i = 0;
 
                             </div>
                             <div class="form-group">
-                                <label class="text-bold">Generic Name</label>
-                                <input required="required" name="gen_name" type="text" placeholder="Generic name" class="form-control">
+                                <label class="text-bold">Doctor Type</label>
+                                <input required="required" name="doc_type" type="text" placeholder="Doctor Type" class="form-control">
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary btn-block" value="Add Generic Name">
+                            <input type="submit" class="btn btn-primary btn-block" value="Add Doctor Type">
 
                         </div>
                     </div>
@@ -196,18 +196,18 @@ $i = 0;
                             <td><?= $doc['type_name'] ?></td>
                             <td>
                                 <a href="javascript:;"
-                                   onclick="jQuery('#edit_gen-<?= $i ?>').modal('show');"
+                                   onclick="jQuery('#edit_doc-<?= $i ?>').modal('show');"
                                    class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-left btn-sm"><i class="fa fa-edit "></i> <span class="hidden-xs text-uppercase"> Edit</span></a>
                                 <span class="table_insider"> | </span>
                                 <a href="javascript:;"
-                                   onclick="jQuery('#delete_gen-<?= $i ?>').modal('show', {backdrop: 'fade'});"
+                                   onclick="jQuery('#delete_doc-<?= $i ?>').modal('show', {backdrop: 'fade'});"
                                    class="btn btn-danger btn-icon btn-icon-standalone btn-icon-standalone-left btn-sm"><i class="fa fa-trash "></i> <span class="hidden-xs text-uppercase"> Delete</span></a>
                             </td>
                         </tr>
 
-                        <div class="modal fade" id="edit_gen-<?= $i ?>">
+                        <div class="modal fade" id="edit_doc-<?= $i ?>">
                             <div class="modal-dialog">
-                                <form action="<?php echo base_url() ?>med_info/edit_gen_name" method="post">
+                                <form action="<?php echo base_url() ?>med_info/edit_doc_type" method="post">
                                     <div class="modal-content">
 
                                         <div class="modal-header">
@@ -215,7 +215,7 @@ $i = 0;
                                                 &times;
                                             </button>
                                             <h3 class="modal-title text-bold text-primary"><i class="fa fa-edit"></i>
-                                                Edit Generic Name</h3>
+                                                Edit Doctor Type</h3>
                                         </div>
 
                                         <div class="modal-body">
@@ -229,10 +229,9 @@ $i = 0;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="text-bold text-primary">Generic Name</label>
-                                                    <input type="hidden" name="gen_id"
-                                                           value="<?php echo $doc['doc_type_id'] ?>">
-                                                    <input name="gen_name" type="text" placeholder="Generic name"
+                                                    <label class="text-bold text-primary">Doctor Type</label>
+                                                    <input type="hidden" name="doc_type_id" value="<?php echo $doc['doc_type_id']?>">
+                                                    <input name="doc_type" type="text" placeholder="Doctor Type"
                                                            value="<?php echo $doc['type_name'] ?>" class="form-control">
                                                 </div>
                                             </div>
@@ -247,9 +246,9 @@ $i = 0;
                                 </form>
                             </div>
                         </div>
-                        <div class="modal fade" id="delete_gen-<?= $i ?>">
+                        <div class="modal fade" id="delete_doc-<?= $i ?>">
                             <div class="modal-dialog">
-                                <form action="<?php echo base_url() ?>med_info/delete_generic_name" method="post">
+                                <form action="<?php echo base_url() ?>med_info/delete_doc_type" method="post">
                                     <div class="modal-content">
 
                                         <div class="modal-header">
@@ -274,10 +273,10 @@ $i = 0;
                                                 </div>
                                                 <hr>
                                                 <label class="text-primary text-bold">Generic Name</label>
-                                                <input type="hidden" name="gen_id" value="<?php echo $doc['gen_id'] ?>">
+                                                <input type="hidden" name="doc_type_id" value="<?php echo $doc['doc_type_id'] ?>">
                                                 <input style="background: #E0E0E0" type="password" name="password"
                                                        id="password" class="form-control"
-                                                       placeholder="Please Enter Password For Delete Generic Name">
+                                                       placeholder="Please Enter Password For Delete Doctor Type">
                                             </div>
                                         </div>
 
