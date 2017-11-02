@@ -87,43 +87,24 @@
                     <textarea name="description"  class="form-control description" cols="5" rows="5" id="description" data-validate="required" data-message-required="Please fill up description field"></textarea>
 
                 </div>
-
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label">Input Min Field</label>-->
-<!---->
-<!--                    <input type="text" class="form-control" name="min_field" data-validate="number,minlength[4]"-->
-<!--                           placeholder="Numeric + Minimun Length Field"/>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label">Input Max Field</label>-->
-<!---->
-<!--                    <input type="text" class="form-control" name="max_field" data-validate="maxlength[2]"-->
-<!--                           placeholder="Maximum Length Field"/>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label">Numeric Field</label>-->
-<!---->
-<!--                    <input type="text" class="form-control" name="number" data-validate="number"-->
-<!--                           placeholder="Numeric Field"/>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label">URL Field</label>-->
-<!---->
-<!--                    <input type="text" class="form-control" name="url" data-validate="required,url" placeholder="URL"/>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label">Credit Card Field</label>-->
-<!---->
-<!--                    <input type="text" class="form-control" name="creditcard" data-validate="required,creditcard"-->
-<!--                           placeholder="Credit Card"/>-->
-<!--                </div>-->
-
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Validate</button>
+                    <label class="control-label">Validation</label>
+                    <input type="text" class="form-control datepicker" data-start-view="1" name="validation" id="offer_validity" data-validate="required" data-message-required="Please select the validation date">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Point needed</label>
+                    <input type="text" class="form-control" name="point"   id="point_needed" data-mask="999" placeholder="Point needed" data-validate="required" data-message-required="Please fill up the point needed section"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Quantity</label>
+                    <input type="text" class="form-control" name="quantity"   id="quantity" data-mask="999" placeholder="Quantity" data-validate="required" data-message-required="Please fill up the point needed section"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Incentive Image</label>
+                    <input type="file" name="image" id="shop_image" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Save Incentive</button>
                     <button type="reset" class="btn btn-white">Reset</button>
                 </div>
 
