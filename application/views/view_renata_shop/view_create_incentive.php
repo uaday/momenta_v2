@@ -45,6 +45,17 @@
 
         </div>
 
+        <?php if ($this->session->userdata('create_incentive')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('create_incentive'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('create_incentive');
+        } ?>
+
         <div class="panel-body">
 
             <form onsubmit="return check_incentive()" action="<?php echo base_url() ?>tar_shop/add_incentive" method="post" enctype="multipart/form-data" class="validate">
@@ -101,7 +112,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Incentive Image</label>
-                    <input type="file" name="image" id="shop_image" class="form-control">
+                    <input type="file" name="image" id="shop_image" class="form-control" data-validate="required" data-message-required="Please fill up the point needed section">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Save Incentive</button>

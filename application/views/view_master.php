@@ -1286,17 +1286,15 @@
         }
     }
     function check_incentive() {
-        var image=$('#shop_image').val();
         var point_needed=$('#point_needed').val();
+        var business=$('#business').val();
         var quantity=$('#quantity').val();
-        var offer_validity=$('#offer_validity').val();
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;
-        var yyyy = today.getFullYear();
-
-
-        if(point_needed<0)
+        if(business==null)
+        {
+            alert("Please select business");
+            return false;
+        }
+        else if(point_needed<0)
         {
             alert("Please Insert Positive Point");
             return false;
@@ -1304,11 +1302,6 @@
         else if(quantity<0)
         {
             alert("Please Insert Positive Quantity");
-            return false;
-        }
-        else if(image=='')
-        {
-            alert("Select Incentive Image");
             return false;
         }
         else

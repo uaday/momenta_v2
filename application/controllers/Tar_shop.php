@@ -45,13 +45,16 @@ class Tar_shop extends CI_Controller {
     }
     public function add_incentive()
     {
-        $in_title=$this->input->post('title');
-        $in_description=$this->input->post('description');
-        $in_validation=$this->input->post('validation');
-        $in_point=$this->input->post('point');
-        $in_quantity=$this->input->post('quantity');
-        $global=$this->input->post('global');
 
+        $data['tbl_business_business_code']=$this->input->post('business');
+        $data['incentives_name']=$this->input->post('title');
+        $data['incentives_description']=$this->input->post('description');
+        $exp_date=explode('/', $this->input->post('validation'));
+        $data['exp_date'] = $exp_date[2].'-'.$exp_date[0].'-'.$exp_date[1];
+        $data['incentives_point']=$this->input->post('point');
+        $data['quantity']=$this->input->post('quantity');
+        $data['create_date']=date('Y-m-d');
+        $data['status']='1';
         if (!empty($_FILES['image']['name'])) {
             $uploadPath = 'upload/shop_image';
             $config['upload_path'] = $uploadPath;
@@ -66,12 +69,21 @@ class Tar_shop extends CI_Controller {
         }
         if (!empty($uploadData)) {
             $pp = base_url() . 'upload/shop_image/' . $fileData['file_name'];
-            $this->tar_shop_model->insert_incentive($in_title,$in_description,$in_validation,$in_point,$in_quantity,$pp);
+            $data['incentives_image']=$pp;
+            $result=$this->tar_shop_model->insert_incentive($data);
         } else {
-            $this->tar_shop_model->insert_incentive($in_title,$in_description,$in_validation,$in_point,$in_quantity,'');
+            $data['incentives_image']='';
+            $result=$this->tar_shop_model->insert_incentive($data);
         }
-        $this->session->set_userdata('create_shop','Create Incentive Successful!');
-        redirect(base_url() . 'tar_shop/create_target', 'refresh');
+        if($result=='1')
+        {
+            $this->session->set_userdata('create_incentive','Incentive created successfully');
+            redirect(base_url() . 'renata_shop/create_incentive', 'refresh');
+        }
+        else
+        {
+
+        }
     }
 
     public function approve_booking()

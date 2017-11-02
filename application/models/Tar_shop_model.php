@@ -11,12 +11,17 @@ class Tar_shop_model extends CI_Model {
         return $result->result_array();
     }
 
-    public function insert_incentive($in_title,$in_description,$in_validation,$in_point,$in_quantity,$pp)
+    public function insert_incentive($data)
     {
-        $in_title=$this->db->escape_str($in_title);
-        $in_description=$this->db->escape_str($in_description);
-        $sql="INSERT INTO tbl_incentives(incentives_name,incentives_description,incentives_image,create_date,status,exp_date,incentives_point,quantity) VALUES(N'$in_title',N'$in_description','$pp',now(),'1','$in_validation','$in_point','$in_quantity')";
-        $this->db->query($sql);
+        $result=$this->db->insert('tbl_incentives', $data);
+        if($result)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     public function set_global($id)
     {
