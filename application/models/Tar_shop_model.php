@@ -154,10 +154,10 @@ class Tar_shop_model extends CI_Model {
 
     public function all_incentives()
     {
-        $sql="SELECT * FROM tbl_incentives";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+            $this->db->select('*');
+            $this->db->from('tbl_incentives');
+            $this->db->join('tbl_business', 'tbl_business.business_code = tbl_incentives.tbl_business_business_code');
+            return $this->db->get()->result_array();
     }
 
     public function update_status($incentives_id,$status)

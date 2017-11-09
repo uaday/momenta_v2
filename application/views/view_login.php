@@ -40,7 +40,7 @@
 
 
 </head>
-<body class="page-body login-page login-light" style="background-image: url(<?= base_url()?>assets/images/bg.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
+<body class="page-body login-page login-light" style="background-image: url(<?= base_url()?>assets/images/back2.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
 
 
 <div class="login-container" >

@@ -236,12 +236,12 @@
                                 <span class="title">Create Incentive</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="mailbox-compose.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='manage_incentive') echo "active "?>">
+                            <a href="<?php echo base_url()?>renata_shop/manage_incentive">
                                 <span class="title">Manage Incentive</span>
                             </a>
                         </li>
-                        <li>
+                        <li >
                             <a href="mailbox-message.html">
                                 <span class="title">Track Incentive</span>
                             </a>

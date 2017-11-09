@@ -104,13 +104,13 @@ class Tar_shop extends CI_Controller {
 
     public function manage_incentives()
     {
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
-        $data['psos'] = $this->tar_shop_model->get_pso($user_type,$employee_id);
+        $this->session->set_userdata('sub_menu','manage_incentive');
         $data['incentives']=$this->tar_shop_model->all_incentives();
-        $this->load->view('view_renata_shop/view_manage_incentives',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_renata_shop/view_manage_incentive',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
 
     public function change_status()

@@ -54,5 +54,6 @@ $route['medicine_literature/update_medicine_literature'] = 'medicine_literature/
 $route['change_password'] = 'settings/change_password';
 $route['medicine_literature/view_all_medicine_literature'] = 'medicine_literature/all_literature';
 $route['renata_shop/create_incentive'] = 'tar_shop/create_incentive';
+$route['renata_shop/manage_incentive'] = 'tar_shop/manage_incentives';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

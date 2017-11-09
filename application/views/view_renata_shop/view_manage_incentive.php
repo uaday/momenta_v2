@@ -21,7 +21,7 @@
 
             <ol class="breadcrumb bc-1">
                 <li>
-                    <a href="<?php echo base_url()?>home"><i class="fa-home"></i>Home</a>
+                    <a href="<?php echo base_url() ?>home"><i class="fa-home"></i>Home</a>
                 </li>
                 <li>
 
@@ -63,7 +63,8 @@
                         });
                     });
                 </script>
-                <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+                <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                       width="100%">
                     <thead>
                     <tr>
                         <th>Business</th>
@@ -87,18 +88,35 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    {meds}
-                    <tr>
-                        <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px">
-                        </td>
-                        <td>{drug_name}</td>
-                        <td><a target="_blank" class="btn btn-primary center-block"
-                               href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a></td>
-                        <td><a target="_blank" class="btn btn-primary center-block"
-                               href="https://docs.google.com/viewerng/viewer?url={benefits_feature}">Feature & Benefit</a>
-                        </td>
-                    </tr>
-                    {/meds}
+                    <?php foreach ($incentives as $incentive) { ?>
+                        <tr>
+                            <td><img src="<?= $incentive['incentives_image'] ?>" class=" img-circle" alt=""
+                                     height="50px" width="50px">
+                            </td>
+                            <td><?= $incentive['incentives_name'] ?></td>
+                            <td><?= $incentive['incentives_point'] ?></td>
+                            <td><?= $incentive['quantity'] ?></td>
+                            <td><?= $incentive['exp_date'] ?></td>
+                            <?php if ($incentive['status'] == '1') { ?>
+                                <td>Active</td>
+                            <?php } else { ?>
+                                <td>Inactive</td>
+                            <?php } ?>
+                            <td>
+                                <?php if ($incentive['status'] == '1') { ?>
+                                    <button class="btn btn-icon btn-warning">
+                                        <i class="fa-thumbs-o-down"></i>
+                                    </button>
+                                <?php } else { ?>
+                                    <button class="btn btn-icon btn-success">
+                                        <i class="fa-thumbs-o-up"></i>
+                                    </button>
+                                <?php } ?>
+                                <a target="_blank" class="btn btn-primary center-block"
+                                   href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
