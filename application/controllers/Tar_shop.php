@@ -133,8 +133,11 @@ class Tar_shop extends CI_Controller {
     {
         $incentive_id=$this->input->get('incentives_id');
         $data['incentive']=$this->tar_shop_model->select_incentive_by_incentive_id($incentive_id);
-        $this->load->view('view_renata_shop/view_edit_incentives',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_renata_shop/view_edit_incentive',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
 
     public function update_incentive()

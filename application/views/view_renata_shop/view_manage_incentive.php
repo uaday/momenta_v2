@@ -67,10 +67,11 @@
                        width="100%">
                     <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Business</th>
-                        <th>Incentive Name</th>
-                        <th>Incentive points</th>
-                        <th>Balance Stock</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                        <th>Stock</th>
                         <th>Expire Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -78,10 +79,11 @@
                     </thead>
                     <tfoot>
                     <tr>
+                        <th>Image</th>
                         <th>Business</th>
-                        <th>Incentive Name</th>
-                        <th>Incentive points</th>
-                        <th>Balance Stock</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                        <th>Stock</th>
                         <th>Expire Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -93,6 +95,7 @@
                             <td><img src="<?= $incentive['incentives_image'] ?>" class=" img-circle" alt=""
                                      height="50px" width="50px">
                             </td>
+                            <td><?= $incentive['business_name'] ?></td>
                             <td><?= $incentive['incentives_name'] ?></td>
                             <td><?= $incentive['incentives_point'] ?></td>
                             <td><?= $incentive['quantity'] ?></td>
@@ -104,16 +107,27 @@
                             <?php } ?>
                             <td>
                                 <?php if ($incentive['status'] == '1') { ?>
-                                    <button class="btn btn-icon btn-warning">
+                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=0"
+                                       title="Inactive" class="btn btn-icon btn-warning btn-sm">
                                         <i class="fa-thumbs-o-down"></i>
-                                    </button>
+                                    </a>
                                 <?php } else { ?>
-                                    <button class="btn btn-icon btn-success">
+                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=1"
+                                       title="active" class="btn btn-icon btn-success btn-sm">
                                         <i class="fa-thumbs-o-up"></i>
-                                    </button>
+                                    </a>
                                 <?php } ?>
-                                <a target="_blank" class="btn btn-primary center-block"
-                                   href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a>
+                                <span class="table_insider"> | </span>
+                                <a href="<?php echo base_url() ?>tar_shop/edit_incentive?incentives_id=<?php echo  $incentive['incentives_id'] ?>"
+                                   title="active" class="btn btn-icon btn-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <span class="table_insider"> | </span>
+                                <a  onclick="return delete_incentive()"
+                                    href="<?php echo base_url() ?>tar_shop/delete_incentives?incentives_id=<?php echo  $incentive['incentives_id'] ?>"
+                                   title="Delete Incentive" class="btn btn-icon btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>
