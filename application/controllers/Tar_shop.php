@@ -132,6 +132,7 @@ class Tar_shop extends CI_Controller {
     public function edit_incentive()
     {
         $incentive_id=$this->input->get('incentives_id');
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['incentive']=$this->tar_shop_model->select_incentive_by_incentive_id($incentive_id);
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
@@ -142,15 +143,17 @@ class Tar_shop extends CI_Controller {
 
     public function update_incentive()
     {
-        $in_title=$this->input->post('title');
-        $in_description=$this->input->post('description');
-        $in_validation=$this->input->post('validation');
-        $in_point=$this->input->post('point');
-        $in_quantity=$this->input->post('quantity');
+        $data['incentives_name']=$this->input->post('title');
+        $data['incentives_description']=$this->input->post('description');
+        $exp_date=explode('/', $this->input->post('validation'));
+        $data['exp_date'] = $exp_date[2].'-'.$exp_date[0].'-'.$exp_date[1];
+        $data['incentives_point']=$this->input->post('point');
+        $data['quantity']=$this->input->post('quantity');
+        $data['tbl_business_business_code']=$this->input->post('business');
+        $data['incentives_image']=$this->input->post('incentive_image');
+        $data['status']='1';
         $in_id=$this->input->post('incentives_id');
-        $image1=$this->input->post('image1');
 
-        $pp='';
 
         if (!empty($_FILES['image']['name'])) {
             $uploadPath = 'upload/shop_image';
@@ -165,13 +168,12 @@ class Tar_shop extends CI_Controller {
             }
         }
         if (!empty($uploadData)) {
-            $pp1=str_replace(base_url(),"/",$image1);
+            $pp1=str_replace(base_url(),"",$data['incentives_image']);
             unlink($pp1);
-            $pp = base_url() . 'upload/shop_image/' . $fileData['file_name'];
-            $result=$this->tar_shop_model->edit_incentives_by_incentives_id($in_id,$in_title,$in_description,$in_validation,$in_point,$in_quantity,$pp);
+            $data['incentives_image'] = base_url() . 'upload/shop_image/' . $fileData['file_name'];
+            $result=$this->tar_shop_model->edit_incentives_by_incentives_id($data,$in_id);
         } else {
-            $pp=$image1;
-            $result=$this->tar_shop_model->edit_incentives_by_incentives_id($in_id,$in_title,$in_description,$in_validation,$in_point,$in_quantity,$pp);
+            $result=$this->tar_shop_model->edit_incentives_by_incentives_id($data,$in_id);
         }
 
         if($result=='1')

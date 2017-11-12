@@ -62,7 +62,7 @@ $incentive['0']['exp_date'] = $exp_date[1].'/'.$exp_date[2].'/'.$exp_date[0];
 
         <div class="panel-body">
 
-            <form onsubmit="return check_incentive()" action="<?php echo base_url() ?>tar_shop/add_incentive" method="post" enctype="multipart/form-data" class="validate">
+            <form onsubmit="return check_incentive()" action="<?php echo base_url() ?>tar_shop/update_incentive" method="post" enctype="multipart/form-data" class="validate">
 
                 <div class="form-group">
                     <label class="text-bold">Business</label>
@@ -116,12 +116,16 @@ $incentive['0']['exp_date'] = $exp_date[1].'/'.$exp_date[2].'/'.$exp_date[0];
                     <input value="<?php echo $incentive['0']['quantity']?>" type="text" class="form-control" name="quantity"   id="quantity" data-mask="999" placeholder="Quantity" data-validate="required" data-message-required="Please fill up the point needed section"/>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Incentive Image</label>
-                    <input type="file" name="image" id="shop_image" class="form-control" data-validate="required" data-message-required="Please fill up the point needed section">
+                    <label class="control-label">Incentive Image</label><br>
+                    <img style="height: 230px;width: 300px;border: 1px dotted" src="<?php echo $incentive['0']['incentives_image'];?>">
+                    <input type="hidden" name="incentive_image" value="<?php echo $incentive['0']['incentives_image'];?>">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">New Image</label>
+                    <input type="file" name="image" id="shop_image" class="form-control">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Save Incentive</button>
-                    <button type="reset" class="btn btn-white">Reset</button>
                 </div>
 
             </form>

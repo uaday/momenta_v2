@@ -182,13 +182,18 @@ class Tar_shop_model extends CI_Model {
         return $result->result_array();
     }
 
-    public function edit_incentives_by_incentives_id($in_id,$in_title,$in_description,$in_validation,$in_point,$in_quantity,$pp)
+    public function edit_incentives_by_incentives_id($data,$in_id)
     {
-        $in_title=$this->db->escape_str($in_title);
-        $in_description=$this->db->escape_str($in_description);
-        $sql="UPDATE tbl_incentives SET incentives_name=N'$in_title',incentives_description=N'$in_description',exp_date=N'$in_validation',incentives_point=N'$in_point',quantity=N'$in_quantity',incentives_image=N'$pp' WHERE incentives_id='$in_id'";
-        $this->db->query($sql);
-        return 1;
+        $this->db->where('incentives_id', $in_id);
+        $result=$this->db->update('tbl_incentives', $data);
+        if($result)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 
