@@ -241,8 +241,8 @@
                                 <span class="title">Manage Incentive</span>
                             </a>
                         </li>
-                        <li >
-                            <a href="mailbox-message.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='track_incentive') echo "active "?>">
+                            <a href="<?= base_url()?>renata_shop/track_incentive">
                                 <span class="title">Track Incentive</span>
                             </a>
                         </li>

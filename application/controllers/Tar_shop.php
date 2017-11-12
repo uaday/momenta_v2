@@ -36,12 +36,18 @@ class Tar_shop extends CI_Controller {
     }
     public function track_incentive()
     {
+        $this->session->set_userdata('sub_menu','track_incentive');
+
         $user_type=$this->session->userdata('user_type');
         $employee_id=$this->session->userdata('employee_id');
         $data['booked']=$this->tar_shop_model->show_all_booked_incentive($user_type,$employee_id);
         $data['history']=$this->tar_shop_model->show_all_incentive_history($user_type,$employee_id);
-        $this->load->view('view_renata_shop/view_track_incentive',$data);
-        $this->load->view('view_footer');
+
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_renata_shop/view_track_incentive',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
     public function add_incentive()
     {
