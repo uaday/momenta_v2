@@ -62,14 +62,117 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="tab-1">
-                    <p>Breakfast agreeable incommode departure it an. By ignorant at on wondered relation. Enough at tastes really so cousin am of. Extensive therefore supported by extremity of contented. Is pursuit compact demesne invited elderly be. View him she roof tell her case has sigh. Moreover is possible he admitted sociable concerns. By in cold no less been sent hard hill. </p>
-                    <p>He do subjects prepared bachelor juvenile ye oh. He feelings removing informed he as ignorant we prepared. Evening do forming observe spirits is in. Country hearted be of justice sending. On so they as with room cold ye. Be call four my went mean. Celebrated if remarkably especially an. Going eat set she books found met aware. </p>
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export" ><i class="fa fa-download"></i><span>Download Gift Request</span></a>
+                    <div class="table-responsive">
+                        <script type="text/javascript">
+                            jQuery(document).ready(function ($) {
+                                $("#example-1").dataTable({
+                                    aLengthMenu: [
+                                        [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
+                                    ]
+                                });
+                            });
+                        </script>
+                        <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Incentive Image</th>
+                                <th>Incentive Name</th>
+                                <th>PSO Code</th>
+                                <th>Employee ID</th>
+                                <th>PSO Name</th>
+                                <th>Region</th>
+                                <th>Redemption Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Incentive Image</th>
+                                <th>Incentive Name</th>
+                                <th>PSO Code</th>
+                                <th>Employee ID</th>
+                                <th>PSO Name</th>
+                                <th>Region</th>
+                                <th>Redemption Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <?php foreach ($booked as $book){?>
+                                <tr>
+                                    <td><input type="checkbox" class="cbr"></td>
+                                    <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
+                                              height="50px" width="50px"></td>
+                                    <td ><?php echo $book['incentives_name']?></td>
+                                    <td ><?php echo $book['renata_id']?></td>
+                                    <td ><?php echo $book['pso_id']?></td>
+                                    <td ><?php echo $book['pso_name']?></td>
+                                    <td ><?php echo $book['region']?></td>
+                                    <td ><?php echo $book['redeem_date']?></td>
+                                    <td ><a href="<?php echo base_url()?>tar_shop/approve_booking?tar_id=<?php echo $book['transection_id']?>" onclick="return approve_transaction();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="tab-2">
-                    <p>Building mr concerns servants in he outlived am breeding. He so lain good miss when sell some at if. Told hand so an rich gave next. How doubt yet again see son smart. While mirth large of on front. Ye he greater related adapted proceed entered an. Through it examine express promise no. Past add size game cold girl off how old. </p>
-                    <p>Old there any widow law rooms. Agreed but expect repair she nay sir silent person. Direction can dependent one bed situation attempted. His she are man their spite avoid. Her pretended fulfilled extremely education yet. Satisfied did one admitting incommode tolerably how are. </p>
-                    <p>Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection. </p>
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export_history" ><i class="fa fa-download"></i><span>Download Gift History</span></a>
+                    <div class="table-responsive">
+                        <script type="text/javascript">
+                            jQuery(document).ready(function ($) {
+                                $("#example-2").dataTable({
+                                    aLengthMenu: [
+                                        [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
+                                    ]
+                                });
+                            });
+                        </script>
+                        <table id="example-2" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th>Incentive Image</th>
+                                <th>Incentive Name</th>
+                                <th>PSO Code</th>
+                                <th>Employee ID</th>
+                                <th>PSO Name</th>
+                                <th>Region</th>
+                                <th>Approval Date</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Incentive Image</th>
+                                <th>Incentive Name</th>
+                                <th>PSO Code</th>
+                                <th>Employee ID</th>
+                                <th>PSO Name</th>
+                                <th>Region</th>
+                                <th>Approval Date</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <?php foreach ($history as $his){?>
+                                <tr>
+                                    <td ><img src="<?= $his['incentives_image'] ?>" class=" img-circle" alt=""
+                                              height="50px" width="50px"></td>
+                                    <td ><?php echo $his['incentives_name']?></td>
+                                    <td ><?php echo $his['renata_id']?></td>
+                                    <td ><?php echo $his['pso_id']?></td>
+                                    <td ><?php echo $his['pso_name']?></td>
+                                    <td ><?php echo $his['region']?></td>
+                                    <td ><?php echo $his['approval_date']?></td>
+                                 </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>

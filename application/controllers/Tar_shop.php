@@ -37,11 +37,8 @@ class Tar_shop extends CI_Controller {
     public function track_incentive()
     {
         $this->session->set_userdata('sub_menu','track_incentive');
-
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['booked']=$this->tar_shop_model->show_all_booked_incentive($user_type,$employee_id);
-        $data['history']=$this->tar_shop_model->show_all_incentive_history($user_type,$employee_id);
+        $data['booked']=$this->tar_shop_model->show_all_booked_incentive();
+        $data['history']=$this->tar_shop_model->show_all_incentive_history();
 
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
@@ -105,6 +102,12 @@ class Tar_shop extends CI_Controller {
     {
         $result=$this->tar_shop_model->get_transaction();
         $this->export_excel->to_excel($result,'List Of Incentive');
+        redirect(base_url() . 'tar_shop/track_incentive', 'refresh');
+    }
+    public function export_history()
+    {
+        $result=$this->tar_shop_model->get_history();
+        $this->export_excel->to_excel($result,'List Of Incentive History');
         redirect(base_url() . 'tar_shop/track_incentive', 'refresh');
     }
 

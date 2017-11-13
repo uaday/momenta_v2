@@ -90,48 +90,40 @@ class Tar_shop_model extends CI_Model {
         $this->db->query($sql2);
     }
 
-    public function show_all_booked_incentive($user_type,$employee_id)
+    public function show_all_booked_incentive()
     {
-        $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
-//        if($user_type=='4')
-//        {
-//            $sql="SELECT p.*,t.*,i.* FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND s.renata_id='$employee_id' AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
-//        }
-//        else if($user_type=='5')
-//        {
-//            $sql="SELECT p.*,t.*,i.* FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_rsm r,tbl_user_dsm d WHERE r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND r.renata_id='$employee_id' AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
-//        }
-//        else if($user_type=='6')
-//        {
-//            $sql="SELECT p.*,t.*,i.* FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_dsm d WHERE d.dsm_code=p.tbl_user_dsm_dsm_code AND s.renata_id='$employee_id' AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
-//        }
-//        else
-//        {
-//            $sql="SELECT p.*,t.*,i.* FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i WHERE p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
-//        }
+        $b_code=$this->session->userdata('business_code');
+        if($b_code=='01')
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+        }
+        else if($b_code=='02')
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+        }
+        else
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+        }
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
     }
-    public function show_all_incentive_history($user_type,$employee_id)
+    public function show_all_incentive_history()
     {
-        $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
-//        if($user_type=='4')
-//        {
-//            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND s.renata_id='$employee_id' AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
-//        }
-//        else if($user_type=='5')
-//        {
-//            $sql="SELECT * FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_rsm r,tbl_user_dsm d WHERE  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND r.renata_id='$employee_id' AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
-//        }
-//        else if($user_type=='6')
-//        {
-//            $sql="SELECT * FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_dsm d WHERE  d.dsm_code=p.tbl_user_dsm_dsm_code AND d.renata_id='$employee_id' AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
-//        }
-//        else
-//        {
-//            $sql="SELECT * FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h WHERE h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
-//        }
+        $b_code=$this->session->userdata('business_code');
+        if($b_code=='01')
+        {
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+        }
+        else if($b_code=='02')
+        {
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+        }
+        else
+        {
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+        }
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
@@ -146,7 +138,14 @@ class Tar_shop_model extends CI_Model {
 
     public function get_transaction()
     {
-        $sql="SELECT p.renata_id AS PSO_CODE,p.pso_id AS EMPLOYEE_CODE,p.pso_name AS NAME,d.depot_name AS DEPOT,i.incentives_id AS INCENTIVE_ID, i.incentives_name AS INCENTIVE_NAME,ur.region AS REGION    FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur WHERE ur.rsm_code=ud.tbl_user_rsm_rsm_code AND ud.dsm_code=p.tbl_user_dsm_dsm_code AND  p.tbl_depot_depot_code=d.depot_code AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
+        $sql="SELECT p.renata_id AS PSO_CODE,p.pso_id AS EMPLOYEE_CODE,p.pso_name AS NAME,ur.region AS REGION ,d.depot_name AS DEPOT, i.incentives_name AS INCENTIVE_NAME,t.redeem_date AS REDEEM_DATE   FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur WHERE ur.rsm_code=ud.tbl_user_rsm_rsm_code AND ud.dsm_code=p.tbl_user_dsm_dsm_code AND  p.tbl_depot_depot_code=d.depot_code AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1'";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result;
+    }
+    public function get_history()
+    {
+        $sql="SELECT p.renata_id AS PSO_CODE,p.pso_id AS EMPLOYEE_CODE,p.pso_name AS NAME,ur.region AS REGION,d.depot_name AS DEPOT, i.incentives_name AS INCENTIVE_NAME,h.approval_date as APPROVAL_DATE    FROM tbl_incentives_history h,tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur WHERE h.tbl_incentives_transection_transection_id=t.transection_id AND ur.rsm_code=ud.tbl_user_rsm_rsm_code AND ud.dsm_code=p.tbl_user_dsm_dsm_code AND  p.tbl_depot_depot_code=d.depot_code AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve='1'";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result;
