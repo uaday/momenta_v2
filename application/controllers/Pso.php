@@ -70,39 +70,30 @@ class Pso extends CI_Controller
 
     public function insert_pso()
     {
-        $data['pm_name']=$this->input->post('pm_name');
-        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pm_phone'));
-        $data['pm_phone']= preg_replace('/\s+/','', $phone);
+
 
 
 
         $data['pso_name']=$this->input->post('pso_name');
+        $data['pso_id']=$this->input->post('pso_renata_id');
         $data['renata_id']=$this->input->post('pso_code');
-        $data['pso_id']=$this->input->post('pso_code');
-
-
-//        $pso_name = $this->input->post('pso_name');
-        $pso_code = $this->input->post('pso_code');
-        $pso_renata_id = $this->input->post('pso_renata_id');
-        $dsm_code = $this->input->post('dsm_code');
-
-        $pso_type = $this->input->post('pso_type');
-        $pso_phone = $this->input->post('pso_phone');
-        $pso_des = $this->input->post('pso_designation');
-        $business_code=$this->input->post('business_code');
-        $depot_code=$this->input->post('depot_code');
-
-        $pso_password = mt_rand(100000, 999999);
-
+        $data['tbl_user_dsm_dsm_code']=$this->input->post('dsm_code');
+        $data['pso_phone']=$this->input->post('pso_phone');
+        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pso_phone'));
+        $data['pso_phone']= preg_replace('/\s+/','', $phone);
+        $data['pso_designation']=$this->input->post('pso_designation');
+        $data['tbl_business_business_code']=$this->input->post('business_code');
+        $data['tbl_depot_depot_code']=$this->input->post('depot_code');
+        $data['tbl_pso_user_type_pso_user_type_id']=$this->input->post('pso_type');
+        $data['pso_password']=mt_rand(100000, 999999);
         if ($this->form_validation->run('addpso'))
         {
-
             $number=mt_rand(100,999);
-            $result=$this->pso_model->insert_pso($pso_code,$pso_renata_id, $pso_name, $pso_phone,$pso_des, $pso_password, $depot_code,$dsm_code,$business_code,$pso_type);
+            $result=$this->pso_model->insert_pso($data);
             if($result=='1')
             {
                 $curl = curl_init();
-                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $pso_renata_id\nRenata Password: $pso_password\nMomenta App Download Link: momenta.renata-ltd.com/download_app").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_code.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
+                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $data[pso_id]\nRenata Password: $data[pso_password]\nMomenta App Download Link: momenta.renata-ltd.com/download_app").'&msisdn=88'.$data['pso_phone'].'&csmsid='.$number.'App'.$data['renata_id'].'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
                 $resp = curl_exec($curl);
                 curl_close($curl);
             }
@@ -111,10 +102,18 @@ class Pso extends CI_Controller
         }
         else
         {
-            $data['depots']=$this->pso_model->get_depot();
-            $data['business']=$this->pso_model->get_business();
+            $user_type=$this->session->userdata('user_type');
+            $employee_id=$this->session->userdata('employee_id');
+            $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
+            $data['business'] = $this->medicine_literature_model->getAllbusiness();
+            $data['pso_types']=$this->pso_model->get_pso_type();
             $data['pso_add']=validation_errors();
-            $this->load->view('view_pso/view_add_pso',$data);
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_pso/view_add_pso',$data,TRUE);
+            $this->load->view('view_master',$data);
+
         }
     }
 

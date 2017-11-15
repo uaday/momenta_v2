@@ -42,19 +42,65 @@
             <div class="panel-title">
                 Add new PSO form
             </div>
-
         </div>
 
-        <?php if ($this->session->userdata('create_incentive')) { ?>
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <strong><?php echo $this->session->userdata('create_incentive'); ?></strong>
-            </div>
-            <?php $this->session->unset_userdata('create_incentive');
-        } ?>
+
+        <div align="center">
+            <?php if (isset($pso_add)) { ?>
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $pso_add; ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('delete_pso_exams');
+            } ?>
+            <?php if ($this->session->userdata('add_gen')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('add_gen'); ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('add_gen');
+            } ?>
+
+            <?php if ($this->session->userdata('pass_issue')) { ?>
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('pass_issue'); ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('pass_issue');
+            } ?>
+
+            <?php if ($this->session->userdata('delete_doc_type')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('delete_doc_type'); ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('delete_doc_type');
+            } ?>
+
+            <?php if ($this->session->userdata('gen_error')) { ?>
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('gen_error'); ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('gen_error');
+            } ?>
+
+        </div>
 
         <div class="panel-body">
 

@@ -88,11 +88,18 @@ class Pso_model extends CI_Model {
     }
 
 
-    public function insert_pso($pso_code,$pso_renata_id, $pso_name, $pso_phone,$pso_des, $pso_password, $depot_code,$dsm_code,$business_code,$pso_type)
+    public function insert_pso($data)
     {
-        $sql="INSERT INTO tbl_user_pso (renata_id,pso_id,pso_name,pso_phone,pso_designation,pso_password,status,tbl_depot_depot_code,tbl_user_dsm_dsm_code,tbl_business_business_code,tbl_pso_user_type_pso_user_type_id) VALUES(N'$pso_code',N'$pso_renata_id',N'$pso_name',N'$pso_phone',N'$pso_des',md5('$pso_password'),'1',N'$depot_code',N'$dsm_code',N'$business_code',N'$pso_type')";
-        $this->db->query($sql);
-        return 1;
+
+        $result=$this->db->insert('tbl_user_pso', $data);
+        if($result)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public function select_all_pso()

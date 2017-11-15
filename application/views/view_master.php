@@ -1246,8 +1246,7 @@
         var depot_code=$('#depot_code').val();
         var business_code=$('#business_code').val();
         var pso_type=$('#pso_type').val();
-
-        if(business_code==-1)
+        if(business_code==null)
         {
             alert('Please Select Business');
             return false;
