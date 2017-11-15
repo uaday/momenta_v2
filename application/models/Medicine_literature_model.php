@@ -101,7 +101,7 @@ class Medicine_literature_model extends CI_Model {
             $full_book=$row['0']->drug_full_book;
             $full_book=str_replace(base_url(),"",$full_book);
             unlink($full_book);
-            $sql="UPDATE tbl_drug_des SET drug_full_book=N'$data' WHERE tbl_drug_drug_id=N'$drug_id'";
+            $sql="UPDATE tbl_drug_des SET drug_full_book=N'$data',create_drug_date=CURRENT_DATE  WHERE tbl_drug_drug_id=N'$drug_id'";
         }
         else if($type==2)
         {
@@ -111,7 +111,7 @@ class Medicine_literature_model extends CI_Model {
             $benefits_feature=$row['0']->benefits_feature;
             $benefits_feature=str_replace(base_url(),"",$benefits_feature);
             unlink($benefits_feature);
-            $sql="UPDATE tbl_drug_des SET benefits_feature=N'$data' WHERE tbl_drug_drug_id=N'$drug_id'";
+            $sql="UPDATE tbl_drug_des SET benefits_feature=N'$data',create_drug_date=CURRENT_DATE  WHERE tbl_drug_drug_id=N'$drug_id'";
         }
         else
         {
@@ -121,7 +121,7 @@ class Medicine_literature_model extends CI_Model {
             $drug_image=$row['0']->drug_image;
             $drug_image=str_replace(base_url(),"",$drug_image);
             unlink($drug_image);
-            $sql="UPDATE tbl_drug_des SET drug_image=N'$data' WHERE tbl_drug_drug_id=N'$drug_id'";
+            $sql="UPDATE tbl_drug_des SET drug_image=N'$data',create_drug_date=CURRENT_DATE  WHERE tbl_drug_drug_id=N'$drug_id'";
         }
         $result=$this->db->query($sql);
         return $result;
@@ -156,7 +156,7 @@ class Medicine_literature_model extends CI_Model {
         $point2=$this->db->escape_str($point2);
         $point3=$this->db->escape_str($point3);
 
-        $sql="UPDATE tbl_drug_detail_version SET drug_detail_image=N'$image_test',point1=N'$point1',point2=N'$point2',point3=N'$point3' WHERE detail_version_id='$version_id'";
+        $sql="UPDATE tbl_drug_detail_version SET drug_detail_image=N'$image_test',point1=N'$point1',point2=N'$point2',point3=N'$point3',create_date=CURRENT_DATE WHERE detail_version_id='$version_id'";
         $result=$this->db->query($sql);
 
 

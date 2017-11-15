@@ -5,24 +5,14 @@ class Pso extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
-        $data['tincentives']=$this->home_model->total_incentives();
-        $data['texam']=$this->home_model->total_exam();
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
-        $data['tdrug']=$this->home_model->total_drug();
-        $this->session->set_userdata('i','5');
-
+        $this->session->set_userdata('main_menu','pso');
         if($this->session->userdata('change_pass_status')=='0')
         {
-            redirect(base_url().'settings/change_password');
+            redirect(base_url().'change_password');
         }
-
         if($data['login_id']!=null)
         {
-            $this->load->view('view_dashboard',$data);
         }
         else
         {
@@ -42,13 +32,20 @@ class Pso extends CI_Controller
 
     public function add_pso()
     {
+
+        $this->session->set_userdata('sub_menu','add_pso');
         $user_type=$this->session->userdata('user_type');
         $employee_id=$this->session->userdata('employee_id');
         $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
-        $data['business']=$this->pso_model->get_business();
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['pso_types']=$this->pso_model->get_pso_type();
-        $this->load->view('view_pso/view_add_pso',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_pso/view_add_pso',$data,TRUE);
+        $this->load->view('view_master',$data);
+
+
     }
 
     public function manage_pso()
@@ -73,7 +70,18 @@ class Pso extends CI_Controller
 
     public function insert_pso()
     {
-        $pso_name = $this->input->post('pso_name');
+        $data['pm_name']=$this->input->post('pm_name');
+        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pm_phone'));
+        $data['pm_phone']= preg_replace('/\s+/','', $phone);
+
+
+
+        $data['pso_name']=$this->input->post('pso_name');
+        $data['renata_id']=$this->input->post('pso_code');
+        $data['pso_id']=$this->input->post('pso_code');
+
+
+//        $pso_name = $this->input->post('pso_name');
         $pso_code = $this->input->post('pso_code');
         $pso_renata_id = $this->input->post('pso_renata_id');
         $dsm_code = $this->input->post('dsm_code');

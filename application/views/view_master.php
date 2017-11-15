@@ -248,14 +248,14 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">
                     <a href="tables-basic.html">
                         <i class="linecons-database"></i>
                         <span class="title">PSO</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="tables-basic.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='add_pso') echo "active"?>">
+                            <a href="<?= base_url()?>pso/add_pso">
                                 <span class="title">Add PSO</span>
                             </a>
                         </li>
@@ -1245,21 +1245,16 @@
     function check_user() {
         var depot_code=$('#depot_code').val();
         var business_code=$('#business_code').val();
-        var phone_number=$('.phone_number').val();
         var pso_type=$('#pso_type').val();
 
-        if(phone_number<0&&phone_number.length()<11)
+        if(business_code==-1)
         {
+            alert('Please Select Business');
             return false;
         }
         else if(depot_code==-1)
         {
             alert('Please Select Depot');
-            return false;
-        }
-        else if(business_code==-1)
-        {
-            alert('Please Select Business');
             return false;
         }
         else if(pso_type==-1)

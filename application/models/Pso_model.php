@@ -88,15 +88,6 @@ class Pso_model extends CI_Model {
     }
 
 
-    public function get_business()
-    {
-        $sql="SELECT * FROM tbl_business";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
-    }
-
-
     public function insert_pso($pso_code,$pso_renata_id, $pso_name, $pso_phone,$pso_des, $pso_password, $depot_code,$dsm_code,$business_code,$pso_type)
     {
         $sql="INSERT INTO tbl_user_pso (renata_id,pso_id,pso_name,pso_phone,pso_designation,pso_password,status,tbl_depot_depot_code,tbl_user_dsm_dsm_code,tbl_business_business_code,tbl_pso_user_type_pso_user_type_id) VALUES(N'$pso_code',N'$pso_renata_id',N'$pso_name',N'$pso_phone',N'$pso_des',md5('$pso_password'),'1',N'$depot_code',N'$dsm_code',N'$business_code',N'$pso_type')";

@@ -67,12 +67,12 @@ class Medicine_literature extends CI_Controller
 
                 if ($this->medicine_literature_model->insert($lnk, $_POST['upload_file_type'], $_POST['drug_id'])) {
                     $this->session->set_userdata('message', 'Upload Successful');
-                    redirect(base_url() . 'update_medicine_literature', 'refresh');
+                    redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
                 }
             } else {
                 echo $this->upload->display_errors();
                 $this->session->set_userdata('error', $this->upload->display_errors());
-                redirect(base_url() . 'update_medicine_literature', 'refresh');
+                redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
             }
         }
     }
@@ -100,7 +100,7 @@ class Medicine_literature extends CI_Controller
 
             if ($file_type1 != 'jpg' && $file_type1 != 'png' && $file_type1 != 'jpeg' && $file_type1 != 'JPG' && $file_type1 != 'PNG' && $file_type1 != 'JPEG') {
                 $this->session->set_userdata('message', 'Please Select Image File');
-                redirect(base_url() . 'update_medicine_literature', 'refresh');
+                redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
 
             } else {
                 if ($this->upload->do_upload('drug_des_image')) {
@@ -116,14 +116,14 @@ class Medicine_literature extends CI_Controller
                 }else {
                     echo $this->upload->display_errors();
                     $this->session->set_userdata('error1', $this->upload->display_errors());
-                    redirect(base_url() . 'update_medicine_literature', 'refresh');
+                    redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
                 }
             }
         }
         if ($this->medicine_literature_model->insert_version_data($version_id, $point1, $point2, $point3, $image_test,$drug_id))
         {
             $this->session->set_userdata('message1', 'Version Successfully Updated');
-            redirect(base_url() . 'update_medicine_literature', 'refresh');
+            redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
         }
 
     }
