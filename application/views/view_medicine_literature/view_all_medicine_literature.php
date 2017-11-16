@@ -63,13 +63,14 @@
                     });
                 });
             </script>
-            <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
-                <thead>
+                <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
+                       width="100%">
+                    <thead style="background-color: #2c2e2f;color: white">
                 <tr>
-                    <th>Drug Image</th>
-                    <th>Drug Name</th>
-                    <th>Full Book</th>
-                    <th>Feature & Benefit</th>
+                    <th style="color: white">Drug Image</th>
+                    <th style="color: white">Drug Name</th>
+                    <th style="color: white">Full Book</th>
+                    <th style="color: white">Feature & Benefit</th>
                 </tr>
                 </thead>
                 <tfoot>

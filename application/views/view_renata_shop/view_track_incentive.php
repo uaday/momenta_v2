@@ -73,19 +73,19 @@
                                 });
                             });
                         </script>
-                        <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                        <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
                                width="100%">
-                            <thead>
+                            <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th></th>
-                                <th>Incentive Image</th>
-                                <th>Incentive Name</th>
-                                <th>PSO Code</th>
-                                <th>Employee ID</th>
-                                <th>PSO Name</th>
-                                <th>Region</th>
-                                <th>Redemption Date</th>
-                                <th>Action</th>
+                                <th style="color: white"></th>
+                                <th style="color: white">Incentive Image</th>
+                                <th style="color: white">Incentive Name</th>
+                                <th style="color: white">PSO Code</th>
+                                <th style="color: white">Employee ID</th>
+                                <th style="color: white">PSO Name</th>
+                                <th style="color: white">Region</th>
+                                <th style="color: white">Redemption Date</th>
+                                <th style="color: white">Action</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -133,17 +133,17 @@
                                 });
                             });
                         </script>
-                        <table id="example-2" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                        <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
                                width="100%">
-                            <thead>
+                            <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th>Incentive Image</th>
-                                <th>Incentive Name</th>
-                                <th>PSO Code</th>
-                                <th>Employee ID</th>
-                                <th>PSO Name</th>
-                                <th>Region</th>
-                                <th>Approval Date</th>
+                                <th style="color: white">Incentive Image</th>
+                                <th style="color: white">Incentive Name</th>
+                                <th style="color: white">PSO Code</th>
+                                <th style="color: white">Employee ID</th>
+                                <th style="color: white">PSO Name</th>
+                                <th style="color: white">Region</th>
+                                <th style="color: white">Approval Date</th>
                             </tr>
                             </thead>
                             <tfoot>

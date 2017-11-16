@@ -259,8 +259,8 @@
                                 <span class="title">Add PSO</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="tables-responsive.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='manage_pso') echo "active"?>">
+                            <a href="<?= base_url()?>pso/manage_pso">
                                 <span class="title">Manage PSO</span>
                             </a>
                         </li>

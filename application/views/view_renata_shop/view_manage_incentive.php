@@ -63,18 +63,18 @@
                         });
                     });
                 </script>
-                <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
                        width="100%">
-                    <thead>
+                    <thead style="background-color: #2c2e2f;color: white">
                     <tr>
-                        <th>Image</th>
-                        <th>Business</th>
-                        <th>Name</th>
-                        <th>Points</th>
-                        <th>Stock</th>
-                        <th>Expire Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th style="color: white">Image</th>
+                        <th style="color: white">Business</th>
+                        <th style="color: white">Name</th>
+                        <th style="color: white">Points</th>
+                        <th style="color: white">Stock</th>
+                        <th style="color: white">Exp Date</th>
+                        <th style="color: white">Status</th>
+                        <th style="color: white">Action</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -84,7 +84,7 @@
                         <th>Name</th>
                         <th>Points</th>
                         <th>Stock</th>
-                        <th>Expire Date</th>
+                        <th>Exp Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -108,25 +108,25 @@
                             <td>
                                 <?php if ($incentive['status'] == '1') { ?>
                                     <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=0"
-                                       title="Inactive" class="btn btn-icon btn-warning btn-sm">
-                                        <i class="fa-thumbs-o-down"></i>
+                                       title="Inactive" >
+                                        <i class="fa-thumbs-o-down fa-2x"></i>
                                     </a>
                                 <?php } else { ?>
                                     <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=1"
-                                       title="active" class="btn btn-icon btn-success btn-sm">
-                                        <i class="fa-thumbs-o-up"></i>
+                                       title="active" >
+                                        <i class="fa-thumbs-o-up fa-2x"></i>
                                     </a>
                                 <?php } ?>
                                 <span class="table_insider"> | </span>
                                 <a href="<?php echo base_url() ?>tar_shop/edit_incentive?incentives_id=<?php echo  $incentive['incentives_id'] ?>"
-                                   title="active" class="btn btn-icon btn-primary btn-sm">
-                                    <i class="fa fa-edit"></i>
+                                   title="active" >
+                                    <i class="fa fa-edit fa-2x"></i>
                                 </a>
                                 <span class="table_insider"> | </span>
                                 <a  onclick="return delete_incentive()"
                                     href="<?php echo base_url() ?>tar_shop/delete_incentives?incentives_id=<?php echo  $incentive['incentives_id'] ?>"
-                                   title="Delete Incentive" class="btn btn-icon btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
+                                   title="Delete Incentive" >
+                                    <i class="fa fa-trash fa-2x"></i>
                                 </a>
                             </td>
                         </tr>

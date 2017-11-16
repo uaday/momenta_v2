@@ -218,17 +218,17 @@ $i = 0;
                         });
                     });
                 </script>
-                <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
                        width="100%">
-                    <thead>
+                    <thead style="background-color: #2c2e2f;color: white">
                     <tr>
                         <!--                        <th>Drug Name ID</th>-->
-                        <th>Business Name</th>
-                        <th>Generic Name</th>
-                        <th>Drug Name</th>
-                        <th>Product Manager Name</th>
-                        <th>Product Manager Phone Number</th>
-                        <th>Action</th>
+                        <th style="color: white">Business Name</th>
+                        <th style="color: white">Generic Name</th>
+                        <th style="color: white">Drug Name</th>
+                        <th style="color: white">PM Name</th>
+                        <th style="color: white">PM Phone</th>
+                        <th style="color: white">Action</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -237,8 +237,8 @@ $i = 0;
                         <th>Business Name</th>
                         <th>Generic Name</th>
                         <th>Drug Name</th>
-                        <th>Product Manager Name</th>
-                        <th>Product Manager Phone Number</th>
+                        <th>PM Name</th>
+                        <th>PM Phone</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>

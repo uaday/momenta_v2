@@ -169,14 +169,14 @@ $i = 0;
                         });
                     });
                 </script>
-                <table id="example-1" class="table table-striped table-bordered table-responsive" cellspacing="0"
+                <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
                        width="100%">
-                    <thead>
+                    <thead style="background-color: #2c2e2f;color: white">
                     <tr>
                         <!--                        <th>Generic Name ID</th>-->
-                        <th>Business Name</th>
-                        <th>Doctor Type</th>
-                        <th>Action</th>
+                        <th style="color: white">Business Name</th>
+                        <th style="color: white">Doctor Type</th>
+                        <th style="color: white">Action</th>
                     </tr>
                     </thead>
                     <tfoot>

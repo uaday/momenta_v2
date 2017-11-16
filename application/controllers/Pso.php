@@ -50,10 +50,13 @@ class Pso extends CI_Controller
 
     public function manage_pso()
     {
+        $this->session->set_userdata('sub_menu','manage_pso');
         $data['psos'] = $this->pso_model->select_all_pso();
-        $this->load->view('view_pso/view_manage_pso', $data);
-        $this->load->view('view_footer');
-
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_pso/view_manage_pso',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
 
     public function view_pso()
@@ -70,9 +73,6 @@ class Pso extends CI_Controller
 
     public function insert_pso()
     {
-
-
-
 
         $data['pso_name']=$this->input->post('pso_name');
         $data['pso_id']=$this->input->post('pso_renata_id');
