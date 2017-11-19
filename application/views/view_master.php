@@ -308,7 +308,7 @@
 
                     </ul>
                 </li>
-                <li>
+                <li class="<?php if($this->session->userdata('main_menu')=='bulk_data') echo "active opened "?>">
                     <a href="charts-main.html">
                         <i class="linecons-globe"></i>
                         <span class="title">Bulk Data</span>
@@ -324,8 +324,8 @@
                                 <span class="title">USER Bulk</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="charts-sparklines.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='sms_bulk') echo "active "?>">
+                            <a href="<?= base_url()?>bulk_data/pso_sms_bulk">
                                 <span class="title">SMS Bulk</span>
                             </a>
                         </li>
