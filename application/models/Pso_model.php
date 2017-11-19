@@ -126,10 +126,10 @@ class Pso_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
-    public function update_pso($pso_code,$pso_renata_id, $pso_name,$pso_phone,$pso_type,$pso_des, $depot_code,$dsm_code,$business_code)
+    public function update_pso($data,$pso_renata_id)
     {
-        $sql="UPDATE tbl_user_pso SET pso_id=N'$pso_code', renata_id=N'$pso_renata_id',pso_name=N'$pso_name',tbl_pso_user_type_pso_user_type_id=N'$pso_type',pso_phone=N'$pso_phone',pso_designation=N'$pso_des',tbl_business_business_code=N'$business_code',tbl_depot_depot_code=N'$depot_code',tbl_user_dsm_dsm_code=N'$dsm_code' WHERE pso_id=N'$pso_code'";
-       $this->db->query($sql);
+        $this->db->where('pso_id', $pso_renata_id);
+        $this->db->update('tbl_user_pso', $data);
     }
 
     

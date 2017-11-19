@@ -64,11 +64,14 @@ class Pso extends CI_Controller
         $user_type=$this->session->userdata('user_type');
         $employee_id=$this->session->userdata('employee_id');
         $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
-        $data['business']=$this->pso_model->get_business();
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['pso_types']=$this->pso_model->get_pso_type();
         $data['pso'] = $this->pso_model->select_pso_by_pso_id($this->input->get('pso_id'));
-        $this->load->view('view_pso/view_pso_info',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_pso/view_pso_info',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
 
     public function insert_pso()
@@ -145,24 +148,29 @@ class Pso extends CI_Controller
 
     public function update_pso()
     {
-        $pso_name = $this->input->post('pso_name');
-        $pso_code = $this->input->post('pso_code');
-        $pso_renata_id = $this->input->post('pso_renata_id');
-        $dsm_code = $this->input->post('dsm_code');
-        $pso_phone = $this->input->post('pso_phone');
-        $pso_type = $this->input->post('pso_type');
-        $pso_des = $this->input->post('pso_designation');
-        $business_code=$this->input->post('business_code');
-        $depot_code=$this->input->post('depot_code');
+
+        $data['pso_name']=$this->input->post('pso_name');
+        $data['renata_id']=$this->input->post('pso_code');
+        $data['tbl_user_dsm_dsm_code']=$this->input->post('dsm_code');
+        $data['pso_phone']=$this->input->post('pso_phone');
+        $phone= '0'.preg_replace('/[^\p{L}\p{N}\s]/u','',$this->input->post('pso_phone'));
+        $data['pso_phone']= preg_replace('/\s+/','', $phone);
+        $data['pso_designation']=$this->input->post('pso_designation');
+        $data['tbl_business_business_code']=$this->input->post('business_code');
+        $data['tbl_depot_depot_code']=$this->input->post('depot_code');
+        $data['tbl_pso_user_type_pso_user_type_id']=$this->input->post('pso_type');
+
+        $pso_renata_id=$this->input->post('pso_renata_id');
+
         if ($this->form_validation->run('updatepso'))
         {
-            $this->pso_model->update_pso($pso_code,$pso_renata_id, $pso_name,  $pso_phone,$pso_type,$pso_des, $depot_code,$dsm_code,$business_code);
+            $this->pso_model->update_pso($data,$pso_renata_id);
             $this->session->set_userdata('confirm_update_pso','PSO Account information has been successfully updated');
             redirect(base_url() . 'pso/manage_pso', 'refresh');
         }
         else
         {
-            $data['pso'] = $this->pso_model->select_pso_by_pso_id($pso_code);
+            $data['pso'] = $this->pso_model->select_pso_by_pso_id( $pso_renata_id);
             $data['pso_add']=validation_errors();
             $this->load->view('view_pso/view_pso_info',$data);
         }

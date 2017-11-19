@@ -13,8 +13,8 @@
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">Add & Save PSO</h1>
-            <p class="description">Add your PSO for fly your sells</p>
+            <h1 class="title">Edit Or view PSO Info</h1>
+            <p class="description">Manage your PSO info</p>
         </div>
 
         <div class="breadcrumb-env">
@@ -29,7 +29,7 @@
                 </li>
                 <li class="active">
 
-                    <strong>Add PSO</strong>
+                    <strong>PSO Info</strong>
                 </li>
             </ol>
 
@@ -40,7 +40,7 @@
 
         <div class="panel-heading">
             <div class="panel-title">
-                Add new PSO form
+                PSO info form
             </div>
         </div>
 
@@ -57,7 +57,6 @@
                 <?php $this->session->unset_userdata('delete_pso_exams');
             } ?>
 
-
             <?php if ($this->session->userdata('pass_issue')) { ?>
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">
@@ -70,37 +69,39 @@
             } ?>
 
 
-
         </div>
 
         <div class="panel-body">
 
-            <form action="<?php echo base_url() ?>pso/insert_pso" method="post" onsubmit="return check_user()" class="validate" enctype="multipart/form-data">
+            <form action="<?php echo base_url() ?>pso/update_pso" method="post" onsubmit="return check_user()" class="validate" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="control-label">PSO Name</label>
                     <input type="text" class="form-control" id="name1" name="pso_name" data-validate="required"
-                           placeholder="Enter PSO Name" data-message-required="Please fill up PSO Name"/>
+                           value="<?php echo $pso['0']['pso_name'] ?>" placeholder="Enter PSO Name" data-message-required="Please fill up PSO Name"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Renata Employee ID</label>
-                    <input type="text" class="form-control" id="name1" name="pso_renata_id" data-validate="required"
+                    <input type="hidden" class="form-control " id="name1" name='pso_renata_id'
+                           value="<?php echo $pso['0']['pso_id'] ?>" placeholder="Enter PSO Code">
+
+                    <input type="text" class="form-control" id="name1" name="pso_renata_id_test" value="<?php echo $pso['0']['pso_id'] ?>" data-validate="required" disabled="disabled"
                            placeholder="Enter Renata Employee ID" data-message-required="Please fill up  Renata Employee ID"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">PSO Code</label>
-                    <input type="text" class="form-control" name="pso_code"   id="name1"  placeholder="Enter PSO Code" data-validate="required" data-message-required="Please fill up  PSO Code"/>
+                    <input type="text" class="form-control" name="pso_code"  value="<?php echo $pso['0']['renata_id'] ?>"   id="name1"  placeholder="Enter PSO Code" data-validate="required" data-message-required="Please fill up  PSO Code"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">DSM Code</label>
-                    <input type="text" class="form-control" name="dsm_code"   id="name1"  placeholder="Enter DSM Code" data-validate="required" data-message-required="Please fill up  DSM Code"/>
+                    <input type="text" class="form-control" name="dsm_code"   id="name1" value="<?php echo $pso['0']['tbl_user_dsm_dsm_code'] ?>" placeholder="Enter DSM Code" data-validate="required" data-message-required="Please fill up  DSM Code"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">PSO Phone Number</label>
-                    <input type="text" class="form-control" id="pm_phone_update" name="pso_phone"  data-mask="phone" placeholder="Enter PSO Phone Number" data-validate="required" data-message-required="Please fill up  PSO Phone Number"/>
+                    <input type="text" class="form-control" id="pm_phone_update" name="pso_phone"  value="<?= substr($pso['0']['pso_phone'], 1, 10) ?>"  data-mask="phone" placeholder="Enter PSO Phone Number" data-validate="required" data-message-required="Please fill up  PSO Phone Number"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">PSO Designation</label>
-                    <input type="text" class="form-control" id="name1" name="pso_designation" data-validate="required"
+                    <input type="text" class="form-control" id="name1" name="pso_designation" value="<?php echo $pso['0']['pso_designation'] ?>" data-validate="required"
                            placeholder="Enter PSO Designation" data-message-required="Please fill up  PSO Designation"/>
                 </div>
                 <div class="form-group">
@@ -120,10 +121,10 @@
                         <option value="-1">Select Business</option>
                         <?php foreach ($business as $bus) { ?>
                             <?php if ($this->session->userdata('business_code') == '00' && $bus['business_code'] != '00') { ?>
-                                <option value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                <option <?php if($pso['0']['business_code']== $bus['business_code']) echo 'selected'?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
                             <?php } else { ?>
                                 <?php if ($this->session->userdata('business_code') == $bus['business_code'] && $bus['business_code'] != '00') { ?>
-                                    <option value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                    <option <?php if($pso['0']['business_code']== $bus['business_code']) echo 'selected'?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
                                 <?php } ?>
                             <?php } ?>
                         <?php } ?>
@@ -148,7 +149,7 @@
                     <select class="form-control depot_code" id="depot_code" name="depot_code">
                         <option value="-1">Select Depot</option>
                         <?php foreach ($depots as $depot) { ?>
-                            <option value="<?= $depot['depot_code'] ?>"><?= $depot['depot_name'] ?></option>
+                            <option <?php if($pso['0']['depot_code']== $depot['depot_code']) echo 'selected'?> value="<?= $depot['depot_code'] ?>"><?= $depot['depot_name'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -169,9 +170,13 @@
                     <select name="pso_type" class="form-control pso_type" id="pso_type">
                         <option value="-1">Select PSO Type</option>
                         <?php foreach ($pso_types as $pso_type) { ?>
-                            <option value="<?= $pso_type['pso_user_type_id'] ?>"><?= $pso_type['pso_user_type_name'] ?></option>
+                            <option <?php if($pso['0']['tbl_pso_user_type_pso_user_type_id']== $pso_type['pso_user_type_id']) echo 'selected'?> value="<?= $pso_type['pso_user_type_id'] ?>"><?= $pso_type['pso_user_type_name'] ?></option>
                         <?php } ?>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label class="text-bold">PSO Total Test Point</label>
+                    <input type="text" class="form-control" id="name1"  value="<?php echo $pso['0']['pso_point'] ?>" disabled="disabled"/>
                 </div>
 
                 <div class="form-group">
