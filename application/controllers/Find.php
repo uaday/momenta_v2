@@ -16,17 +16,17 @@ class Find extends CI_Controller
         echo $output;
     }
 
-    public function find_region()
-    {
-        $dis_id=$this->input->POST('district_id');
-        $result=$this->pso_model->get_region($dis_id);
-        $output="<option value='-1' >Select Region</option>";
-        foreach ($result as $row)
-        {
-            $output.="<option value='$row[region_id]' >$row[region_name]</option>";
-        }
-        echo $output;
-    }
+//    public function find_region()
+//    {
+//        $dis_id=$this->input->POST('district_id');
+//        $result=$this->pso_model->get_region($dis_id);
+//        $output="<option value='-1' >Select Region</option>";
+//        foreach ($result as $row)
+//        {
+//            $output.="<option value='$row[region_id]' >$row[region_name]</option>";
+//        }
+//        echo $output;
+//    }
     public function find_region_psos()
     {
         $region=implode(',',$this->input->POST('region'));
@@ -84,6 +84,32 @@ class Find extends CI_Controller
             foreach ($result as $row)
             {
                 echo "<option value='$row[gen_id]'>$row[gen_name]</option>";
+            }
+        }
+        echo "</select>";
+    }
+    public function find_region()
+    {
+        $business_code=$this->input->POST('business_code');
+        $result=$this->user_model->find_region_by_business_code($business_code);
+        echo "<script type=\"text/javascript\">
+                                
+                                    $(\"#region\").select2({
+                                        placeholder: 'Select your Region...',
+                                        allowClear: true
+                                    }).on('select2-open', function () {
+                                        // Adding Custom Scrollbar
+                                        $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                                    });
+                            </script>";
+        echo "<select class=\"form-control region\" id=\"region\" name=\"region\">";
+        echo "<option value='-1'>Select Region Name</option>";
+        if($result)
+        {
+
+            foreach ($result as $row)
+            {
+                echo "<option value='$row[rsm_code]'>$row[region]</option>";
             }
         }
         echo "</select>";

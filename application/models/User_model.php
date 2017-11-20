@@ -181,5 +181,12 @@ class User_model extends CI_Model {
         $sql="UPDATE tbl_login SET password=md5('welcome'),change_pass_status=0 WHERE renata_id='$renata_id'";
         $this->db->query($sql);
     }
+    public function find_region_by_business_code($business_code)
+    {
+        $sql="SELECT rsm_code,region from tbl_user_rsm where tbl_business_business_code='$business_code' ORDER BY region";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
 
 }

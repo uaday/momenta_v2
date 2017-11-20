@@ -48,16 +48,7 @@
 
 
                 <div align="center">
-                    <?php if (isset($pso_add)) { ?>
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <strong><?php echo $pso_add; ?></strong>
-                        </div>
-                        <?php $this->session->unset_userdata('delete_pso_exams');
-                    } ?>
+
                     <?php if ($this->session->userdata('upload_data')) { ?>
                         <div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">
@@ -66,47 +57,14 @@
                             </button>
                             <strong><?php echo 'SMS Send Successful'; ?></strong>
                         </div>
-                        <?php $this->session->unset_userdata('add_gen');
-                    } ?>
-
-                    <?php if ($this->session->userdata('pass_issue')) { ?>
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <strong><?php echo $this->session->userdata('pass_issue'); ?></strong>
-                        </div>
-                        <?php $this->session->unset_userdata('pass_issue');
-                    } ?>
-
-                    <?php if ($this->session->userdata('delete_doc_type')) { ?>
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <strong><?php echo $this->session->userdata('delete_doc_type'); ?></strong>
-                        </div>
-                        <?php $this->session->unset_userdata('delete_doc_type');
-                    } ?>
-
-                    <?php if ($this->session->userdata('gen_error')) { ?>
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <strong><?php echo $this->session->userdata('gen_error'); ?></strong>
-                        </div>
-                        <?php $this->session->unset_userdata('gen_error');
+                        <?php $this->session->unset_userdata('upload_data');
                     } ?>
 
                 </div>
 
                 <div class="panel-body">
 
-                    <form onsubmit="return region_check()" method="post" action="<?php echo base_url() ?>bulk_data/send_pso_sms"
+                    <form onsubmit="return send_sms()" method="post" action="<?php echo base_url() ?>bulk_data/send_pso_sms"
                           class="validate" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="alert alert-white">
@@ -131,7 +89,7 @@
                                 });
                             </script>
 
-                            <select name="business_code" class="form-control business" id="business_code">
+                            <select name="business_code" class="form-control business" id="business_code" onchange="region_find(this.value, 'region');">
                                 <option value="-1">Select Business</option>
                                 <?php foreach ($business as $bus) { ?>
                                     <?php if ($this->session->userdata('business_code') == '00' && $bus['business_code'] != '00') { ?>
@@ -146,24 +104,23 @@
                         </div>
                         <div class="form-group">
                             <label class="text-bold">Select Region</label>
-                            <script type="text/javascript">
-                                jQuery(document).ready(function ($) {
-                                    $("#region").select2({
-                                        placeholder: 'Select your Region...',
-                                        allowClear: true
-                                    }).on('select2-open', function () {
-                                        // Adding Custom Scrollbar
-                                        $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
-                                    });
+                            <div class="region_sms">
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function ($) {
+                                        $("#region").select2({
+                                            placeholder: 'Select your Region...',
+                                            allowClear: true
+                                        }).on('select2-open', function () {
+                                            // Adding Custom Scrollbar
+                                            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                                        });
 
-                                });
-                            </script>
-                            <select class="form-control depot_code" id="region" name="region">
-                                <option value="-1">Select Region</option>
-                                <?php foreach ($regions as $region) { ?>
-                                    <option value="<?= $region['rsm_code'] ?>"><?= $region['region'] ?></option>
-                                <?php } ?>
-                            </select>
+                                    });
+                                </script>
+                                <select class="form-control region" id="region" name="region">
+                                    <option value="-1">Select Region</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">

@@ -314,8 +314,8 @@
                         <span class="title">Bulk Data</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="charts-main.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='pso_bulk') echo "active "?>">
+                            <a href="<?php echo base_url() ?>bulk_data/pso_bulk">
                                 <span class="title">PSO Bulk</span>
                             </a>
                         </li>
@@ -807,6 +807,21 @@
             }
         )
     }
+    function region_find(business_code, result) {
+        $.ajax(
+            {
+                type: 'POST',
+                data: {business_code: business_code},
+                url: "<?php echo site_url('find/find_region')?>",
+                success: function (result) {
+                    $('.region_sms').html(result);
+                },
+                error: function (result) {
+                    alert('POST failed.');
+                }
+            }
+        )
+    }
 
     function fill_data(version_id) {
         version_id = version_id;
@@ -998,9 +1013,13 @@
         }
     }
 
-    function region_check() {
+    function send_sms() {
 
-        if ($('#region').val() == '-1') {
+        if ($('#business_code').val() == null) {
+            alert("Please Select Business");
+            return false;
+        }
+        else if ($('#region').val() == '-1') {
             alert("Please Select Region");
             return false;
         }

@@ -28,8 +28,13 @@ class Bulk_data extends CI_Controller {
     }
     public function pso_bulk()
     {
-        $this->load->view('view_bulk_data/view_pso_bulk');
-        $this->load->view('view_footer');
+        $this->session->set_userdata('sub_menu','pso_bulk');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_bulk_data/view_pso_bulk',$data,TRUE);
+        $this->load->view('view_master',$data);
+
     }
     public function user_bulk()
     {
@@ -39,7 +44,6 @@ class Bulk_data extends CI_Controller {
     public function pso_sms_bulk()
     {
         $this->session->set_userdata('sub_menu','sms_bulk');
-        $data['regions'] = $this->pso_model->get_region();
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
