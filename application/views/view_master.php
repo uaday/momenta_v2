@@ -319,8 +319,8 @@
                                 <span class="title">PSO Bulk</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="charts-range.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='user_bulk') echo "active "?>">
+                            <a href="<?= base_url()?>bulk_data/user_bulk">
                                 <span class="title">USER Bulk</span>
                             </a>
                         </li>

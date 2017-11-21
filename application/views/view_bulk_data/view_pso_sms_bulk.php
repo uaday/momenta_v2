@@ -14,7 +14,7 @@
 
         <div class="title-env">
             <h1 class="title">SMS BULK</h1>
-            <p class="description">Send your sms by bulk user</p>
+            <p class="description">Send your sms by bulk SMS</p>
         </div>
 
         <div class="breadcrumb-env">
