@@ -266,14 +266,14 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="<?php if($this->session->userdata('main_menu')=='user') echo "active opened "?>">
                     <a href="forms-native.html">
                         <i class="linecons-params"></i>
                         <span class="title">USER</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="forms-native.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='create_user') echo "active"?>">
+                            <a href="<?= base_url()?>user/add_user">
                                 <span class="title">Add USER</span>
                             </a>
                         </li>
@@ -1229,7 +1229,6 @@
             document.getElementById('dsm_code').style.display="none";
             document.getElementById('region').style.display="none";
             document.getElementById('depot_code').style.display="block";
-            document.getElementById('business_code').style.display="block";
         }
         else if(type==5)
         {
@@ -1238,7 +1237,6 @@
             document.getElementById('dsm_code').style.display="none";
             document.getElementById('region').style.display="block";
             document.getElementById('depot_code').style.display="block";
-            document.getElementById('business_code').style.display="block";
         }
         else if(type==6)
         {
@@ -1247,7 +1245,6 @@
             document.getElementById('rsm_code').style.display="block";
             document.getElementById('dsm_code').style.display="block";
             document.getElementById('depot_code').style.display="block";
-            document.getElementById('business_code').style.display="block";
         }
         else
         {
@@ -1256,7 +1253,6 @@
             document.getElementById('dsm_code').style.display="none";
             document.getElementById('region').style.display="none";
             document.getElementById('depot_code').style.display="none";
-            document.getElementById('business_code').style.display="none";
         }
 
     }
@@ -1325,91 +1321,39 @@
 
     function create_user() {
         var user_type=$('#user_type').val();
-        var sm_code=$('#sm_code').val();
-        var dsm_code=$('#dsm_code').val();
-        var rsm_code=$('#rsm_code').val();
-        var region=$('#region').val();
-        var depot_code1=$('#depot_code').val();
-        var business_code1=$('#business_code').val();
-        if(user_type=='-1')
+        var depot_code=$('#depot_code').val();
+        var business_code=$('#business_code').val();
+        if(user_type==null)
         {
             alert('Please Select User Type');
             return false;
         }
-        else if(user_type!='-1')
+        else if(user_type!=null)
         {
-            if(user_type==4)
+            if(user_type==4||user_type==5||user_type==6)
             {
-                if(sm_code=='')
-                {
-                    alert('Please Insert Sales Manager Code');
-                    return false;
-                }
-                else if(depot_code1==-1)
-                {
-                    alert('Please Select Depot');
-                    return false;
-                }
-                else if(business_code1=='-1')
+                if(business_code==null)
                 {
                     alert('Please Select Business');
                     return false;
                 }
-            }
-            else if(user_type==5)
-            {
-                if(rsm_code=='')
-                {
-                    alert('Please Insert Regional Sales Manager Code');
-                    return false;
-                }
-                else if(sm_code=='')
-                {
-                    alert('Please Insert Sales Manager Code');
-                    return false;
-                }
-                else if(region=='')
-                {
-                    alert('Please Insert Region Name');
-                    return false;
-                }
-                else if(depot_code1==-1)
+                else if(depot_code==null)
                 {
                     alert('Please Select Depot');
-                    return false;
-                }
-                else if(business_code1=='-1')
-                {
-                    alert('Please Select Business');
-                    return false;
-                }
-            }
-            else if(user_type==6)
-            {
-                if(dsm_code=='')
-                {
-                    alert('Please Insert District Sales Manager Code');
-                    return false;
-                }
-                else  if(rsm_code=='')
-                {
-                    alert('Please Insert Regional Sales Manager Code');
-                    return false;
-                }
-                else if(depot_code1=='-1')
-                {
-                    alert('Please Select Depot');
-                    return false;
-                }
-                else if(business_code1=='-1')
-                {
-                    alert('Please Select Business');
                     return false;
                 }
             }
             else
             {
-                return true;
+                if(business_code==null)
+                {
+                    alert('Please Select Business');
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }

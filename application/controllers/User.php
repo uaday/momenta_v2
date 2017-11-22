@@ -6,24 +6,14 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
-        $data['tincentives']=$this->home_model->total_incentives();
-        $data['texam']=$this->home_model->total_exam();
-        $user_type=$this->session->userdata('user_type');
-        $employee_id=$this->session->userdata('employee_id');
-        $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
-        $data['tdrug']=$this->home_model->total_drug();
-        $this->session->set_userdata('i','6');
-
+        $this->session->set_userdata('main_menu','user');
         if($this->session->userdata('change_pass_status')=='0')
         {
-            redirect(base_url().'settings/change_password');
+            redirect(base_url().'change_password');
         }
-
         if($data['login_id']!=null)
         {
-            $this->load->view('view_dashboard',$data);
         }
         else
         {
@@ -37,21 +27,33 @@ class User extends CI_Controller
     }
     public function index()
     {
-        $data['depots']=$this->pso_model->get_depot();
-        $data['business']=$this->pso_model->get_business();
-        $this->load->view('view_user/view_create_user',$data);
-        $this->load->view('view_footer');
-    }
-    public function create_user()
-    {
+        $this->session->set_userdata('sub_menu','create_user');
         $user_type=$this->session->userdata('user_type');
         $employee_id=$this->session->userdata('employee_id');
         $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
-        $data['business']=$this->pso_model->get_business();
-        $this->load->view('view_user/view_create_user',$data);
-        $this->load->view('view_footer');
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['pso_types']=$this->pso_model->get_pso_type();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_user/view_create_user',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
-    public function add_user()
+    public function create_user()
+    {
+        $this->session->set_userdata('sub_menu','create_user');
+        $user_type=$this->session->userdata('user_type');
+        $employee_id=$this->session->userdata('employee_id');
+        $data['depots']=$this->pso_model->get_depot($user_type,$employee_id);
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['pso_types']=$this->pso_model->get_pso_type();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_user/view_create_user',$data,TRUE);
+        $this->load->view('view_master',$data);
+    }
+    public function add_new_user()
     {
         $user_name=$this->input->post('user_name');
         $renata_id=$this->input->post('renata_id');
@@ -68,64 +70,60 @@ class User extends CI_Controller
         {
             if ($this->form_validation->run('adduser2'))
             {
-                $this->user_model->insert_user4($user_name,$renata_id,$user_type,$designation,$depot_code,$business_code,$sm_code);
-                $this->session->set_userdata('add_user','User Added');
-                redirect(base_url().'user/create_user');
+                $this->user_model->insert_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region);
+                $this->session->set_userdata('add_user','User Successfully Added');
+                redirect(base_url().'user/add_user');
             }
             else
             {
-                $data['user_add']=validation_errors();
-                $data['depots']=$this->pso_model->get_depot();
-                $data['business']=$this->pso_model->get_business();
-                $this->load->view('view_user/view_create_user',$data);
+                $error=validation_errors();
+                $this->session->set_userdata('user_add',$error);
+                redirect(base_url().'user/add_user');
             }
         }
         else if($user_type=='5')
         {
             if ($this->form_validation->run('adduser3'))
             {
-                $this->user_model->insert_user5($user_name,$renata_id,$user_type,$region,$designation,$depot_code,$business_code,$rsm_code,$sm_code);
-                $this->session->set_userdata('add_user','User Added');
-                redirect(base_url().'user/create_user');
+                $this->user_model->insert_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region);
+                $this->session->set_userdata('add_user','User Successfully Added');
+                redirect(base_url().'user/add_user');
             }
             else
             {
-                $data['user_add']=validation_errors();
-                $data['depots']=$this->pso_model->get_depot();
-                $data['business']=$this->pso_model->get_business();
-                $this->load->view('view_user/view_create_user',$data);
+                $error=validation_errors();
+                $this->session->set_userdata('user_add',$error);
+                redirect(base_url().'user/add_user');
             }
         }
         else if($user_type=='6')
         {
             if ($this->form_validation->run('adduser4'))
             {
-                $this->user_model->insert_user6($user_name,$renata_id,$user_type,$designation,$depot_code,$business_code,$dsm_code,$rsm_code);
-                $this->session->set_userdata('add_user','User Added');
+                $this->user_model->insert_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region);
+                $this->session->set_userdata('add_user','User Successfully Added');
                 redirect(base_url().'user/create_user');
             }
             else
             {
-                $data['user_add']=validation_errors();
-                $data['depots']=$this->pso_model->get_depot();
-                $data['business']=$this->pso_model->get_business();
-                $this->load->view('view_user/view_create_user',$data);
+                $error=validation_errors();
+                $this->session->set_userdata('user_add',$error);
+                redirect(base_url().'user/add_user');
             }
         }
         else
         {
             if ($this->form_validation->run('adduser1'))
             {
-                $this->user_model->insert_user($user_name,$renata_id,$user_type,$designation);
-                $this->session->set_userdata('add_user','User Added');
+                $this->user_model->insert_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region);
+                $this->session->set_userdata('add_user','User Successfully Added');
                 redirect(base_url().'user/create_user');
             }
             else
             {
-                $data['user_add']=validation_errors();
-                $data['depots']=$this->pso_model->get_depot();
-                $data['business']=$this->pso_model->get_business();
-                $this->load->view('view_user/view_create_user',$data);
+                $error=validation_errors();
+                $this->session->set_userdata('user_add',$error);
+                redirect(base_url().'user/add_user');
             }
         }
 

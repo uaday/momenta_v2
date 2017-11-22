@@ -175,7 +175,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Save Incentive</button>
+                    <button type="submit" class="btn btn-success">Save PSO</button>
                     <button type="reset" class="btn btn-white">Reset</button>
                 </div>
 
