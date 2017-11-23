@@ -130,14 +130,20 @@ class User extends CI_Controller
     }
     public function manage_user()
     {
+        $this->session->set_userdata('sub_menu','manage_user');
         $data['admins']=$this->user_model->all_admin();
         $data['its']=$this->user_model->all_it();
+        $data['msds']=$this->user_model->all_msd();
         $data['gms']=$this->user_model->all_gm();
         $data['sales']=$this->user_model->all_sm();
         $data['rsms']=$this->user_model->all_rsm();
         $data['dsms']=$this->user_model->all_dsm();
-        $this->load->view('view_user/view_manage_user',$data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_user/view_manage_user',$data,TRUE);
+        $this->load->view('view_master',$data);
+
     }
     public function block_user()
     {

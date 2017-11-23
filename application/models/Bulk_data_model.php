@@ -197,18 +197,18 @@ class Bulk_data_model extends CI_Model
                                 $insert_csv['b_code'] = '0' . $insert_csv['b_code'];
                             }
                     if ($k != 0) {
-                        $d_check = array_search($insert_csv['renata_id'], $check_array);
+                        $d_check = array_search(trim($insert_csv['renata_id']), $check_array);
                         if ($d_check > -1) {
-                            array_push($duplicate, $insert_csv['renata_id']);
+                            array_push($duplicate, trim($insert_csv['renata_id']));
                         } else {
-                            array_push($check_array, $insert_csv['renata_id']);
-                            $key = array_search($insert_csv['renata_id'], $this->array_column($result->result_array(), 'renata_id'));
-                            $key_sm = array_search($insert_csv['renata_id'], $this->array_column($result_sm->result_array(), 'renata_id'));
-                            $key_rsm = array_search($insert_csv['renata_id'], $this->array_column($result_rsm->result_array(), 'renata_id'));
-                            $key_dsm = array_search($insert_csv['renata_id'], $this->array_column($result_dsm->result_array(), 'renata_id'));
-                            $key_gm = array_search($insert_csv['renata_id'], $this->array_column($result_gm->result_array(), 'renata_id'));
-                            $key_msd = array_search($insert_csv['renata_id'], $this->array_column($result_msd->result_array(), 'renata_id'));
-                            $key_marketing = array_search($insert_csv['renata_id'], $this->array_column($result_marketing->result_array(), 'renata_id'));
+                            array_push($check_array, trim($insert_csv['renata_id']));
+                            $key = array_search(trim($insert_csv['renata_id']), $this->array_column($result->result_array(), 'renata_id'));
+                            $key_sm = array_search(trim($insert_csv['renata_id']), $this->array_column($result_sm->result_array(), 'renata_id'));
+                            $key_rsm = array_search(trim($insert_csv['renata_id']), $this->array_column($result_rsm->result_array(), 'renata_id'));
+                            $key_dsm = array_search(trim($insert_csv['renata_id']), $this->array_column($result_dsm->result_array(), 'renata_id'));
+                            $key_gm = array_search(trim($insert_csv['renata_id']), $this->array_column($result_gm->result_array(), 'renata_id'));
+                            $key_msd = array_search(trim($insert_csv['renata_id']), $this->array_column($result_msd->result_array(), 'renata_id'));
+                            $key_marketing = array_search(trim($insert_csv['renata_id']), $this->array_column($result_marketing->result_array(), 'renata_id'));
                             if ($key > -1) {
 
                                 if (strtoupper($insert_csv['user_type']) == 'ADMIN') {
@@ -245,7 +245,7 @@ class Bulk_data_model extends CI_Model
                                     $sql_dsm_insert = "INSERT INTO tbl_user_dsm(dsm_code,renata_id,dsm_name,dsm_designation,tbl_depot_depot_code,tbl_business_business_code,tbl_user_rsm_rsm_code) VALUES('$insert_csv[dsm_code]','$insert_csv[renata_id]','$insert_csv[name]','$insert_csv[designation]','$insert_csv[depot_code]','$insert_csv[b_code]','$insert_csv[rsm_code]')";
                                     $this->db->query($sql_dsm_insert);
                                 }
-                                $sql_login = "UPDATE tbl_login SET renata_id='$insert_csv[renata_id]',name='$insert_csv[name]',user_type='$user_type',designation='$insert_csv[designation]' WHERE renata_id='$insert_csv[renata_id]'";
+                                $sql_login = "UPDATE tbl_login SET renata_id='$insert_csv[renata_id]',name='$insert_csv[name]',user_type='$user_type',designation='$insert_csv[designation]',tbl_business_business_code='$insert_csv[b_code]' WHERE renata_id='$insert_csv[renata_id]'";
                                 $this->db->query($sql_login);
                             } else {
                                 
@@ -284,7 +284,7 @@ class Bulk_data_model extends CI_Model
                                     $sql_dsm_insert = "INSERT INTO tbl_user_dsm(dsm_code,renata_id,dsm_name,dsm_designation,tbl_depot_depot_code,tbl_business_business_code,tbl_user_rsm_rsm_code) VALUES('$insert_csv[dsm_code]','$insert_csv[renata_id]','$insert_csv[name]','$insert_csv[designation]','$insert_csv[depot_code]','$insert_csv[b_code]','$insert_csv[rsm_code]')";
                                     $this->db->query($sql_dsm_insert);
                                 }
-                                $sql_login_insert = "INSERT INTO tbl_login(renata_id,name,password,user_type,designation,account_create_date) VALUES ('$insert_csv[renata_id]','$insert_csv[name]','$user_password','$user_type','$insert_csv[designation]',CURRENT_DATE)";
+                                $sql_login_insert = "INSERT INTO tbl_login(renata_id,name,password,user_type,designation,tbl_business_business_code,account_create_date) VALUES ('$insert_csv[renata_id]','$insert_csv[name]','$user_password','$user_type','$insert_csv[designation]','$insert_csv[b_code]',CURRENT_DATE)";
                                 $this->db->query($sql_login_insert);
                             }
                         }

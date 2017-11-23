@@ -37,31 +37,24 @@
 
     </div>
 
-    <!-- Basic Setup -->
-    <div class="panel panel-default"><!-- Add class "collapsed" to minimize the panel -->
-        <div class="panel-heading">
-            <h3 class="panel-title">Track Incentive</h3>
 
-            <div class="panel-options">
+    <div class="row">
 
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#tab-1" data-toggle="tab">Gift Request</a>
-                    </li>
-                    <li>
-                        <a href="#tab-2" data-toggle="tab">Gift History</a>
-                    </li>
+        <div class="col-md-12">
 
-                </ul>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#gift_request" data-toggle="tab">Gift Request</a>
+                </li>
+                <li>
+                    <a href="#gift_history" data-toggle="tab">Gift History</a>
+                </li>
 
-            </div>
-        </div>
-
-        <div class="panel-body">
+            </ul>
 
             <div class="tab-content">
+                <div class="tab-pane active" id="gift_request">
 
-                <div class="tab-pane active" id="tab-1">
                     <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export" ><i class="fa fa-download"></i><span>Download Gift Request</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
@@ -119,9 +112,11 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
 
-                <div class="tab-pane" id="tab-2">
+                <div class="tab-pane" id="gift_history">
+
                     <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export_history" ><i class="fa fa-download"></i><span>Download Gift History</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
@@ -133,7 +128,7 @@
                                 });
                             });
                         </script>
-                        <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
+                        <table id="example-2" class="table table-striped  table-responsive" cellspacing="0"
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
@@ -168,17 +163,22 @@
                                     <td ><?php echo $his['pso_name']?></td>
                                     <td ><?php echo $his['region']?></td>
                                     <td ><?php echo $his['approval_date']?></td>
-                                 </tr>
+                                </tr>
                             <?php } ?>
                             </tbody>
                         </table>
                     </div>
+
                 </div>
 
             </div>
 
         </div>
+
     </div>
+
+
+
 
 
     <!-- Main Footer -->

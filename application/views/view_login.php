@@ -163,13 +163,13 @@
 
 
                 <div class="form-group">
-                    <label class="control-label" for="userid">User ID</label>
-                    <input type="text" class="form-control " name="userid" id="userid" autocomplete="off" />
+                    <label class="control-label" for="userid">RFXXXX</label>
+                    <input type="text" class="form-control " name="userid" id="userid" autocomplete="off" value="admin"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="passwd">Password</label>
-                    <input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" />
+                    <label class="control-label" for="passwd">*******</label>
+                    <input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" value="Appinion2017" />
                 </div>
 
                 <div class="form-group">

@@ -114,45 +114,65 @@ class User_model extends CI_Model {
 
     public function all_admin()
     {
-        $sql="SELECT * FROM tbl_login WHERE user_type='2'";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '2');
+        return $this->db->get()->result_array();
     }
     public function all_it()
     {
-        $sql="SELECT * FROM tbl_login WHERE user_type='3'";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '3');
+        return $this->db->get()->result_array();
+
+    }
+    public function all_msd()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '8');
+        return $this->db->get()->result_array();
+
     }
     public function all_gm()
     {
-        $sql="SELECT * FROM tbl_login WHERE user_type='7'";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '7');
+        return $this->db->get()->result_array();
     }
     public function all_sm()
     {
-        $sql="SELECT * FROM tbl_login l,tbl_user_sm s WHERE l.renata_id=s.renata_id AND l.user_type='4' ORDER BY s.sm_code ASC";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_sm', 'tbl_user_sm.renata_id = tbl_login.renata_id');
+        $this->db->where('tbl_login.user_type', '4');
+        return $this->db->get()->result_array();
     }
     public function all_rsm()
     {
-        $sql="SELECT * FROM tbl_login l,tbl_user_rsm r WHERE l.renata_id=r.renata_id AND l.user_type='5' ORDER BY r.rsm_code ASC ";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_rsm', 'tbl_user_rsm.renata_id = tbl_login.renata_id');
+        $this->db->where('tbl_login.user_type', '5');
+        return $this->db->get()->result_array();
+
     }
     public function all_dsm()
     {
-        $sql="SELECT * FROM tbl_login l,tbl_user_dsm d WHERE l.renata_id=d.renata_id AND l.user_type='6' ORDER BY d.dsm_code ASC";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.renata_id = tbl_login.renata_id');
+        $this->db->where('tbl_login.user_type', '6');
+        return $this->db->get()->result_array();
     }
     public function all_dsm_by_user($user_id)
     {

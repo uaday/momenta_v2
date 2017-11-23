@@ -277,8 +277,8 @@
                                 <span class="title">Add USER</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="forms-advanced.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='manage_user') echo "active"?>">
+                            <a href="<?= base_url()?>user/manage_user">
                                 <span class="title">Manage USER</span>
                             </a>
                         </li>
@@ -1360,6 +1360,15 @@
 
     function delete_user() {
         var check = confirm('Are you sure to delete this user');
+        if (check) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    function change_user_password() {
+        var check = confirm('Are you sure to change user password');
         if (check) {
             return true;
         }
