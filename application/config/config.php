@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/momenta_new/';
+$config['base_url'] = 'http://10.10.20.210/momenta_new/';
 
 /*
 |--------------------------------------------------------------------------

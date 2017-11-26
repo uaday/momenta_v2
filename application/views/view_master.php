@@ -202,7 +202,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="ui-panels.html">
+                    <a href="#">
                         <i class="linecons-note"></i>
                         <span class="title">Testing Center</span>
                     </a>
@@ -226,7 +226,7 @@
                 </li>
 
                 <li  class="<?php if($this->session->userdata('main_menu')=='renata_shop') echo "active opened "?>">
-                    <a href="mailbox-main.html">
+                    <a href="#">
                         <i class="linecons-mail"></i>
                         <span class="title">Renata Shop</span>
                     </a>
@@ -249,7 +249,7 @@
                     </ul>
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">
-                    <a href="tables-basic.html">
+                    <a href="#">
                         <i class="linecons-database"></i>
                         <span class="title">PSO</span>
                     </a>
@@ -267,7 +267,7 @@
                     </ul>
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='user') echo "active opened "?>">
-                    <a href="forms-native.html">
+                    <a href="#">
                         <i class="linecons-params"></i>
                         <span class="title">USER</span>
                     </a>
@@ -285,7 +285,7 @@
                     </ul>
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='medicine_info') echo "active opened "?>">
-                    <a href="extra-gallery.html">
+                    <a href="#">
                         <i class="linecons-beaker"></i>
                         <span class="title">Medicine Info</span>
                     </a>
@@ -309,7 +309,7 @@
                     </ul>
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='bulk_data') echo "active opened "?>">
-                    <a href="charts-main.html">
+                    <a href="#">
                         <i class="linecons-globe"></i>
                         <span class="title">Bulk Data</span>
                     </a>

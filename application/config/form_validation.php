@@ -94,16 +94,45 @@ $config = array (
             'rules' => 'trim|required|is_unique[tbl_login.renata_id]'
         )
         ),
-    'adduser4' => array (
+    'adduser1_update' => array (
+        array(
+                'field' => 'user_name',
+                'label' => 'User Name',
+                'rules' => 'trim|required'
+             ),
+        array(
+                'field'=>'renata_id',
+                'label'=>'Renata ID',
+                'rules' => 'trim|required'
+            )
+        ),
+    'adduser2_update' => array (
+        array(
+                'field' => 'sm_code',
+                'label' => 'Sales Manager Code',
+                'rules' => 'trim|required'
+             ),
+        array(
+            'field' => 'user_name',
+            'label' => 'User Name',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field'=>'renata_id',
+            'label'=>'Renata ID',
+            'rules' => 'trim|required'
+        )
+        ),
+    'adduser3_update' => array (
         array(
                 'field' => 'rsm_code',
                 'label' => 'Regional Sales Manager Code',
                 'rules' => 'trim|required'
              ),
         array(
-            'field' => 'dsm_code',
-            'label' => 'District Sales Manager Code',
-            'rules' => 'trim|required|is_unique[tbl_user_dsm.dsm_code]'
+            'field' => 'sm_code',
+            'label' => 'Sales Manager Code',
+            'rules' => 'trim|required'
         ),
         array(
             'field' => 'user_name',
@@ -113,7 +142,29 @@ $config = array (
         array(
             'field'=>'renata_id',
             'label'=>'Renata ID',
-            'rules' => 'trim|required|is_unique[tbl_login.renata_id]'
+            'rules' => 'trim|required'
+        )
+        ),
+    'adduser4_update' => array (
+        array(
+                'field' => 'rsm_code',
+                'label' => 'Regional Sales Manager Code',
+                'rules' => 'trim|required'
+             ),
+        array(
+            'field' => 'dsm_code',
+            'label' => 'District Sales Manager Code',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field' => 'user_name',
+            'label' => 'User Name',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field'=>'renata_id',
+            'label'=>'Renata ID',
+            'rules' => 'trim|required'
         )
         ),
     'updatepso' => array (

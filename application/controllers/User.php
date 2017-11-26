@@ -154,7 +154,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1')
             {
                 $this->user_model->block_user($renata_id);
-                $this->session->set_userdata('block_user',"".$renata_id."User Login Credentials Successfully Blocked");
+                $this->session->set_userdata('block_user',"".$renata_id." User Login Credentials Successfully Blocked");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -167,7 +167,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
             {
                 $this->user_model->block_user($renata_id);
-                $this->session->set_userdata('block_user',"".$renata_id."User Login Credentials Successfully Blocked");
+                $this->session->set_userdata('block_user',"".$renata_id." User Login Credentials Successfully Blocked");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -180,7 +180,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
             {
                 $this->user_model->block_user($renata_id);
-                $this->session->set_userdata('block_user',"".$renata_id."User Login Credentials Successfully Blocked");
+                $this->session->set_userdata('block_user',"".$renata_id." User Login Credentials Successfully Blocked");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -198,7 +198,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1')
             {
                 $this->user_model->active_user($renata_id);
-                $this->session->set_userdata('active_user',"".$renata_id."User Login Credentials Successfully Active");
+                $this->session->set_userdata('active_user',"".$renata_id." User Login Credentials Successfully Active");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -211,7 +211,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
             {
                 $this->user_model->active_user($renata_id);
-                $this->session->set_userdata('active_user',"".$renata_id."User Login Credentials Successfully Active");
+                $this->session->set_userdata('active_user',"".$renata_id." User Login Credentials Successfully Active");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -224,7 +224,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
             {
                 $this->user_model->active_user($renata_id);
-                $this->session->set_userdata('active_user',"".$renata_id."User Login Credentials Successfully Active");
+                $this->session->set_userdata('active_user',"".$renata_id." User Login Credentials Successfully Active");
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -242,18 +242,7 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1')
             {
                 $this->user_model->delete_user($renata_id);
-                redirect(base_url().'user/manage_user');
-            }
-            else
-            {
-                redirect(base_url().'access_denied');
-            }
-        }
-        else if($user_type=='3')
-        {
-            if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
-            {
-                $this->user_model->delete_user($renata_id);
+                $this->session->set_userdata('delete_user',''.$renata_id.' User Successfully Deleted');
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -266,7 +255,11 @@ class User extends CI_Controller
             if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2')
             {
                 $this->user_model->delete_user($renata_id);
-                if($user_type=='4')
+                if($user_type=='3')
+                {
+                    $this->user_model->delete_marketing($renata_id);
+                }
+                else if($user_type=='4')
                 {
                     $this->user_model->delete_sm($renata_id);
                 }
@@ -276,8 +269,17 @@ class User extends CI_Controller
                 }
                 else if($user_type=='6')
                 {
-                    $this->user_model->delete_dm($renata_id);
+                    $this->user_model->delete_dsm($renata_id);
                 }
+                else if($user_type=='7')
+                {
+                    $this->user_model->delete_gm($renata_id);
+                }
+                else if($user_type=='8')
+                {
+                    $this->user_model->delete_msd($renata_id);
+                }
+                $this->session->set_userdata('delete_user',''.$renata_id.' User Successfully Deleted');
                 redirect(base_url().'user/manage_user');
             }
             else
@@ -290,35 +292,120 @@ class User extends CI_Controller
     {
         $renata_id=$this->input->get('renata_id');
         $user_type=$this->input->get('user_type');
-        if($user_type=='2'||$user_type=='3'||$user_type=='7')
+        $user_type_login=$this->session->userdata('user_type');
+        $employee_id=$this->session->userdata('employee_id');
+        if($user_type=='2')
         {
-            $data['admins']=$this->user_model->find_admins_user_data($renata_id);
-            $this->load->view('view_user/view_edit_admin_user',$data);
-            $this->load->view('view_footer');
+            $data['user']=$this->user_model->find_admins_user_data($renata_id);
+        }
+        else if($user_type=='3')
+        {
+            $data['user']=$this->user_model->find_marketing_user_data($renata_id);
         }
         else if($user_type=='4')
         {
-            $data['depots']=$this->pso_model->get_depot1();
-            $data['business']=$this->pso_model->get_business();
-            $data['sm']=$this->user_model->find_sm_user_data($renata_id);
-            $this->load->view('view_user/view_edit_sm_user',$data);
-            $this->load->view('view_footer');
+            $data['user']=$this->user_model->find_sm_user_data($renata_id);
         }
         else if($user_type=='5')
         {
-            $data['depots']=$this->pso_model->get_depot1();
-            $data['business']=$this->pso_model->get_business();
-            $data['rsm']=$this->user_model->find_rsm_user_data($renata_id);
-            $this->load->view('view_user/view_edit_rsm_user',$data);
-            $this->load->view('view_footer');
+            $data['user']=$this->user_model->find_rsm_user_data($renata_id);
         }
         else if($user_type=='6')
         {
-            $data['depots']=$this->pso_model->get_depot1();
-            $data['business']=$this->pso_model->get_business();
-            $data['dsm']=$this->user_model->find_dsm_user_data($renata_id);
-            $this->load->view('view_user/view_edit_dsm_user',$data);
-            $this->load->view('view_footer');
+            $data['user']=$this->user_model->find_dsm_user_data($renata_id);
+        }
+        else if($user_type=='7')
+        {
+            $data['user']=$this->user_model->find_gm_user_data($renata_id);
+        }
+        else if($user_type=='8')
+        {
+            $data['user']=$this->user_model->find_msd_user_data($renata_id);
+        }
+
+        $data['depots']=$this->pso_model->get_depot($user_type_login,$employee_id);
+        $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['pso_types']=$this->pso_model->get_pso_type();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_user/view_edit_user',$data,TRUE);
+        $this->load->view('view_master',$data);
+    }
+    public function update_user()
+    {
+        $user_name=$this->input->post('user_name');
+        $renata_id=$this->input->post('renata_id');
+        $user_type=$this->input->post('user_type');
+        $sm_code=$this->input->post('sm_code');
+        $rsm_code=$this->input->post('rsm_code');
+        $dsm_code=$this->input->post('dsm_code');
+        $designation=$this->input->post('designation');
+        $region=$this->input->post('region');
+        $depot_code=$this->input->post('depot_code');
+        $business_code=$this->input->post('business_code');
+
+        $user_type_old=$this->input->post('user_type_old');
+
+        if($user_type=='4')
+        {
+            if ($this->form_validation->run('adduser2_update'))
+            {
+                $this->user_model->update_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region,$user_type_old);
+                $this->session->set_userdata('update_user',''.$renata_id.' User Successfully Updated');
+                redirect(base_url().'user/manage_user');
+            }
+            else
+            {
+                $error=validation_errors();
+                $data['user_update']=$error;
+                $this->load->view('view_user/view_edit_user',$data);
+            }
+        }
+        else if($user_type=='5')
+        {
+            if ($this->form_validation->run('adduser3_update'))
+            {
+                $this->user_model->update_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region,$user_type_old);
+                $this->session->set_userdata('update_user',''.$renata_id.' User Successfully Updated');
+                redirect(base_url().'user/manage_user');
+            }
+            else
+            {
+                $error=validation_errors();
+                $data['user_update']=$error;
+                $this->load->view('view_user/view_edit_user',$data);
+            }
+        }
+        else if($user_type=='6')
+        {
+            if ($this->form_validation->run('adduser4_update'))
+            {
+                $this->user_model->update_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region,$user_type_old);
+                $this->session->set_userdata('update_user',''.$renata_id.' User Successfully Updated');
+                redirect(base_url().'user/manage_user');
+            }
+            else
+            {
+                $error=validation_errors();
+                $data['user_update']=$error;
+                $this->load->view('view_user/view_edit_user',$data);
+            }
+        }
+        else
+        {
+            if ($this->form_validation->run('adduser1_update'))
+            {
+                $this->user_model->update_user($user_name,$renata_id,$user_type,$designation,$business_code,$sm_code,$rsm_code,$dsm_code,$depot_code,$region,$user_type_old);
+                $this->session->set_userdata('update_user',''.$renata_id.' User Successfully Updated');
+                redirect(base_url().'user/manage_user');
+            }
+            else
+            {
+                $error=validation_errors();
+                $data['user_update']=$error;
+                $this->load->view('view_user/view_edit_user',$data);
+            }
         }
     }
     public function edit_admin_user()

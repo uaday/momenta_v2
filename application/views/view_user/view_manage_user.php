@@ -37,6 +37,50 @@
 
     </div>
 
+    <div class="row">
+        <div align="center">
+            <?php if($this->session->userdata('block_user')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('block_user') ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('block_user'); }?>
+
+            <?php if($this->session->userdata('active_user')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('active_user') ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('active_user'); }?>
+
+            <?php if($this->session->userdata('delete_user')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('delete_user') ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('delete_user'); }?>
+
+            <?php if($this->session->userdata('update_user')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('update_user') ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('update_user'); }?>
+
+        </div>
+    </div>
 
     <div class="row">
 
@@ -434,7 +478,7 @@
                                         <td>Block</td>
                                     <?php } ?>
                                     <td>
-                                        <?php if ($rsm['status'] == '1') { ?>
+                                        <?php if ($dsm['status'] == '1') { ?>
                                             <a title="Block User" href="<?php echo base_url()?>user/block_user?renata_id=<?php echo $dsm['renata_id']?>&user_type=6"><span class="fa fa-2x fa-thumbs-o-down"></span></a>|
                                         <?php } else { ?>
                                             <a title="Active User" href="<?php echo base_url()?>user/active_user?renata_id=<?php echo $dsm['renata_id']?>&user_type=6"><span class="fa fa-2x fa-thumbs-o-up"></span></a>|
