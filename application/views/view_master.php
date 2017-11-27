@@ -14,10 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Xenon Boostrap Admin Panel" />
-    <meta name="author" content="" />
+    <meta name="description" content="Appinion BD Limited" />
+    <meta name="author" content="Sudipta Ghosh" />
 
-    <title>Xenon - Dashboard</title>
+    <link rel="icon" href="<?php echo base_url() ?>/assets/images/icon/momenta_logo.png" type="image/x-icon">
+
+    <title>Momenta</title>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/linecons/css/linecons.css">
@@ -56,7 +58,7 @@
                 <div class="user-info">
 
                     <div class="user-image">
-                        <a href="extra-profile.html">
+                        <a href="#">
                             <img src="<?php echo base_url()?>assets/images/user-4.png" class="img-responsive img-circle" />
                         </a>
                     </div>
@@ -143,11 +145,11 @@
                 <!-- logo -->
                 <div class="logo">
                     <a href="<?php echo base_url()?>home" class="logo-expanded">
-                        <img src="<?php echo base_url()?>assets/images/momenta_large.png" width="80" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/icon/momenta_white_01.png" width="120px" height="30px" alt="" />
                     </a>
 
                     <a href="<?php echo base_url()?>home" class="logo-collapsed">
-                        <img src="<?php echo base_url()?>assets/images/momenta_small.png" width="40" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/icon/momenta_logo.png" width="40" alt="" />
                     </a>
                 </div>
 
@@ -179,13 +181,13 @@
                 <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
                 <li class="<?php if($this->session->userdata('main_menu')=='home'&& $this->session->userdata('sub_menu')=='home') echo "active opened active"?>">
                     <a href="<?php echo base_url()?>home">
-                        <i class="linecons-cog"></i>
+                        <i class="fa fa-home fa-2x"></i>
                         <span class="title">Home</span>
                     </a>
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='medicine_literature') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-desktop"></i>
+                        <i class="fa fa-book fa-2x"></i>
                         <span class="title">Medicine Literature</span>
                     </a>
                     <ul>
@@ -201,14 +203,14 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="<?php if($this->session->userdata('main_menu')=='test') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-note"></i>
+                        <i class="fa fa-graduation-cap"></i>
                         <span class="title">Testing Center</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="ui-panels.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='create_test') echo "active "?>">
+                            <a href="<?php echo base_url()?>test/create_test">
                                 <span class="title">Create Test</span>
                             </a>
                         </li>
@@ -227,7 +229,7 @@
 
                 <li  class="<?php if($this->session->userdata('main_menu')=='renata_shop') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-mail"></i>
+                        <i class="fa fa-gift fa-2x"></i>
                         <span class="title">Renata Shop</span>
                     </a>
                     <ul>
@@ -250,7 +252,7 @@
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-database"></i>
+                        <i class="fa fa-group fa-2x"></i>
                         <span class="title">PSO</span>
                     </a>
                     <ul>
@@ -268,7 +270,7 @@
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='user') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-params"></i>
+                        <i class="fa fa-user fa-2x"></i>
                         <span class="title">USER</span>
                     </a>
                     <ul>
@@ -286,7 +288,7 @@
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='medicine_info') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-beaker"></i>
+                        <i class="fa fa-flask fa-2x"></i>
                         <span class="title">Medicine Info</span>
                     </a>
                     <ul>
@@ -310,7 +312,7 @@
                 </li>
                 <li class="<?php if($this->session->userdata('main_menu')=='bulk_data') echo "active opened "?>">
                     <a href="#">
-                        <i class="linecons-globe"></i>
+                        <i class="fa fa-database fa-2x"></i>
                         <span class="title">Bulk Data</span>
                     </a>
                     <ul>
@@ -341,10 +343,11 @@
         
         echo $main_content;
     }?>
-    
+
 
 
 </div>
+
 
 
 <div class="page-loading-overlay">
@@ -1031,6 +1034,7 @@
 
 
     function add_ques() {
+        var business_code = $('.business').val();
         var test_name = $('.test_name').val();
         var test_suggestion = $('.test_suggestion').val();
         var exp_date = $('.exp_date').val();
@@ -1100,11 +1104,12 @@
                 $.ajax(
                     {
                         type: 'POST',
-                        data: {test_name: test_name,test_suggestion:test_suggestion,exp_date:exp_date,test_time:test_time,test_marks:test_marks,pass_marks:pass_marks,test_type: test_type,ques: ques, op1: op1, op2: op2, op3: op3, op4: op4, ans: ans},
+                        data: {business_code:business_code,test_name: test_name,test_suggestion:test_suggestion,exp_date:exp_date,test_time:test_time,test_marks:test_marks,pass_marks:pass_marks,test_type: test_type,ques: ques, op1: op1, op2: op2, op3: op3, op4: op4, ans: ans},
                         url: "<?php echo site_url('test/make_test')?>",
                         success: function (result) {
-                            test_id=result.substr(0,result.indexOf('<'));
-                            $('#test_id').val(test_id);
+//                            alert(result);
+//                            test_id=result.substr(0,result.indexOf('<'));
+                            $('#test_id').val(result);
                         },
                         error: function (result) {
                             alert(result);
@@ -1129,7 +1134,12 @@
         }
     }
     function up_ques() {
-        if($('.test_time').val()<=0)
+
+        if ($('.business').val() ==null) {
+            alert("Please Select Business");
+            return false;
+        }
+        else if($('.test_time').val()<=0)
         {
             alert('Test Time Should Be Grater Then 59 sec');
             return false;

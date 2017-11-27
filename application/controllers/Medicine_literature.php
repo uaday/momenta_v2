@@ -173,7 +173,7 @@ class Medicine_literature extends CI_Controller
         if($result)
         {
             $this->session->set_userdata('message1', 'Version Successfully Deleted');
-            redirect(base_url() . 'update_medicine_literature', 'refresh');
+            redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
         }
     }
 

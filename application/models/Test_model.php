@@ -3,8 +3,9 @@
 class Test_model extends CI_Model
 {
 
-    public function create_test($test_name, $test_suggestion,$exp_date, $test_type, $test_time, $test_marks, $pass_marks, $ques, $op1, $op2, $op3, $op4, $ans)
+    public function create_test($business_code,$test_name, $test_suggestion,$exp_date, $test_type, $test_time, $test_marks, $pass_marks, $ques, $op1, $op2, $op3, $op4, $ans)
     {
+        $business_code = $this->db->escape_str($business_code);
         $test_name = $this->db->escape_str($test_name);
         $test_suggestion = $this->db->escape_str($test_suggestion);
         $ques = $this->db->escape_str($ques);
@@ -13,7 +14,7 @@ class Test_model extends CI_Model
         $op3 = $this->db->escape_str($op3);
         $op4 = $this->db->escape_str($op4);
 
-        $sql = "INSERT INTO tbl_exam(exam_name,duration,exam_marks,pass_marks,exam_type,exam_suggestion,exp_date,exam_create_date,exam_create_time) VALUES (N'$test_name',N'$test_time',N'$test_marks',N'$pass_marks',N'$test_type',N'$test_suggestion',N'$exp_date',CURRENT_DATE,CURRENT_TIME)";
+        $sql = "INSERT INTO tbl_exam(tbl_business_business_code,exam_name,duration,exam_marks,pass_marks,exam_type,exam_suggestion,exp_date,exam_create_date,exam_create_time) VALUES (N'$business_code',N'$test_name',N'$test_time',N'$test_marks',N'$pass_marks',N'$test_type',N'$test_suggestion',N'$exp_date',CURRENT_DATE,CURRENT_TIME)";
         $this->db->query($sql);
         $id = $this->db->insert_id();
 
@@ -456,6 +457,11 @@ class Test_model extends CI_Model
     public function publish_exam_ans($exam_id)
     {
         $sql = "UPDATE tbl_exam SET publish_status='1' WHERE exam_id='$exam_id'";
+        $this->db->query($sql);
+    }
+    public function save_test($exam_id)
+    {
+        $sql = "UPDATE tbl_exam SET status='1' WHERE exam_id='$exam_id'";
         $this->db->query($sql);
     }
 

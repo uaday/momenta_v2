@@ -14,10 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Xenon Boostrap Admin Panel" />
-    <meta name="author" content="" />
+    <meta name="description" content="Appinion BD Limited" />
+    <meta name="author" content="Sudipta Ghosh" />
 
     <title>Momenta - Login</title>
+
+    <link rel="icon" href="<?php echo base_url() ?>/assets/images/icon/momenta_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/linecons/css/linecons.css">
@@ -45,9 +47,9 @@
 
 <div class="login-container" >
 
-    <div class="row">
+    <div class="row" >
 
-        <div class="col-sm-6">
+        <div class="col-sm-offset-8 col-sm-6" >
 
             <script type="text/javascript">
                 jQuery(document).ready(function($)
@@ -152,14 +154,15 @@
             <!-- Add class "fade-in-effect" for login form effect -->
             <form method="post" role="form" id="login" class="login-form fade-in-effect">
 
-                <div class="login-header">
-                    <a href="dashboard-1.html" class="logo">
-                        <img src="<?php echo base_url()?>assets/images/logo-white-bg.png" alt="" width="80" />
-                        <span>log in</span>
+                <div class="login-header text-center">
+                    <a href="#" class="logo">
+                        <img src="<?php echo base_url()?>assets/images/icon/momenta_blue.png" alt=""  />
+                        <p>Dear user, log in to access the admin area!</p>
                     </a>
-
-                    <p>Dear user, log in to access the admin area!</p>
                 </div>
+<!--                <div class="login-header">-->
+<!--                    <p>Dear user, log in to access the admin area!</p>-->
+<!--                </div>-->
 
 
                 <div class="form-group">
@@ -173,7 +176,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block text-left">
+                    <button style="background-color: #272966;color: white" type="submit" class="btn  btn-block text-left">
                         <i class="fa-lock"></i>
                         Log In
                     </button>

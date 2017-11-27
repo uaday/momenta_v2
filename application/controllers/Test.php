@@ -6,27 +6,19 @@ class Test extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $data['name'] = $this->session->userdata('name');
-        $data['login_id'] = $this->session->userdata('login_id');
-        $data['tincentives'] = $this->home_model->total_incentives();
-        $data['texam'] = $this->home_model->total_exam();
-        $user_type = $this->session->userdata('user_type');
-        $employee_id = $this->session->userdata('employee_id');
-        $data['tpso'] = $this->home_model->total_pso($user_type, $employee_id);
-        $data['tdrug'] = $this->home_model->total_drug();
-        $this->session->set_userdata('i', '3');
-
-        if ($this->session->userdata('change_pass_status') == '0') {
-            redirect(base_url() . 'settings/change_password');
+        $data['login_id']=$this->session->userdata('login_id');
+        $this->session->set_userdata('main_menu','test');
+        if($this->session->userdata('change_pass_status')=='0')
+        {
+            redirect(base_url().'change_password');
         }
-
-        if ($data['login_id'] != null) {
-            $this->load->view('view_dashboard', $data);
-        } else {
-            redirect(base_url() . 'login');
+        if($data['login_id']!=null)
+        {
         }
-
-
+        else
+        {
+            redirect(base_url().'login');
+        }
     }
 
     public function index()
@@ -34,12 +26,13 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
-            $user_type = $this->session->userdata('user_type');
-            $employee_id = $this->session->userdata('employee_id');
-            $data['psos'] = $this->tar_shop_model->get_pso($user_type, $employee_id);
-            $data['depots'] = $this->pso_model->get_depot($user_type, $employee_id);
-            $this->load->view('view_tests/view_create_test', $data);
-            $this->load->view('view_footer');
+            $this->session->set_userdata('sub_menu','create_test');
+            $data['business'] = $this->medicine_literature_model->getAllbusiness();
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_tests/view_create_test',$data,TRUE);
+            $this->load->view('view_master',$data);
         }
     }
 
@@ -48,14 +41,14 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
-            $user_type = $this->session->userdata('user_type');
-            $employee_id = $this->session->userdata('employee_id');
-            $data['psos'] = $this->tar_shop_model->get_pso($user_type, $employee_id);
-            //$data['depots'] = $this->pso_model->get_depot($user_type, $employee_id);
-            $data['regions'] = $this->pso_model->get_region();
-            $data['pso_types'] = $this->pso_model->get_pso_type();
-            $this->load->view('view_tests/view_create_test', $data);
-            $this->load->view('view_footer');
+
+            $this->session->set_userdata('sub_menu','create_test');
+            $data['business'] = $this->medicine_literature_model->getAllbusiness();
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_tests/view_create_test',$data,TRUE);
+            $this->load->view('view_master',$data);
         }
     }
 
@@ -82,9 +75,12 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
+            $business_code = $this->input->post('business_code');
             $test_name = $this->input->post('test_name');
             $test_suggestion = $this->input->post('test_suggestion');
-            $exp_date = $this->input->post('exp_date');
+
+            $exp_date1=explode('/', $this->input->post('exp_date'));
+            $exp_date = $exp_date1[2].'-'.$exp_date1[0].'-'.$exp_date1[1];
             $test_type = $this->input->post('test_type');
             $test_time = $this->input->post('test_time');
             $test_marks = $this->input->post('test_marks');
@@ -95,7 +91,7 @@ class Test extends CI_Controller
             $op3 = $this->input->post('op3');
             $op4 = $this->input->post('op4');
             $ans = $this->input->post('ans');
-            $result = $this->test_model->create_test($test_name, $test_suggestion,$exp_date, $test_type, $test_time, $test_marks, $pass_marks, $ques, $op1, $op2, $op3, $op4, $ans);
+            $result = $this->test_model->create_test($business_code,$test_name, $test_suggestion,$exp_date, $test_type, $test_time, $test_marks, $pass_marks, $ques, $op1, $op2, $op3, $op4, $ans);
             if ($result) {
                 echo $result['0']['exam_id'];
             }
@@ -173,6 +169,34 @@ class Test extends CI_Controller
         }
 
     }
+
+    public function save_test()
+    {
+
+        if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
+            redirect(base_url() . 'access_denied');
+        }
+        else {
+            $global = $this->input->post('global');
+            $id = $this->input->post('test_id');
+            $form_type = $this->input->post('form_type');
+            $this->test_model->save_test($id);
+
+            if($form_type=='1')
+            {
+                $this->session->set_userdata('create_test', 'Create Test Successful');
+            }
+            else
+            {
+                $this->session->set_userdata('assign_test', 'Test Successfully Assign');
+            }
+            redirect(base_url() . 'test/create_test', 'refresh');
+//            redirect(base_url() . 'test/test_page', 'refresh');
+        }
+
+    }
+
+
 
     public function result()
     {

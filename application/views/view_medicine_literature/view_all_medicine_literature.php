@@ -69,16 +69,14 @@
                 <tr>
                     <th style="color: white">Drug Image</th>
                     <th style="color: white">Drug Name</th>
-                    <th style="color: white">Full Book</th>
-                    <th style="color: white">Feature & Benefit</th>
+                    <th style="color: white">View documents</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>Drug Image</th>
                     <th>Drug Name</th>
-                    <th>Full Book</th>
-                    <th>Feature & Benefit</th>
+                    <th>View documents</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -87,9 +85,10 @@
                     <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px">
                     </td>
                     <td>{drug_name}</td>
-                    <td><a target="_blank" class="btn btn-primary center-block"
-                           href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a></td>
-                    <td><a target="_blank" class="btn btn-primary center-block"
+                    <td><a style="border-radius: 10px" target="_blank" class="btn btn-gray"
+                           href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a>
+                        <span>|</span>
+                        <a style="border-radius: 10px" target="_blank" class="btn btn-primary "
                            href="https://docs.google.com/viewerng/viewer?url={benefits_feature}">Feature & Benefit</a>
                     </td>
                 </tr>
