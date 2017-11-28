@@ -408,58 +408,6 @@ class User extends CI_Controller
             }
         }
     }
-    public function edit_admin_user()
-    {
-        $user_name=$this->input->post('user_name');
-        $renata_id=$this->input->post('renata_id');
-        $user_type=$this->input->post('user_type');
-        $designation=$this->input->post('designation');
-        $this->user_model->edit_admin_user($user_name,$renata_id,$user_type,$designation);
-        $this->session->set_userdata('edit_user',"User Edited");
-        redirect(base_url().'user/manage_user');
-    }
-    public function edit_sm_user()
-    {
-        $user_name=$this->input->post('user_name');
-        $renata_id=$this->input->post('renata_id');
-        $user_type=$this->input->post('user_type');
-        $designation=$this->input->post('designation');
-        $depot_code=$this->input->post('depot_code');
-        $business_code=$this->input->post('business_code');
-        $sm_code=$this->input->post('sm_code');
-        $this->user_model->edit_sm_user($user_name,$renata_id,$user_type,$designation,$sm_code,$depot_code,$business_code);
-        $this->session->set_userdata('edit_user',"User Edited");
-        redirect(base_url().'user/manage_user');
-    }
-    public function edit_rsm_user()
-    {
-        $user_name=$this->input->post('user_name');
-        $renata_id=$this->input->post('renata_id');
-        $user_type=$this->input->post('user_type');
-        $designation=$this->input->post('designation');
-        $region=$this->input->post('region');
-        $depot_code=$this->input->post('depot_code');
-        $business_code=$this->input->post('business_code');
-        $rsm_code=$this->input->post('rsm_code');
-        $sm_code=$this->input->post('sm_code');
-        $this->user_model->edit_rsm_user($user_name,$renata_id,$user_type,$designation,$region,$rsm_code,$sm_code,$depot_code,$business_code);
-        $this->session->set_userdata('edit_user',"User Edited");
-        redirect(base_url().'user/manage_user');
-    }
-    public function edit_dsm_user()
-    {
-        $user_name=$this->input->post('user_name');
-        $renata_id=$this->input->post('renata_id');
-        $user_type=$this->input->post('user_type');
-        $designation=$this->input->post('designation');
-        $depot_code=$this->input->post('depot_code');
-        $business_code=$this->input->post('business_code');
-        $dsm_code=$this->input->post('dsm_code');
-        $rsm_code=$this->input->post('rsm_code');
-        $this->user_model->edit_dsm_user($user_name,$renata_id,$user_type,$designation,$rsm_code,$dsm_code,$depot_code,$business_code);
-        $this->session->set_userdata('edit_user',"User Edited");
-        redirect(base_url().'user/manage_user');
-    }
 
     public function reset_password()
     {

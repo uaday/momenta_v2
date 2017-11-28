@@ -416,11 +416,27 @@ class Test_model extends CI_Model
     public function all_exam()
     {
 
-        $sql = "SELECT DISTINCT e.*,COUNT(DISTINCT  r.rsm_code) AS rsm_counter FROM tbl_exam e LEFT JOIN tbl_exam_assign a ON e.exam_id=a.tbl_exam_exam_id LEFT JOIN tbl_user_pso p ON a.tbl_pso_pso_id=p.pso_id LEFT JOIN tbl_user_dsm d ON p.tbl_user_dsm_dsm_code=d.dsm_code LEFT JOIN tbl_user_rsm r ON d.tbl_user_rsm_rsm_code=r.rsm_code GROUP BY e.exam_id";
-        //$sql = "SELECT * FROM tbl_exam";
-        $this->db->query("set character_set_results='utf8'");
-        $result = $this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('tbl_exam.*,COUNT(DISTINCT  tbl_user_rsm.rsm_code) AS rsm_counter,tbl_business.business_name');
+        $this->db->from('tbl_exam');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_exam.tbl_business_business_code','left');
+        $this->db->join('tbl_exam_assign', 'tbl_exam_assign.tbl_exam_exam_id = tbl_exam.exam_id','left');
+        $this->db->join('tbl_user_pso', 'tbl_user_pso.pso_id = tbl_exam_assign.tbl_pso_pso_id','left');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.dsm_code = tbl_user_pso.tbl_user_dsm_dsm_code','left');
+        $this->db->join('tbl_user_rsm', 'tbl_user_rsm.rsm_code = tbl_user_dsm.tbl_user_rsm_rsm_code','left');
+        $this->db->where('tbl_exam.status ', '1');
+        $this->db->group_by("tbl_exam.exam_id");
+        $this->db->order_by("tbl_exam.exam_name",'ASC');
+        return $this->db->get()->result_array();
+
+
+//        $sql = "SELECT DISTINCT e.*,COUNT(DISTINCT  r.rsm_code)
+// AS rsm_counter FROM tbl_exam e LEFT JOIN tbl_exam_assign a ON e.exam_id=a.tbl_exam_exam_id
+//  LEFT JOIN tbl_user_pso p ON a.tbl_pso_pso_id=p.pso_id
+//   LEFT JOIN tbl_user_dsm d ON p.tbl_user_dsm_dsm_code=d.dsm_code
+//   LEFT JOIN tbl_user_rsm r ON d.tbl_user_rsm_rsm_code=r.rsm_code GROUP BY e.exam_id";
+//        $this->db->query("set character_set_results='utf8'");
+//        $result = $this->db->query($sql);
+//        return $result->result_array();
     }
 
     public function edit_test_info_by_exam_id($exam_id)

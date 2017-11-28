@@ -230,7 +230,7 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <label  class="control-label text-bold" style="color: black;margin-top: 5%">Number of question added: <span id="qus_no">0</span></label>
+                        <label  class="control-label text-bold" style="color: black;margin-top: 5%">Number of question(s) added: <span id="qus_no">0</span></label>
 
                     </div>
                     <div class="col-md-offset-4 col-md-1" >

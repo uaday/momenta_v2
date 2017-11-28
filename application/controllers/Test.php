@@ -165,7 +165,7 @@ class Test extends CI_Controller
                 $this->session->set_userdata('assign_test', 'Test Successfully Assign');
             }
 //            redirect(base_url() . 'test/create_test', 'refresh');
-            redirect(base_url() . 'test/test_page', 'refresh');
+            redirect(base_url() . 'test/manage_test', 'refresh');
         }
 
     }
@@ -191,7 +191,7 @@ class Test extends CI_Controller
                 $this->session->set_userdata('assign_test', 'Test Successfully Assign');
             }
             redirect(base_url() . 'test/create_test', 'refresh');
-//            redirect(base_url() . 'test/test_page', 'refresh');
+//            redirect(base_url() . 'test/manage_test', 'refresh');
         }
 
     }
@@ -257,16 +257,14 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
-            $user_type = $this->session->userdata('user_type');
-            $employee_id = $this->session->userdata('employee_id');
-            $data['depots'] = $this->pso_model->get_depot($user_type, $employee_id);
-            $data['regions'] = $this->pso_model->get_region();
-            $data['psos'] = $this->tar_shop_model->get_pso($user_type, $employee_id);
+            $this->session->set_userdata('sub_menu','manage_test');
             $data['tests'] = $this->test_model->all_exam();
-//            print_r($data['tests']);
-//            exit();
-            $this->load->view('view_tests/view_test_page', $data);
-            $this->load->view('view_footer');
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_tests/view_test_page',$data,TRUE);
+            $this->load->view('view_master',$data);
+
         }
     }
 
@@ -287,15 +285,16 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
-            if ($exam_idd == 0)
-                $exam_id = $this->input->get('test_id');
-            else
-                $exam_id = $exam_idd;
+            $exam_id = $exam_idd;
+            $this->session->set_userdata('sub_menu','manage_test');
             $data['exam'] = $this->test_model->edit_test_info_by_exam_id($exam_id);
             $data['region'] = $this->test_model->no_of_region_assign($exam_id);
             $data['questions'] = $this->test_model->edit_test_question_by_exam_id($exam_id);
-            $this->load->view('view_tests/view_edit_exam_ques', $data);
-            $this->load->view('view_footer');
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_tests/view_edit_exam_ques',$data,TRUE);
+            $this->load->view('view_master',$data);
         }
     }
 
@@ -341,7 +340,7 @@ class Test extends CI_Controller
             $exam_id = $this->input->get('test_id');
             $result = $this->test_model->delete_tests($exam_id);
             $this->session->set_userdata('delete_exams', 'Test Delete Successful');
-            redirect(base_url() . 'test/test_page', 'refresh');
+            redirect(base_url() . 'test/manage_test', 'refresh');
         }
     }
 
@@ -372,7 +371,7 @@ class Test extends CI_Controller
             $exam_id = $this->input->get('exam_id');
             $result = $this->test_model->publish_exam_ans($exam_id);
             $this->session->set_userdata('publish_exam', 'Exam Publish successful');
-            redirect(base_url() . 'test/test_page/', 'refresh');
+            redirect(base_url() . 'test/manage_test/', 'refresh');
         }
     }
 
@@ -384,7 +383,7 @@ class Test extends CI_Controller
             $exam_id = $this->input->get('exam_id');
             $result = $this->test_model->unpublish_exam_ans($exam_id);
             $this->session->set_userdata('unpublish_exam', 'Exam Unpublished successful');
-            redirect(base_url() . 'test/test_page/', 'refresh');
+            redirect(base_url() . 'test/manage_test/', 'refresh');
         }
     }
 
@@ -419,7 +418,7 @@ class Test extends CI_Controller
             $this->test_model->set_region($exam_id, $region_list);
 
             $this->session->set_userdata('assign', 'Test Assign Successful');
-            redirect(base_url() . 'test/test_page', 'refresh');
+            redirect(base_url() . 'test/manage_test', 'refresh');
         }
     }
 
@@ -434,7 +433,7 @@ class Test extends CI_Controller
                 $this->test_model->set_psos($exam_id, $row);
             }
             $this->session->set_userdata('assign', 'Test Assign Successful');
-            redirect(base_url() . 'test/test_page', 'refresh');
+            redirect(base_url() . 'test/manage_test', 'refresh');
         }
     }
 

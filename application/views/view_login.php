@@ -42,14 +42,15 @@
 
 
 </head>
-<body class="page-body login-page login-light" style="background-image: url(<?= base_url()?>assets/images/back2.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
+
+<body class="page-body login-page login-light" style="background-image: url(<?= base_url()?>assets/images/login_bg/bg55.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
 
 
 <div class="login-container" >
 
     <div class="row" >
 
-        <div class="col-sm-offset-8 col-sm-6" >
+        <div class="col-sm-offset-8  col-sm-6" >
 
             <script type="text/javascript">
                 jQuery(document).ready(function($)

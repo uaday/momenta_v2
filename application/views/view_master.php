@@ -214,8 +214,8 @@
                                 <span class="title">Create Test</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="ui-buttons.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='manage_test') echo "active "?>">
+                            <a href="<?php echo base_url()?>test/manage_test">
                                 <span class="title">Manage Test</span>
                             </a>
                         </li>
