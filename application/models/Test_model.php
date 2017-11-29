@@ -441,7 +441,7 @@ class Test_model extends CI_Model
 
     public function edit_test_info_by_exam_id($exam_id)
     {
-        $sql = "SELECT * FROM tbl_exam WHERE exam_id='$exam_id'";
+        $sql = "SELECT * FROM tbl_exam e,tbl_business b WHERE e.tbl_business_business_code=b.business_code AND  e.exam_id='$exam_id'";
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql);
         return $result->result_array();
@@ -462,11 +462,11 @@ class Test_model extends CI_Model
         return $result->result_array();
     }
 
-    public function update_exam($exam_id, $exam_name,$exam_suggestion,$exp_date, $exam_marks, $exam_time, $exam_type, $pass_marks)
+    public function update_exam($business,$exam_id, $exam_name,$exam_suggestion,$exp_date, $exam_marks, $exam_time, $exam_type, $pass_marks)
     {
         $exam_name = $this->db->escape_str($exam_name);
         $exam_suggestion = $this->db->escape_str($exam_suggestion);
-        $sql = "UPDATE tbl_exam SET exam_name=N'$exam_name',exam_suggestion=N'$exam_suggestion',exp_date=N'$exp_date',duration=N'$exam_time',exam_marks=N'$exam_marks',pass_marks=N'$pass_marks',exam_type=N'$exam_type' WHERE exam_id='$exam_id'";
+        $sql = "UPDATE tbl_exam SET  tbl_business_business_code=N'$business',exam_name=N'$exam_name',exam_suggestion=N'$exam_suggestion',exp_date=N'$exp_date',duration=N'$exam_time',exam_marks=N'$exam_marks',pass_marks=N'$pass_marks',exam_type=N'$exam_type' WHERE exam_id='$exam_id'";
         $this->db->query($sql);
     }
 

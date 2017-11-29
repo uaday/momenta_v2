@@ -145,11 +145,11 @@
                 <!-- logo -->
                 <div class="logo">
                     <a href="<?php echo base_url()?>home" class="logo-expanded">
-                        <img src="<?php echo base_url()?>assets/images/icon/momenta_white_01.png" width="120px" height="30px" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/icon/1.png" style="margin-top: -10px;margin-bottom: -15px" width="122px" height="35px" alt="" />
                     </a>
 
                     <a href="<?php echo base_url()?>home" class="logo-collapsed">
-                        <img src="<?php echo base_url()?>assets/images/icon/momenta_logo.png" width="40" alt="" />
+                        <img src="<?php echo base_url()?>assets/images/icon/2.png" width="40px" alt="" />
                     </a>
                 </div>
 

@@ -287,6 +287,7 @@ class Test extends CI_Controller
         } else {
             $exam_id = $exam_idd;
             $this->session->set_userdata('sub_menu','manage_test');
+            $data['business'] = $this->medicine_literature_model->getAllbusiness();
             $data['exam'] = $this->test_model->edit_test_info_by_exam_id($exam_id);
             $data['region'] = $this->test_model->no_of_region_assign($exam_id);
             $data['questions'] = $this->test_model->edit_test_question_by_exam_id($exam_id);
@@ -349,15 +350,18 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
+            $business = $this->input->post('business');
             $exam_id = $this->input->post('exam_id');
             $exam_name = $this->input->post('exam_name');
             $exam_suggestion = $this->input->post('exam_suggestion');
-            $exp_date = $this->input->post('exp_date');
+            $exp_date1=explode('/', $this->input->post('exp_date'));
+            $exp_date = $exp_date1[2].'-'.$exp_date1[0].'-'.$exp_date1[1];
+
             $exam_time = $this->input->post('exam_time');
             $exam_marks = $this->input->post('exam_marks');
             $exam_type = $this->input->post('exam_type');
             $pass_marks = $this->input->post('pass_marks');
-            $result = $this->test_model->update_exam($exam_id, $exam_name,$exam_suggestion,$exp_date, $exam_marks, $exam_time, $exam_type, $pass_marks);
+            $result = $this->test_model->update_exam($business,$exam_id, $exam_name,$exam_suggestion,$exp_date, $exam_marks, $exam_time, $exam_type, $pass_marks);
             $this->session->set_userdata('update_exam', 'Exam info update successful');
             redirect(base_url() . 'test/view_edit_exam_ques/' . $exam_id, 'refresh');
         }
