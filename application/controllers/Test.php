@@ -248,8 +248,13 @@ class Test extends CI_Controller
         {
             $data['dms'] = $this->user_model->all_dsm($user_type, $employee_id);
         }
-        $this->load->view('view_tests/view_result', $data);
-        $this->load->view('view_footer');
+        $this->session->set_userdata('sub_menu','result');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_tests/view_result',$data,TRUE);
+        $this->load->view('view_master',$data);
+
     }
 
     public function test_page()

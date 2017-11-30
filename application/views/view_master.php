@@ -219,8 +219,8 @@
                                 <span class="title">Manage Test</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="ui-tabs-accordions.html">
+                        <li class="<?php if($this->session->userdata('sub_menu')=='result') echo "active "?>">
+                            <a href="<?php echo base_url()?>test/result">
                                 <span class="title">Result</span>
                             </a>
                         </li>
@@ -417,6 +417,9 @@
 
 <!-- JavaScripts plugins -->
 <script src="<?php echo base_url()?>assets/js/tables/jquery-datatable.js"></script>
+
+
+<script src="<?php echo base_url()?>assets/js/exam_result_data/data.js"></script>
 
 
 
