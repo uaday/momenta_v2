@@ -1399,7 +1399,6 @@
 
     function find_exam_stat(exam_id) {
 
-
         $.ajax(
             {
                 type: 'POST',
@@ -1412,9 +1411,34 @@
                     $('#fail').val(data['0']['tfail']);
                     $('#attend').val(data['0']['tattend']);
                     $('#nattend').val(data['0']['tnattend']);
-                    myChart.destroy();
-                    myChart2.destroy();
-                    Mychart(data['0']['tpass'],data['0']['tfail'],data['0']['tattend'],data['0']['tnattend']);
+
+
+
+                    var dataSource11 = [{
+                        language: "Pass",
+                        percent: data['0']['tpass']
+                    }, {
+                        language: "Fail",
+                        percent: data['0']['tfail']
+                    }];
+                    var dataSource22 = [{
+                        language: "Attend",
+                        percent: data['0']['tattend']
+                    }, {
+                        language: "Not Attend",
+                        percent: data['0']['tnattend']
+                    }];
+
+
+                    var pieChart1 = $('#pie1').dxPieChart('instance');
+                    var pieChart2 = $('#pie2').dxPieChart('instance');
+
+                    $("#pie1").dxPieChart("option", "dataSource", dataSource11);
+                    $("#pie2").dxPieChart("option", "dataSource", dataSource22);
+
+                    pieChart1.render();
+
+                    pieChart2.render();
                 },
                 error: function (result) {
                     alert('No Result Available Right Now');
@@ -1423,65 +1447,6 @@
         )
     }
 
-
-    function Mychart(a,b,c,d) {
-        const CHART = document.getElementById("myChart");
-        var myChart = new Chart(CHART,{
-            type: 'pie',
-            options:
-                {
-                    tooltips:
-                        {
-                            enabled: false
-                        }
-                },
-            data: data = {
-                labels: [ "PASS: "+a+"%", "FAIL: "+b+"%"],
-                datasets:
-                    [{
-                        data: [a,b],
-                        backgroundColor: [
-                            "#5B5B95",
-                            "#E94699"
-                        ],
-
-                        hoverBackgroundColor: [
-                            "#5B5B95",
-                            "#E94699"
-                        ]
-                    }]
-            }
-        });
-        const CHART2 = document.getElementById("myChart2");
-        var myChart2 = new Chart(CHART2,{
-            type: 'pie',
-            options:
-                {
-                    tooltips:
-                        {
-                            enabled: false
-                        }
-                },
-            data: data = {
-                labels: ["EXAM ATTEND: "+c+"%", "NOT ATTEND: "+d+"%"],
-                datasets:
-                    [{
-                        data: [c, d],
-                        backgroundColor: [
-                            "#3580BE",
-                            "#00BADA"
-                        ],
-
-                        hoverBackgroundColor: [
-                            "#3580BE",
-                            "#00BADA"
-                        ]
-                    }]
-            }
-        });
-        myChart.update();
-        myChart2.update();
-    }
 
 
     function  check_drug_insert() {

@@ -306,14 +306,19 @@ class Test extends CI_Controller
 
     public function view_pso_result()
     {
+
         $user_type = $this->session->userdata('user_type');
         $employee_id = $this->session->userdata('employee_id');
         $pso_id = $this->input->get('pso_id');
         $data['pso_exams'] = $this->test_model->pso_exam_list_by_pso_id($pso_id);
         $data['pso_exam_detail'] = $this->test_model->pso_exam_by_pso_id($pso_id);
         $data['pexams'] = $this->test_model->pso_exam_list($user_type, $employee_id);
-        $this->load->view('view_tests/view_pso_result', $data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_tests/view_pso_result',$data,TRUE);
+        $this->load->view('view_master',$data);
+
     }
 
     public function show_pso_result()
@@ -322,8 +327,12 @@ class Test extends CI_Controller
         $assign_id = $this->input->get('assign_id');
         $data['pso_exam_details'] = $this->test_model->pso_exam_details($pso_id, $assign_id);
         $data['pso_exam_questions'] = $this->test_model->pso_exam_ques_ans($assign_id);
-        $this->load->view('view_tests/view_result_info', $data);
-        $this->load->view('view_footer');
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_tests/view_result_info',$data,TRUE);
+        $this->load->view('view_master',$data);
+
     }
 
     public function delete_pso_tests()

@@ -143,12 +143,26 @@ class Test_model extends CI_Model
 //        {
 //            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks FROM tbl_user_pso p,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND s.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
 //        }
-        if ($user_type == '5') {
-            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND r.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
-        } else if ($user_type == '6') {
-            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND d.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
-        } else {
-            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE  ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND  p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            if ($user_type == '5') {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend,sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND r.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
+            } else if ($user_type == '6') {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend, sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name    FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND d.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
+            } else {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend, sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name  FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d ,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND  ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND  p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
+            }
+        }
+        else
+        {
+            if ($user_type == '5') {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend,sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND r.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id AND b.business_code='$business_code' GROUP BY p.pso_id ORDER BY p.pso_id";
+            } else if ($user_type == '6') {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend, sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name    FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND d.renata_id='$employee_id' AND p.pso_id=e.tbl_pso_pso_id AND b.business_code='$business_code' GROUP BY p.pso_id ORDER BY p.pso_id";
+            } else {
+                $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend, sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name  FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d ,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND  ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND  p.pso_id=e.tbl_pso_pso_id AND b.business_code='$business_code' GROUP BY p.pso_id ORDER BY p.pso_id";
+            }
         }
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql);
@@ -157,9 +171,18 @@ class Test_model extends CI_Model
 
     public function pso_exam_list_filtering($sm_code, $rsm_code, $dsm_code)
     {
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name,count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend,sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d ,tbl_business b WHERE  (s.sm_code='$sm_code' OR r.rsm_code='$rsm_code' OR d.dsm_code='$dsm_code') AND b.business_code=p.tbl_business_business_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  and r.rsm_code=d.tbl_user_rsm_rsm_code AND s.sm_code=r.tbl_user_sm_sm_code AND ex.exam_id=e.tbl_exam_exam_id AND  p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
+        }
+        else
+        {
+            $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name,count(e.assign_id) AS total_test, COUNT(CASE WHEN e.exam_status = '1' THEN 1 END) AS attend,sum(e.marks) as pso_total_marks,sum(ex.exam_marks) as total_marks ,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per,b.business_name   FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d ,tbl_business b WHERE  (s.sm_code='$sm_code' OR r.rsm_code='$rsm_code' OR d.dsm_code='$dsm_code') AND b.business_code=p.tbl_business_business_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  and r.rsm_code=d.tbl_user_rsm_rsm_code AND s.sm_code=r.tbl_user_sm_sm_code AND ex.exam_id=e.tbl_exam_exam_id AND  p.pso_id=e.tbl_pso_pso_id AND b.business_code='$business_code' GROUP BY p.pso_id ORDER BY p.pso_id";
+
+        }
 
         // $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks FROM tbl_user_pso p,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE  r.rsm_code='$rsm_code' AND d.dsm_code=p.tbl_user_dsm_dsm_code AND  s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND  p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
-        $sql = "SELECT p.renata_id as renata_id, p.pso_id AS pso_id, p.pso_name AS pso_name, count(e.assign_id) AS total_test, sum(e.marks) as total_marks,s.sm_code as sm_code,r.rsm_code as rsm_code,d.dsm_code as dsm_code,round(((sum(e.marks)/sum(ex.exam_marks))*100)) as per  FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE (s.sm_code='$sm_code' OR r.rsm_code='$rsm_code' OR d.dsm_code='$dsm_code') AND d.dsm_code=p.tbl_user_dsm_dsm_code  and r.rsm_code=d.tbl_user_rsm_rsm_code AND s.sm_code=r.tbl_user_sm_sm_code AND ex.exam_id=e.tbl_exam_exam_id AND  p.pso_id=e.tbl_pso_pso_id GROUP BY p.pso_id ORDER BY p.pso_id";
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql);
         return $result->result_array();
@@ -175,7 +198,7 @@ class Test_model extends CI_Model
 
     public function pso_exam_by_pso_id($pso_id)
     {
-        $sql = "SELECT p.renata_id as renata_id, p.pso_id as pso_id,p.pso_name as pso_name,sum(i.marks) as total_marks,count(i.assign_id) as total_test from tbl_user_pso p,tbl_exam_assign i WHERE p.pso_id='$pso_id' AND p.pso_id=i.tbl_pso_pso_id";
+        $sql = "SELECT p.renata_id as renata_id, p.pso_id as pso_id,p.pso_name as pso_name,sum(i.marks) as total_marks,count(i.assign_id) as total_test from tbl_user_pso p,tbl_exam_assign i,tbl_exam e WHERE e.exam_id=i.tbl_exam_exam_id AND p.pso_id='$pso_id' AND p.pso_id=i.tbl_pso_pso_id";
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql);
         return $result->result_array();
@@ -215,7 +238,15 @@ class Test_model extends CI_Model
 
     public function pso_exam_attend_status($user_type, $employee_id)
     {
-        $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        }
+        else
+        {
+            $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id AND e.tbl_business_business_code='$business_code' ORDER BY e.exam_name LIMIT 1";
+        }
         $this->db->query("set character_set_results='utf8'");
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
@@ -259,8 +290,15 @@ class Test_model extends CI_Model
 
     public function pso_exam_not_attend_status($user_type, $employee_id)
     {
-
-        $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        }
+        else
+        {
+            $sql = "SELECT e.exam_id, e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id AND e.tbl_business_business_code='$business_code' ORDER BY e.exam_name LIMIT 1";
+        }
         $this->db->query("set character_set_results='utf8'");
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
@@ -304,7 +342,16 @@ class Test_model extends CI_Model
 
     public function pso_total_pass($user_type, $employee_id)
     {
-        $sql = "SELECT e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        }
+        else
+        {
+            $sql = "SELECT e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id AND e.tbl_business_business_code='$business_code' ORDER BY e.exam_name LIMIT 1";
+        }
+
         $this->db->query("set character_set_results='utf8'");
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
@@ -359,7 +406,15 @@ class Test_model extends CI_Model
 
     public function pso_total_fail($user_type, $employee_id)
     {
-        $sql = "SELECT DISTINCT  e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT DISTINCT  e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY e.exam_name LIMIT 1";
+        }
+        else
+        {
+            $sql = "SELECT DISTINCT  e.exam_id, e.exam_name,e.exam_marks,e.pass_marks FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id AND e.tbl_business_business_code='$business_code' ORDER BY e.exam_name LIMIT 1";
+        }
         $this->db->query("set character_set_results='utf8'");
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
@@ -500,7 +555,16 @@ class Test_model extends CI_Model
 
     public function all_exam_sort_list()
     {
-        $sql = "SELECT DISTINCT e.exam_id,e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY exam_name  ";
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql = "SELECT DISTINCT e.exam_id,e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id ORDER BY exam_name  ";
+
+        }
+        else
+        {
+            $sql = "SELECT DISTINCT e.exam_id,e.exam_name FROM tbl_exam e,tbl_exam_assign a WHERE e.exam_id=a.tbl_exam_exam_id AND e.tbl_business_business_code='$business_code' ORDER BY exam_name  ";
+        }
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql);
         return $result->result_array();
