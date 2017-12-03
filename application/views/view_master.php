@@ -421,6 +421,9 @@
 
 <script src="<?php echo base_url()?>assets/js/exam_result_data/data.js"></script>
 
+<script src="<?php echo base_url()?>assets/js/icheck/icheck.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>assets/js/icheck/skins/all.css">
+
 
 
 

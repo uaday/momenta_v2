@@ -52,12 +52,20 @@ class Data_table extends CI_Controller
                         <td>$pexam[pso_name]</td>
                         <td>$pexam[attend]/$pexam[total_test]</td>
                         <td>$pexam[pso_total_marks]/$pexam[total_marks]</td>";
-                        if($pexam['per']>=50)
+                        if($pexam['total_marks']<='0')
                         {
-                             $output.="<td><label class='text-success'>$pexam[per]%</label></td>";
+                            $percentage=0;
+                        }
+                        else
+                        {
+                            $percentage=round($pexam['pso_total_marks']/$pexam['total_marks']*100);
+                        }
+                        if($percentage>=50)
+                        {
+                             $output.="<td><label class='text-success'>$percentage%</label></td>";
                         }else
                         {
-                            $output.=" <td><label class='text-danger'>$pexam[per]%</label></td>";
+                            $output.=" <td><label class='text-danger'>$percentage%</label></td>";
                         }
                         $output.="<td>
 
@@ -122,12 +130,20 @@ class Data_table extends CI_Controller
                         <td>$pexam[pso_name]</td>
                         <td>$pexam[attend]/$pexam[total_test]</td>
                         <td>$pexam[pso_total_marks]/$pexam[total_marks]</td>";
-                if($pexam['per']>=50)
+                if($pexam['total_marks']<='0')
                 {
-                    $output.="<td><label class='text-success'>$pexam[per]%</label></td>";
+                    $percentage=0;
+                }
+                else
+                {
+                    $percentage=round($pexam['pso_total_marks']/$pexam['total_marks']*100);
+                }
+                if($percentage>=50)
+                {
+                    $output.="<td><label class='text-success'>$percentage%</label></td>";
                 }else
                 {
-                    $output.=" <td><label class='text-danger'>$pexam[per]%</label></td>";
+                    $output.=" <td><label class='text-danger'>$percentage%</label></td>";
                 }
                 $output.="<td>
 

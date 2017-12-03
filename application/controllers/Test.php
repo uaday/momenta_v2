@@ -102,13 +102,16 @@ class Test extends CI_Controller
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         } else {
+
             $exam_id = $this->input->get('test_id');
             $data['exam'] = $this->test_model->edit_test_info_by_exam_id($exam_id);
             $data['assign_region'] = $this->test_model->no_of_region_assign($exam_id);
             $data['regions'] = $this->pso_model->get_region();
-//            $data['pso_types'] = $this->pso_model->get_pso_type();
-            $this->load->view('view_tests/view_assign_test', $data);
-            $this->load->view('view_footer');
+            $data['hero_header'] = TRUE;
+            $data['footer'] = $this->load->view('view_footer', '', TRUE);
+            $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+            $data['main_content'] =$this->parser->parse('view_tests/view_assign_test',$data,TRUE);
+            $this->load->view('view_master',$data);
         }
 
     }
