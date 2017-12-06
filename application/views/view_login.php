@@ -168,12 +168,12 @@
 
                 <div class="form-group">
                     <label class="control-label" for="userid">RFXXXX</label>
-                    <input type="text" class="form-control " name="userid" id="userid" autocomplete="off" value="admin"/>
+                    <input type="text" class="form-control " name="userid" id="userid" autocomplete="off" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" for="passwd">*******</label>
-                    <input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" value="Appinion2017" />
+                    <input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" />
                 </div>
 
                 <div class="form-group">

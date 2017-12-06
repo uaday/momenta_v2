@@ -1,0 +1,98 @@
+@font-face{
+    font-family: calibri;
+    src: url(../fonts/calibri.ttf);
+}
+
+.modal-title{
+              font-weight: 700;
+              font-family: calibri;
+              color: #606160;
+            }
+
+.modal-body{
+                 background-color: #2974BB;
+                 height: 300px;
+                 padding-left: 40px;
+           }
+
+.underline {
+                         border-bottom: 2px solid;
+                       }
+
+.back-border{
+    border: 3px solid #eff0f0;
+    margin-top: 25px;
+}
+.back-similar{
+    color: white;
+    padding: 5px 15px;
+    background-color: #2874ba;
+    border-radius: 5px;
+    text-align: center;
+}
+table.home-table tr{
+    background: #fff;
+    border-bottom: 12px solid #2974BB;
+    color: #2974BB;
+    height: 60px;
+    font-family: calibri;
+    font-weight: 700;
+    font-size: 17px;
+}
+table.home-table tr td{
+    padding-left: 30px;
+    width: 33.33333333333333%;
+}
+table.home-table tr td:last-child{
+    padding-right: 30px;
+}
+button.btn.btn-info a{
+    color: #ffffff !important;
+    width: 110px;
+    padding: 4px;
+    border: none;
+}
+button.btn.btn-info:hover{
+    background-color: #286090 !important;
+}
+button.btn.btn-info.modal_btn {
+  background: transparent !important;
+  color: #2874ba !important;
+  width: 32px !important;
+  padding: 4px;
+}
+button.btn.btn-info.modal_btn:hover {
+  background: transparent;
+}
+a.back-link{
+    margin-top: 5px;
+    font-size: 15px;
+}
+.back-carousel{ margin-top: 20px; }
+
+.med_scroll_table{ height: 275px; overflow-y: scroll; }
+
+.med_scroll_table::-webkit-scrollbar {
+    width: 0;
+    -moz-appearance: none !important;
+}
+ 
+.med_scroll_table::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
+ 
+.med_scroll_table::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  -moz-appearance: none !important;
+  outline: 1px solid transparent;
+}
+
+button.btn.btn-default.go {
+  color: #2974BB !important;
+  font-size: 17px;
+  font-weight: 700;
+}
+button.btn.btn-default.go:hover {
+  background-color: #e6e6e6 !important;
+  border-color: #adadad;
+}

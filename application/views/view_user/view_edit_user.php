@@ -143,7 +143,7 @@
                     <select name="business_code" class="form-control business" id="business_code">
                         <option value="-1">Select Business</option>
                         <?php foreach ($business as $bus) { ?>
-                            <option <?php if(isset($user['0']['tbl_business_business_code'])){ if($user['0']['tbl_business_business_code']==$bus['business_code']) echo 'selected';}?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                            <option <?php if(isset($user['0']['business_code'])){ if($user['0']['business_code']==$bus['business_code']) echo "selected='selected'";}?> value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
                         <?php } ?>
                     </select>
                 </div>

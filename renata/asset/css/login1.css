@@ -1,0 +1,137 @@
+body{
+
+    background: #DADAE2;
+    padding: 0px;
+    margin: 0px;
+}
+
+@font-face {
+    font-family: calibri;
+    src: url(calibri.tff);
+}
+
+.reneta_logo{width: 150px;
+    height: 150px;
+    margin-top: 45px;
+
+}
+
+.header_content{    margin-left: 27%;
+    margin-bottom: 65px;
+}
+
+.header_content > h1{font-family: calibri;
+    font-weight: 600;
+    color: #35529E;
+    padding-right: 5%;
+    padding-left: 5%;}
+
+.bar1{ height:3px;
+    width:20%;
+    margin-top: 42px;
+    background-color: #35529E}
+
+.form_content{background-color:#282965;
+    height:340px;
+    width:63%;
+    border-radius: 25px;
+    padding-top: 60px;
+    margin-bottom: 30px;}
+
+
+@media screen and (max-width: 768px) {
+
+
+    .form_content{width:280px}
+
+}
+input[type=text]::-moz-placeholder {
+    text-align: center;
+    width:60%;
+    margin-left:20%;
+    color:#282965;
+    border-radius:12px;
+    padding-top:24px;
+    padding-bottom:24px;
+    padding-left:20px;
+}
+input[type=text] {
+    width:60%;
+    margin-left:20%;
+    color:#282965;
+    border-radius:12px;
+    height: 50px;
+    font-size: 16px;
+}
+
+input[type=password] {
+    width:60%;
+    margin-left:20%;
+    color:#282965;
+    border-radius:12px;
+    height: 50px;
+    font-size: 16px;
+}
+input[type=password]::-moz-placeholder {
+    text-align: center;
+    width:60%;
+    margin-left:20%;
+    color:#282965;
+    border-radius:12px;
+    height: 50px;
+    font-size: 18px;
+}
+
+
+
+::-webkit-input-placeholder {text-align: center;
+    color:    #07529C !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    opacity:  1;
+}
+
+button.btn.btn-primary.login_btn {
+    margin-top: 35px;
+    background-color: white;
+    margin-left: 28%;
+    color: #282965;
+    width: 44%;
+    font-weight: 600;
+    font-family: calibri;
+    font-size: 21px;
+    padding: 7px;
+    border-radius: 12px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.forgot_password{font-family: calibri;
+    color: white;
+    margin-top: 10px;
+}
+
+button.btn.btn-primary.login_btn:hover{
+    background-color: #282965;
+    color: white;
+    transition-duration: 0.5s;
+
+
+}
+
+a.forgot_password.center-block {
+    margin-left: 35%;
+    text-decoration: none;
+}
+
+.right_reserved{color:#282965;
+    clear: both;
+}
+
+.right_reserved > p{text-align: center;
+    font-weight: 600;
+}

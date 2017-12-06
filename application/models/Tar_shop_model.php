@@ -153,10 +153,22 @@ class Tar_shop_model extends CI_Model {
 
     public function all_incentives()
     {
+        if($this->session->userdata('business_code')=='00')
+        {
             $this->db->select('*');
             $this->db->from('tbl_incentives');
             $this->db->join('tbl_business', 'tbl_business.business_code = tbl_incentives.tbl_business_business_code');
             return $this->db->get()->result_array();
+        }
+        else
+        {
+            $this->db->select('*');
+            $this->db->from('tbl_incentives');
+            $this->db->join('tbl_business', 'tbl_business.business_code = tbl_incentives.tbl_business_business_code');
+            $this->db->where('tbl_business.business_code', $this->session->userdata('business_code'));
+            return $this->db->get()->result_array();
+        }
+
     }
 
     public function update_status($incentives_id,$status)

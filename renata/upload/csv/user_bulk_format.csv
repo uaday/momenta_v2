@@ -1,0 +1,7 @@
+Renata_id,name,depot_code,b_code,designation,user_type,sm_code,rsm_code,dsm_code
+RF005,Akram,,1,Admin,Admin,,,
+RF006,Sumon,,1,Marketing ,marketing,,,
+RF008,Akash,2,1,SR. Sales Manager,SM,1,,
+RF009,Tanvir,2,1,SR. Sales Manager,rsm,1,1,
+RF010,Rakib,1,1,SR. Sales Manager,dsm,1,1,1
+RF011,Sohel,,1,GM,gm,,,

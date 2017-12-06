@@ -242,8 +242,8 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
-        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->join('tbl_user_sm', 'tbl_user_sm.renata_id = tbl_login.renata_id');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_sm.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '4');
         return $this->db->get()->result_array();
     }
@@ -251,8 +251,8 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
-        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->join('tbl_user_rsm', 'tbl_user_rsm.renata_id = tbl_login.renata_id');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_rsm.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '5');
         return $this->db->get()->result_array();
 
@@ -261,8 +261,8 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
-        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->join('tbl_user_dsm', 'tbl_user_dsm.renata_id = tbl_login.renata_id');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_dsm.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '6');
         return $this->db->get()->result_array();
     }
@@ -349,19 +349,21 @@ class User_model extends CI_Model {
     }
     public function find_rsm_user_data($renata_id)
     {
-        $this->db->select('*');
+        $this->db->select('tbl_user_rsm.*,tbl_user_sm.sm_code,tbl_login.*,tbl_business.*');
         $this->db->from('tbl_login');
         $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->join(' tbl_user_rsm', ' tbl_user_rsm.renata_id = tbl_login.renata_id');
+        $this->db->join(' tbl_user_sm', ' tbl_user_sm.sm_code = tbl_user_rsm.tbl_user_sm_sm_code');
         $this->db->where('tbl_login.renata_id', $renata_id);
         return $this->db->get()->result_array();
     }
     public function find_dsm_user_data($renata_id)
     {
-        $this->db->select('*');
+        $this->db->select('tbl_user_dsm.*,tbl_user_rsm.rsm_code,tbl_login.*,tbl_business.*');
         $this->db->from('tbl_login');
         $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->join('tbl_user_dsm', 'tbl_user_dsm.renata_id = tbl_login.renata_id');
+        $this->db->join(' tbl_user_rsm', ' tbl_user_rsm.rsm_code = tbl_user_dsm.tbl_user_rsm_rsm_code');
         $this->db->where('tbl_login.renata_id', $renata_id);
         return $this->db->get()->result_array();
     }

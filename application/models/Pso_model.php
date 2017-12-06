@@ -46,6 +46,13 @@ class Pso_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+    public function get_region_test_assign($business_code)
+    {
+        $sql="SELECT * FROM tbl_user_rsm WHERE tbl_business_business_code='$business_code' ORDER by region";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
     public function get_region_psos($region)
     {
         $sql="SELECT p.pso_id,p.pso_name FROM tbl_user_rsm r,tbl_user_pso p, tbl_user_dsm d WHERE p.tbl_user_dsm_dsm_code=d.dsm_code AND d.tbl_user_rsm_rsm_code=r.rsm_code AND r.rsm_code IN ($region) ORDER BY p.pso_id";
@@ -104,7 +111,7 @@ class Pso_model extends CI_Model {
 
     public function select_all_pso()
     {
-        $sql="SELECT p.renata_id AS renata_id,p.pso_id AS pso_id,p.pso_name AS pso_name,p.pso_phone AS pso_phone,d.depot_name AS depot_name,ur.region AS region,b.business_name FROM tbl_user_pso p,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur,tbl_business b WHERE b.business_code=p.tbl_business_business_code AND ud.tbl_user_rsm_rsm_code=ur.rsm_code AND p.tbl_user_dsm_dsm_code=ud.dsm_code  AND p.tbl_depot_depot_code=d.depot_code ORDER BY p.pso_id";
+        $sql="SELECT p.renata_id AS renata_id,p.pso_id AS pso_id,p.pso_name AS pso_name,p.pso_phone AS pso_phone,d.depot_name AS depot_name,ur.region AS region,b.business_name FROM tbl_user_pso p,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur,tbl_business b WHERE   p.tbl_user_dsm_dsm_code=ud.dsm_code  AND ud.tbl_user_rsm_rsm_code=ur.rsm_code AND b.business_code=p.tbl_business_business_code AND p.tbl_depot_depot_code=d.depot_code ORDER BY p.pso_id";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

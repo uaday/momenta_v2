@@ -98,7 +98,7 @@
                             <td>
                                 <a title="Edit & View" href="<?php echo base_url() ?>test/view_edit_exam_ques/<?php echo $test['exam_id'] ?>"><i class="fa fa-edit fa-lg"></i></a>
                                 <span class="table_insided_line"> | </span>
-                                <a title="Assign" href="<?php echo base_url() ?>test/test_assign?test_id=<?php echo $test['exam_id'] ?>"><i class="fa fa-group fa-lg"></i></a>
+                                <a title="Assign" href="<?php echo base_url() ?>test/test_assign?test_id=<?php echo $test['exam_id'] ?>&&business_code=<?= $test['tbl_business_business_code']?>"><i class="fa fa-group fa-lg"></i></a>
                                 <span class="table_insided_line"> | </span>
                                 <a title="Delete" onclick="return delete_exam()"
                                    href="<?php echo base_url() ?>test/delete_test?test_id=<?php echo $test['exam_id'] ?>"

@@ -36,6 +36,12 @@ class Home extends CI_Controller {
     public function index()
     {
         $this->session->set_userdata('sub_menu','home');
+        $data['tincentives']=$this->home_model->total_incentives();
+        $data['texam']=$this->home_model->total_exam();
+        $user_type=$this->session->userdata('user_type');
+        $employee_id=$this->session->userdata('employee_id');
+        $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
+        $data['tdrug']=$this->home_model->total_drug();
         $data['drugs']=$this->home_model->getSixMed();
         $data['tests']=$this->home_model->getSixTest();
         $data['sliders']=$this->home_model->loadSlider();

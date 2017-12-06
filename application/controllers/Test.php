@@ -104,9 +104,11 @@ class Test extends CI_Controller
         } else {
 
             $exam_id = $this->input->get('test_id');
+            $business_code = $this->input->get('business_code');
+
             $data['exam'] = $this->test_model->edit_test_info_by_exam_id($exam_id);
             $data['assign_region'] = $this->test_model->no_of_region_assign($exam_id);
-            $data['regions'] = $this->pso_model->get_region();
+            $data['regions'] = $this->pso_model->get_region_test_assign($business_code);
             $data['hero_header'] = TRUE;
             $data['footer'] = $this->load->view('view_footer', '', TRUE);
             $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);

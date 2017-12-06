@@ -1,0 +1,76 @@
+@font-face{
+    font-family: calibri;
+    src: url(../fonts/calibri.ttf);
+}
+
+
+
+.modal-body{
+                 background-color: #2974BB;
+                 height: 300px;
+                 padding-left: 40px;
+           }
+
+
+h3.modal-title.underline.pull-left {
+    border-bottom: 2px solid;
+    font-family: calibri;
+    font-weight: 700;
+}
+
+.input1{
+        height: 50px;
+        width:300px;
+        background-color: white;
+        color: #2974BB;
+        margin-bottom: 20px;
+        margin-top: 12.5px;
+        border-radius: 10px;
+       }
+
+.checkbox_filter {
+            position: relative;
+            top: 14px;
+            left: 18px;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;    
+          }
+ 
+
+.checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+select#area {
+    padding-bottom: 0px;
+    padding-top: 0;
+    height: 50px;
+    font-family: calibri;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2974BB;
+    width: 250px;
+}
+
+button.btn.btn-info.btn-lg.modal1_btn {
+    width: 58px;
+    background: #fff !important;
+    position: absolute;
+    top: 1.5%;
+    left: 94%;
+}
+
+button.btn.btn-default.go {
+  color: #2974BB !important;
+  font-size: 17px;
+  font-weight: 700;
+}
+button.btn.btn-default.go:hover {
+  background-color: #e6e6e6 !important;
+  border-color: #adadad;
+}

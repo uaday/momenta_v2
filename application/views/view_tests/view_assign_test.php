@@ -31,7 +31,7 @@
                 </li>
                 <li>
 
-                    <a href="<?= base_url()?>test/manage_test">Manage Test</a>
+                    <a href="<?= base_url() ?>test/manage_test">Manage Test</a>
                 </li>
                 <li class="active">
 
@@ -48,12 +48,14 @@
             <div class="panel panel-default">
                 <div style="font-size: small;line-height: 170%">
                     <h4 class="text-center text-bold text-info">PSO Information</h4><br>
+                    <label><strong>Business:</strong> <?php echo $exam['0']['business_name'] ?></label><br>
                     <label><strong>Test ID:</strong> <?php echo $exam['0']['exam_id'] ?></label><br>
                     <label><strong>Test Name:</strong> <?php echo $exam['0']['exam_name'] ?></label><br>
                     <label><strong>Expire Date:</strong> <?php echo $exam['0']['exp_date'] ?></label><br>
                     <label><strong>Duration:</strong> <?php echo $exam['0']['duration'] ?> min</label><br>
                     <label><strong>Points:</strong> <?php echo $exam['0']['exam_marks'] ?></label><br>
-                    <label><strong>Percentage of Pass Marks:</strong>  <?php echo $exam['0']['pass_marks'] ?>%</label><br>
+                    <label><strong>Percentage of Pass Marks:</strong> <?php echo $exam['0']['pass_marks'] ?>
+                        %</label><br>
                     <?php if ($exam['0']['exam_type'] == 1) { ?>
                         <label><strong>Exam Type:</strong> Mandatory</label><br>
                     <?php } else { ?>
@@ -64,7 +66,8 @@
                     <?php } else { ?>
                         <label><strong>Publish Status:</strong> Published</label><br>
                     <?php } ?>
-                    <label><strong>No of Region Assign:</strong> <?php echo $assign_region['0']['region_counter'] ?></label><br>
+                    <label><strong>No of Region Assign:</strong> <?php echo $assign_region['0']['region_counter'] ?>
+                    </label><br>
 
                 </div>
 
@@ -77,86 +80,76 @@
         <h3 class="text-center text-bold text-gray">Exam Assign</h3><br>
     </div>
 
-        <form action="<?php echo base_url() ?>test/assign_test" accept-charset="utf-8" method="post">
-            <input type="hidden" name="test_id" value="<?php echo $exam['0']['exam_id'] ?>">
-            <input type="hidden" name="form_type" value="2">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="text-center">
-                            <ul class="icheck-list">
-                                <li>
-                                    <input class="icheck-15" tabindex="5" type="checkbox" name="global" value="global" id="minimal-checkbox-1-15" onchange="hidee()">
-                                    <label for="minimal-checkbox-1-15">Universal</label>
-                                </li>
-                            </ul>
-                        </div>
+    <form action="<?php echo base_url() ?>test/assign_test" accept-charset="utf-8" method="post">
+        <input type="hidden" name="test_id" value="<?php echo $exam['0']['exam_id'] ?>">
+        <input type="hidden" name="form_type" value="2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="text-center">
+                        <input class="icheck-15 form-control" tabindex="5" type="checkbox" name="global" value="global"
+                               id="minimal-checkbox-1-15" onchange="hidee()">
+                        <label for="minimal-checkbox-1-15">Universal</label>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class=" col-md-6" id="hh1">
-                        <div class="form-group">
-                            <label style="color: #0f0f0f" for="example-selectAllJustVisible">Region: </label>
-                        </div>
-                        <div class="form-group">
-                            <select style="" name="region[]" class="example-selectAllJustVisible" id="region" multiple="multiple" onchange="region_pso_list();">
-                                <?php foreach ($regions as $region) { ?>
-                                    <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+        </div>
+        <br>
+        <div class="row">
+            <div  class="col-md-offset-2 col-md-8">
+                <div class=" col-md-4" id="hh1">
+                    <div class="form-group">
+                        <label><strong>Region</strong></label><br>
+                        <select style="width: 400px" name="region[]" class="example-selectAllJustVisible" id="region"
+                                multiple="multiple" onchange="region_pso_list();">
+                            <?php foreach ($regions as $region) { ?>
+                                <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
+                </div>
+                <div class="col-md-4" id="hh3">
+                    <div class="form-group">
+                        <label><strong>PSO Types</strong></label><br>
+                        <select name="pso_type[]" class="example-selectAllJustVisible1" id="pso_type"
+                                multiple="multiple" onchange="type_pso_list();">
 
-                    <div class="  col-md-6" id="hh2">
-                        <div class="form-group">
-                            <label style="color: #0f0f0f" for="example-selectAllJustVisible">User Type: </label>
-                        </div>
-                        <div class="form-group">
-                            <select name="user_type" id="example-single">
-                                <option value="1">PSO </option>
-                                <!--                                    <option value="2">DSM </option>-->
-                            </select>
-                        </div>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4" id="hh4">
+                    <div class="form-group">
+                        <label><strong>PSO List</strong></label><br>
+                        <select name="psos[]" id="psos" class="example-selectAllJustVisible2" multiple="multiple">
 
+                        </select>
                     </div>
                 </div>
 
-            </div> <!-- row -->
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class=" pso_group col-md-6" id="hh3">
-                        <div class="form-group">
-                            <label style="color: #0f0f0f" for="example-selectAllJustVisible1">PSO Types: </label>
-                        </div>
-                        <div class="form-group">
-                            <select  name="pso_type[]"  class="example-selectAllJustVisible1" id="pso_type"  multiple="multiple" onchange="type_pso_list();">
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="pso_group col-md-6" id="hh4">
-                        <div class="form-group">
-                            <label style="color: #0f0f0f" for="example-selectAllJustVisible2">PSO List: </label>
-                        </div>
-                        <div class="form-group">
-                            <select name="psos[]" id="psos" class="example-selectAllJustVisible2"  multiple="multiple">
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-            </div> <!-- row -->
-            <div class="row">
-                <div class="text-center ">
-                    <input id="singlebutton" type="submit" class="btn btn-primary"
-                           value="Submit">
-                </div>
+<!--                <div class="  col-md-6" id="hh2">-->
+<!--                    <div class="form-group">-->
+<!--                        <label><strong>User Type</strong></label><br>-->
+<!--                        <select name="user_type" id="example-single">-->
+<!--                            <option value="1">PSO</option>-->
+<!--                            <!--                                    <option value="2">DSM </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!---->
+<!--                </div>-->
             </div>
-        </form>
 
+        </div> <!-- row -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="text-center col-md-offset-4 col-md-4">
+                <input id="singlebutton" type="submit" class="btn btn-block btn-blue"
+                       value="Submit">
+            </div>
+        </div>
+    </form>
 
 
     <!-- Basic Setup -->
@@ -173,28 +166,27 @@
 </div>
 
 
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('.example-selectAllJustVisible').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 150
+            maxHeight: 200
 
         });
         $('.example-selectAllJustVisible1').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 80
+            maxHeight: 200
 
         });
         $('.example-selectAllJustVisible2').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 200,
+            maxHeight: 200
 
         });
     });

@@ -185,6 +185,7 @@
                         <span class="title">Home</span>
                     </a>
                 </li>
+                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='medicine_literature') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-book fa-2x"></i>
@@ -203,12 +204,15 @@
                         </li>
                     </ul>
                 </li>
+                <?php }?>
+                <?php if($this->session->userdata('user_type')!='8'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='test') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-graduation-cap"></i>
                         <span class="title">Testing Center</span>
                     </a>
                     <ul>
+                        <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'){?>
                         <li class="<?php if($this->session->userdata('sub_menu')=='create_test') echo "active "?>">
                             <a href="<?php echo base_url()?>test/create_test">
                                 <span class="title">Create Test</span>
@@ -219,6 +223,7 @@
                                 <span class="title">Manage Test</span>
                             </a>
                         </li>
+                        <?php }?>
                         <li class="<?php if($this->session->userdata('sub_menu')=='result') echo "active "?>">
                             <a href="<?php echo base_url()?>test/result">
                                 <span class="title">Result</span>
@@ -226,7 +231,8 @@
                         </li>
                     </ul>
                 </li>
-
+                <?php }?>
+                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'||$this->session->userdata('user_type')=='8'){?>
                 <li  class="<?php if($this->session->userdata('main_menu')=='renata_shop') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-gift fa-2x"></i>
@@ -250,6 +256,8 @@
                         </li>
                     </ul>
                 </li>
+                <?php }?>
+                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-group fa-2x"></i>
@@ -333,6 +341,7 @@
                         </li>
                     </ul>
                 </li>
+                <?php }?>
             </ul>
 
         </div>
@@ -611,13 +620,11 @@
 
         if (document.getElementById('hh1').style.visibility == 'hidden') {
             document.getElementById('hh1').style.visibility = 'visible';
-            document.getElementById('hh2').style.visibility = 'visible';
             document.getElementById('hh3').style.visibility = 'visible';
             document.getElementById('hh4').style.visibility = 'visible';
         }
         else {
             document.getElementById('hh1').style.visibility = 'hidden';
-            document.getElementById('hh2').style.visibility = 'hidden';
             document.getElementById('hh3').style.visibility = 'hidden';
             document.getElementById('hh4').style.visibility = 'hidden';
         }
@@ -1556,13 +1563,13 @@
         $("#psos").multiselect();
         var pso_type=$('#pso_type').val();
         var region=$('#region').val();
-        if(pso_type!='')
+        if(pso_type!=null)
         {
             $.ajax(
                 {
                     type: 'POST',
                     data: {pso_type: pso_type,region:region},
-                    url: "<?php echo site_url('find/find_pso_by_types')?>",
+                    url: '<?php echo site_url('find/find_pso_by_types')?>',
                     success: function (result) {
                         $("#psos").empty();
                         $("#psos").append(result);
@@ -1577,6 +1584,7 @@
         }
         else
         {
+            $("#psos").empty();
             $("#psos").val("<option value='-1'>No Result</option>");
             $("#psos").multiselect('rebuild');
         }

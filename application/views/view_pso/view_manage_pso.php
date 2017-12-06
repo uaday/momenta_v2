@@ -5,6 +5,7 @@
  * Date: 11/16/2017
  * Time: 2:10 PM
  */
+$i=0;
 ?>
 
 <div class="main-content">
@@ -125,7 +126,7 @@
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
                         <th style="color: white">Business</th>
-<!--                        <th style="color: white">PSO Code</th>-->
+                        <th style="color: white">PSO Code</th>
                         <th style="color: white">Renata ID</th>
                         <th style="color: white">PSO Name</th>
                         <th style="color: white">Depot</th>
@@ -136,7 +137,7 @@
                     <tfoot>
                     <tr>
                         <th >Business</th>
-<!--                        <th >PSO Code</th>-->
+                        <th >PSO Code</th>
                         <th >Renata ID</th>
                         <th >PSO Name</th>
                         <th >Depot</th>
@@ -145,10 +146,10 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <?php foreach ($psos as $pso){?>
+                    <?php foreach ($psos as $pso){ $i++;?>
                         <tr>
                             <td><?php echo $pso['business_name']?></td>
-<!--                            <td>--><?php //echo $pso['renata_id']?><!--</td>-->
+                            <td><?php echo $pso['renata_id']?></td>
                             <td><?php echo $pso['pso_id']?></td>
                             <td><?php echo $pso['pso_name']?></td>
                             <td><?php echo $pso['depot_name']?></td>
