@@ -5,6 +5,7 @@
  * Date: 9/29/2017
  * Time: 4:31 AM
  */
+
 ?>
 <div class="main-content">
 
@@ -60,6 +61,109 @@
                 <div class="xe-label">
                     <strong class="num"><?= $tincentives['0']['total_i']?></strong>
                     <span>Offers</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Test Statistic</h3>
+
+                </div>
+                <div class="panel-body">
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($)
+                        {
+                            if( ! $.isFunction($.fn.dxChart))
+                                return;
+
+                            var dataSource = [
+                                <?php if(isset($exam_assign['0']['month'])) {if($exam_assign['0']['month']==1){?>
+                                { state: "January", pass: <?php if(isset($exam_assign['0']['total_pass'])) echo $exam_assign['0']['total_pass']*100/$exam_assign['0']['plus']?>, fail: <?php if(isset($exam_assign['0']['total_pass'])) echo $exam_assign['0']['total_fail']*100/$exam_assign['0']['plus']?>},
+                                <?php }}else {?>
+                                { state: "January", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['1']['month'])){ if($exam_assign['1']['month']==2){?>
+                                { state: "February", pass: <?php if(isset($exam_assign['1']['total_pass'])) echo $exam_assign['1']['total_pass']*100/$exam_assign['1']['plus']?>, fail: <?php if(isset($exam_assign['1']['total_pass'])) echo $exam_assign['1']['total_fail']*100/$exam_assign['1']['plus']?>},
+                                <?php }} else {?>
+                                { state: "February", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['2']['month'])){ if($exam_assign['2']['month']==3){?>
+                                { state: "March", pass: <?php if(isset($exam_assign['2']['total_pass'])) echo $exam_assign['2']['total_pass']*100/$exam_assign['2']['plus']?>, fail: <?php if(isset($exam_assign['2']['total_pass'])) echo $exam_assign['2']['total_fail']*100/$exam_assign['2']['plus']?>},
+                                <?php }} else {?>
+                                { state: "March", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['3']['month'])){ if($exam_assign['3']['month']==4){?>
+                                { state: "April", pass: <?php if(isset($exam_assign['3']['total_pass'])) echo $exam_assign['3']['total_pass']*100/$exam_assign['3']['plus']?>, fail: <?php if(isset($exam_assign['3']['total_pass'])) echo $exam_assign['3']['total_fail']*100/$exam_assign['3']['plus']?>},
+                                <?php }} else {?>
+                                { state: "April", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['4']['month'])){ if($exam_assign['4']['month']==5){?>
+                                { state: "May", pass: <?php if(isset($exam_assign['4']['total_pass'])) echo $exam_assign['4']['total_pass']*100/$exam_assign['4']['plus']?>, fail: <?php if(isset($exam_assign['4']['total_pass'])) echo $exam_assign['4']['total_fail']*100/$exam_assign['4']['plus']?>},
+                                <?php }} else {?>
+                                { state: "May", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['5']['month'])){ if($exam_assign['5']['month']==6){?>
+                                { state: "June", pass: <?php if(isset($exam_assign['5']['total_pass'])) echo $exam_assign['5']['total_pass']*100/$exam_assign['5']['plus']?>, fail: <?php if(isset($exam_assign['5']['total_pass'])) echo $exam_assign['5']['total_fail']*100/$exam_assign['5']['plus']?>},
+                                <?php }} else {?>
+                                { state: "June", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['6']['month'])){ if($exam_assign['6']['month']==7){?>
+                                { state: "July", pass: <?php if(isset($exam_assign['6']['total_pass'])) echo $exam_assign['6']['total_pass']*100/$exam_assign['6']['plus']?>, fail: <?php if(isset($exam_assign['6']['total_pass'])) echo $exam_assign['6']['total_fail']*100/$exam_assign['6']['plus']?>},
+                                <?php }} else {?>
+                                { state: "July", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['7']['month'])){ if($exam_assign['7']['month']==8){?>
+                                { state: "August", pass: <?php if(isset($exam_assign['7']['total_pass'])) echo $exam_assign['7']['total_pass']*100/$exam_assign['7']['plus']?>, fail: <?php if(isset($exam_assign['7']['total_pass'])) echo $exam_assign['7']['total_fail']*100/$exam_assign['7']['plus']?>},
+                                <?php }} else {?>
+                                { state: "August", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['8']['month'])){ if($exam_assign['8']['month']==9){?>
+                                { state: "September", pass: <?php if(isset($exam_assign['8']['total_pass'])) echo $exam_assign['8']['total_pass']*100/$exam_assign['8']['plus']?>, fail: <?php if(isset($exam_assign['8']['total_pass'])) echo $exam_assign['8']['total_fail']*100/$exam_assign['8']['plus']?>},
+                                <?php }} else {?>
+                                { state: "September", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['9']['month'])){ if($exam_assign['9']['month']==10){?>
+                                { state: "October", pass: <?php if(isset($exam_assign['9']['total_pass'])) echo $exam_assign['9']['total_pass']*100/$exam_assign['9']['plus']?>, fail: <?php if(isset($exam_assign['9']['total_pass'])) echo $exam_assign['9']['total_fail']*100/$exam_assign['9']['plus']?>},
+                                <?php }} else {?>
+                                { state: "October", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['10']['month'])){ if($exam_assign['10']['month']==11){?>
+                                { state: "November", pass: <?php if(isset($exam_assign['10']['total_pass'])) echo $exam_assign['10']['total_pass']*100/$exam_assign['10']['plus']?>, fail: <?php if(isset($exam_assign['10']['total_pass'])) echo $exam_assign['10']['total_fail']*100/$exam_assign['10']['plus']?>},
+                                <?php }} else {?>
+                                { state: "November", Pass: 0, fail: 0},
+                                <?php }?>
+                                <?php if(isset($exam_assign['11']['month'])){ if($exam_assign['11']['month']==12){?>
+                                { state: "December", pass: <?php if(isset($exam_assign['11']['total_pass'])) echo $exam_assign['11']['total_pass']*100/$exam_assign['11']['plus']?>, fail: <?php if(isset($exam_assign['11']['total_pass'])) echo $exam_assign['11']['total_fail']*100/$exam_assign['11']['plus']?>}
+                                <?php }} else {?>
+                                { state: "December", Pass: 0, fail: 0}
+                                <?php }?>
+                            ];
+
+                            $("#bar-2").dxChart({
+                                equalBarWidth: false,
+                                dataSource: dataSource,
+                                commonSeriesSettings: {
+                                    argumentField: "state",
+                                    type: "bar"
+                                },
+                                series: [
+                                    { valueField: "pass", name: "Pass Status", color: "#0e62c7" },
+                                    { valueField: "fail", name: "Fail Status", color: "#2c2e2f" }
+                                ],
+                                legend: {
+                                    verticalAlignment: "bottom",
+                                    horizontalAlignment: "center"
+                                },
+                                title: "Exam Statistic of month view"
+                            });
+                        });
+                    </script>
+                    <div id="bar-2" style="height: 400px; width: 100%;"></div>
                 </div>
             </div>
 
