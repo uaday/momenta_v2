@@ -103,7 +103,7 @@
                         <select style="width: 400px" name="region[]" class="example-selectAllJustVisible" id="region"
                                 multiple="multiple" onchange="region_pso_list();">
                             <?php foreach ($regions as $region) { ?>
-                                <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?></option>
+                                <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
                             <?php } ?>
                         </select>
                     </div>

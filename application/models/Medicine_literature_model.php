@@ -5,7 +5,7 @@ class Medicine_literature_model extends CI_Model {
     // Medicine library for business code
     public function getAllbusiness()
     {
-        $sql="SELECT * FROM tbl_business";
+        $sql="SELECT * FROM tbl_business ORDER BY business_name";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
@@ -39,7 +39,7 @@ class Medicine_literature_model extends CI_Model {
     }
     public function get_doctor_type_by_business_code($business_code)
     {
-        $sql="SELECT * FROM tbl_doctor_type d,tbl_business b  WHERE b.business_code=d.tbl_business_business_code AND  b.business_code='$business_code' ORDER BY d.doc_type_id";
+        $sql="SELECT * FROM tbl_doctor_type d,tbl_business b  WHERE b.business_code=d.tbl_business_business_code AND  b.business_code='$business_code' ORDER BY d.type_name";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

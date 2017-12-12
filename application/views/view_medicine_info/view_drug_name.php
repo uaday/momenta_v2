@@ -223,31 +223,21 @@ $i = 0;
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
                         <!--                        <th>Drug Name ID</th>-->
-                        <th style="color: white">Business Name</th>
-                        <th style="color: white">Generic Name</th>
-                        <th style="color: white">Drug Name</th>
-                        <th style="color: white">PM Name</th>
-                        <th style="color: white">PM Phone</th>
-                        <th style="color: white">Action</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Generic Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Drug Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">PM Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">PM Phone</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <!--                        <th>Drug Name ID</th>-->
-                        <th>Business Name</th>
-                        <th>Generic Name</th>
-                        <th>Drug Name</th>
-                        <th>PM Name</th>
-                        <th>PM Phone</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
+
                     <tbody>
                     <?php foreach ($drugs as $drug) {
                         $i++ ?>
                         <tr>
                             <!--                            <td>--><? //= $drug['drug_id'] ?><!--</td>-->
-                            <td><?= $drug['business_name'] ?></td>
+                            <td><?= $drug['business_code'] ?></td>
                             <td><?= $drug['gen_name'] ?></td>
                             <td><?= $drug['drug_name'] ?></td>
                             <td><?= $drug['pm_name'] ?></td>

@@ -125,30 +125,19 @@ $i=0;
                        width="100%">
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
-                        <th style="color: white">Business</th>
-                        <th style="color: white">PSO Code</th>
-                        <th style="color: white">Renata ID</th>
-                        <th style="color: white">PSO Name</th>
-                        <th style="color: white">Depot</th>
-                        <th style="color: white">Region</th>
-                        <th style="color: white">Action</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left ">Bcode</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Depot</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th >Business</th>
-                        <th >PSO Code</th>
-                        <th >Renata ID</th>
-                        <th >PSO Name</th>
-                        <th >Depot</th>
-                        <th >Region</th>
-                        <th >Action</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     <?php foreach ($psos as $pso){ $i++;?>
                         <tr>
-                            <td><?php echo $pso['business_name']?></td>
+                            <td><?php echo $pso['business_code']?></td>
                             <td><?php echo $pso['renata_id']?></td>
                             <td><?php echo $pso['pso_id']?></td>
                             <td><?php echo $pso['pso_name']?></td>

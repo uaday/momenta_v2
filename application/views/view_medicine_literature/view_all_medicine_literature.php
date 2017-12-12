@@ -13,23 +13,23 @@
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">DataTable</h1>
-            <p class="description">Dynamic table variants with pagination and other controls</p>
+            <h1 class="title">Medicine Literature List</h1>
+            <p class="description">View all medicine list for information source</p>
         </div>
 
         <div class="breadcrumb-env">
 
             <ol class="breadcrumb bc-1">
                 <li>
-                    <a href="dashboard-1.html"><i class="fa-home"></i>Home</a>
+                    <a href="<?= base_url()?>"><i class="fa-home"></i>Home</a>
                 </li>
                 <li>
 
-                    <a href="tables-basic.html">Tables</a>
+                    <a href="#">Medicine Literature</a>
                 </li>
                 <li class="active">
 
-                    <strong>Data Tables</strong>
+                    <strong>Medicine Literature List</strong>
                 </li>
             </ol>
 
@@ -40,17 +40,7 @@
     <!-- Basic Setup -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Basic Setup</h3>
-
-            <div class="panel-options">
-                <a href="#" data-toggle="panel">
-                    <span class="collapse-icon">&ndash;</span>
-                    <span class="expand-icon">+</span>
-                </a>
-                <a href="#" data-toggle="remove">
-                    &times;
-                </a>
-            </div>
+            <h3 class="panel-title">Literature List</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
@@ -67,24 +57,19 @@
                        width="100%">
                     <thead style="background-color: #2c2e2f;color: white">
                 <tr>
-                    <th style="color: white">Drug Image</th>
-                    <th style="color: white">Drug Name</th>
-                    <th style="color: white">View documents</th>
+                    <th style="color: white; vertical-align: top;text-align: left">Drug Image</th>
+                    <th style="color: white; vertical-align: top;text-align: left">Drug Name</th>
+                    <th style="color: white; vertical-align: top;text-align: left">Last Update Date</th>
+                    <th style="color: white; vertical-align: top;text-align: left">View documents</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th>Drug Image</th>
-                    <th>Drug Name</th>
-                    <th>View documents</th>
-                </tr>
-                </tfoot>
                 <tbody>
                 {meds}
                 <tr>
                     <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px">
                     </td>
                     <td>{drug_name}</td>
+                    <td>{create_drug_date}</td>
                     <td><a style="border-radius: 10px" target="_blank" class="btn btn-gray"
                            href="https://docs.google.com/viewerng/viewer?url={drug_full_book}">Full Book</a>
                         <span>|</span>

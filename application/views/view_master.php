@@ -1148,6 +1148,14 @@
     }
     function up_ques() {
 
+
+        var ques = $('.ques').val();
+        var op1 = $('.option1').val();
+        var op2 = $('.option2').val();
+        var op3 = $('.option3').val();
+        var op4 = $('.option4').val();
+        var ans = $('.ans').val();
+
         if ($('.business').val() ==null) {
             alert("Please Select Business");
             return false;
@@ -1166,6 +1174,29 @@
         {
             alert('Please Insert Question');
             return false;
+        }
+        else if(ques!='')
+        {
+            if (op1 == '') {
+                alert("Please Fill up option 1");
+                return false;
+            }
+            else if (op2 == '') {
+                alert("Please Fill up option 2");
+                return false;
+            }
+            else if (op3 == '') {
+                alert("Please Fill up option 3");
+                return false;
+            }
+            else if (op4 == '') {
+                alert("Please Fill up option 4");
+                return false;
+            }
+            else if (ans == '-1') {
+                alert("Please select answer");
+                return false;
+            }
         }
         else
         {

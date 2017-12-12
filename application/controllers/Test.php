@@ -177,26 +177,30 @@ class Test extends CI_Controller
 
     public function save_test()
     {
-
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         }
         else {
-            $global = $this->input->post('global');
+            $ques=$this->input->post('ques');
+            $option1=$this->input->post('option1');
+            $option2=$this->input->post('option2');
+            $option3=$this->input->post('option3');
+            $option4=$this->input->post('option4');
+            $answer=$this->input->post('answer');
             $id = $this->input->post('test_id');
-            $form_type = $this->input->post('form_type');
-            $this->test_model->save_test($id);
-
-            if($form_type=='1')
+            if($ques==''||$ques==null)
             {
-                $this->session->set_userdata('create_test', 'Create Test Successful');
+                $this->test_model->save_test($id);
             }
             else
             {
-                $this->session->set_userdata('assign_test', 'Test Successfully Assign');
+                $this->test_model->save_test_with_ques($id,$ques,$option1,$option2,$option3,$option4,$answer);
             }
-            redirect(base_url() . 'test/create_test', 'refresh');
-//            redirect(base_url() . 'test/manage_test', 'refresh');
+
+            $this->session->set_userdata('create_test', 'Create Test Successful');
+
+//            redirect(base_url() . 'test/create_test', 'refresh');
+            redirect(base_url() . 'test/manage_test', 'refresh');
         }
 
     }

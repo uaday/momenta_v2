@@ -18,6 +18,7 @@
             <p class="description">Manage all test for adjust according to pso skill</p>
         </div>
 
+
         <div class="breadcrumb-env">
 
             <ol class="breadcrumb bc-1">
@@ -42,17 +43,17 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">All Test</h3>
-
-            <div class="panel-options">
-                <a href="#" data-toggle="panel">
-                    <span class="collapse-icon">&ndash;</span>
-                    <span class="expand-icon">+</span>
-                </a>
-                <a href="#" data-toggle="remove">
-                    &times;
-                </a>
-            </div>
         </div>
+        <?php if ($this->session->userdata('create_test')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('create_test'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('create_test');
+        } ?>
         <div class="panel-body">
             <div class="table-responsive">
                 <script type="text/javascript">
@@ -68,26 +69,18 @@
                        width="100%">
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
-                        <th style="color: white">Business</th>
-                        <th style="color: white">Test Name</th>
-                        <th style="color: white">Region</th>
-                        <th style="color: white">Publication Status</th>
-                        <th style="color: white">Action</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Test Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Publication Status</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th style="color: white">Business</th>
-                        <th style="color: white">Test Name</th>
-                        <th style="color: white">Region</th>
-                        <th style="color: white">Publication Status</th>
-                        <th style="color: white">Action</th>
-                    </tr>
-                    </tfoot>
+
                     <tbody>
                     <?php foreach ($tests as $test) { ?>
                         <tr>
-                            <td><?php echo $test['business_name'] ?></td>
+                            <td><?php echo $test['business_code'] ?></td>
                             <td><?php echo $test['exam_name'] ?></td>
                             <td><?php echo $test['rsm_counter'] ?></td>
                             <?php if($test['publish_status']=='0'){?>

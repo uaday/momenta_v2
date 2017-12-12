@@ -127,19 +127,19 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($admins as $admin) {?>
                                 <tr>
-                                    <td ><?php echo $admin['business_name'] ?></td>
+                                    <td ><?php echo $admin['business_code'] ?></td>
                                     <td ><?php echo $admin['renata_id'] ?></td>
                                     <td><?php echo $admin['name'] ?></td>
                                     <td><?php echo $admin['last_login_date'] ?></td>
@@ -180,19 +180,19 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($gms as $gm) {?>
                                 <tr>
-                                    <td ><?php echo $gm['business_name'] ?></td>
+                                    <td ><?php echo $gm['business_code'] ?></td>
                                     <td ><?php echo $gm['renata_id'] ?></td>
                                     <td><?php echo $gm['name'] ?></td>
                                     <td><?php echo $gm['last_login_date'] ?></td>
@@ -233,19 +233,19 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($its as $it) {?>
                                 <tr>
-                                    <td ><?php echo $it['business_name'] ?></td>
+                                    <td ><?php echo $it['business_code'] ?></td>
                                     <td ><?php echo $it['renata_id'] ?></td>
                                     <td><?php echo $it['name'] ?></td>
                                     <td><?php echo $it['last_login_date'] ?></td>
@@ -286,19 +286,19 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($msds as $msd) {?>
                                 <tr>
-                                    <td ><?php echo $msd['business_name'] ?></td>
+                                    <td ><?php echo $msd['business_code'] ?></td>
                                     <td ><?php echo $msd['renata_id'] ?></td>
                                     <td><?php echo $msd['name'] ?></td>
                                     <td><?php echo $msd['last_login_date'] ?></td>
@@ -339,20 +339,20 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">SM Code</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">SM Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($sales as $sale) {?>
                                 <tr>
-                                    <td ><?php echo $sale['business_name'] ?></td>
+                                    <td ><?php echo $sale['business_code'] ?></td>
                                     <td ><?php echo $sale['sm_code'] ?></td>
                                     <td ><?php echo $sale['renata_id'] ?></td>
                                     <td><?php echo $sale['name'] ?></td>
@@ -394,21 +394,21 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">SM Code</th>
-                                <th style="color: white">RSM Code</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">SM Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">RSM Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($rsms as $rsm) {?>
                                 <tr>
-                                    <td ><?php echo $rsm['business_name'] ?></td>
+                                    <td ><?php echo $rsm['business_code'] ?></td>
                                     <td ><?php echo $rsm['tbl_user_sm_sm_code'] ?></td>
                                     <td ><?php echo $rsm['rsm_code'] ?></td>
                                     <td ><?php echo $rsm['renata_id'] ?></td>
@@ -451,21 +451,21 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Business</th>
-                                <th style="color: white">RM Code</th>
-                                <th style="color: white">DSM Code</th>
-                                <th style="color: white">Renata ID</th>
-                                <th style="color: white">User Name</th>
-                                <th style="color: white">Last Login Date</th>
-                                <th style="color: white">Last Login Time</th>
-                                <th style="color: white">Status</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">RM Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">DSM Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Renata ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">User Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Last Login Time</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($dsms as $dsm) {?>
                                 <tr>
-                                    <td ><?php echo $dsm['business_name'] ?></td>
+                                    <td ><?php echo $dsm['business_code'] ?></td>
                                     <td ><?php echo $dsm['tbl_user_rsm_rsm_code'] ?></td>
                                     <td ><?php echo $dsm['dsm_code'] ?></td>
                                     <td ><?php echo $dsm['renata_id'] ?></td>

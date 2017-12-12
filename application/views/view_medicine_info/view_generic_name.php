@@ -173,25 +173,18 @@ $i = 0;
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
                         <!--                        <th>Generic Name ID</th>-->
-                        <th style="color: white">Business Name</th>
-                        <th style="color: white">Generic Name</th>
-                        <th style="color: white">Action</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Generic Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                     </tr>
                     </thead>
                     <tfoot>
-                    <tr>
-                        <!--                        <th>Generic Name ID</th>-->
-                        <th>Business Name</th>
-                        <th>Generic Name</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     <?php foreach ($gens as $gen) {
                         $i++ ?>
                         <tr>
                             <!--                            <td>--><? //= $gen['gen_id'] ?><!--</td>-->
-                            <td><?= $gen['business_name'] ?></td>
+                            <td><?= $gen['business_code'] ?></td>
                             <td><?= $gen['gen_name'] ?></td>
                             <td>
                                 <a href="javascript:;"

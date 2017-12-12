@@ -70,15 +70,15 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white"></th>
-                                <th style="color: white">Incentive Image</th>
-                                <th style="color: white">Incentive Name</th>
-                                <th style="color: white">PSO Code</th>
-                                <th style="color: white">Employee ID</th>
-                                <th style="color: white">PSO Name</th>
-                                <th style="color: white">Region</th>
-                                <th style="color: white">Redemption Date</th>
-                                <th style="color: white">Action</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left"></th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Redemption Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -132,13 +132,13 @@
                                width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white">Incentive Image</th>
-                                <th style="color: white">Incentive Name</th>
-                                <th style="color: white">PSO Code</th>
-                                <th style="color: white">Employee ID</th>
-                                <th style="color: white">PSO Name</th>
-                                <th style="color: white">Region</th>
-                                <th style="color: white">Approval Date</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Incentive Image</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Approval Date</th>
                             </tr>
                             </thead>
                             <tfoot>

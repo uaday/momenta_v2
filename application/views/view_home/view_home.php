@@ -72,10 +72,10 @@
         <div class="col-sm-12">
 
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Test Statistic</h3>
-
-                </div>
+<!--                <div class="panel-heading">-->
+<!--                    <h3 class="panel-title">Test Statistic</h3>-->
+<!---->
+<!--                </div>-->
                 <div class="panel-body">
                     <script type="text/javascript">
                         jQuery(document).ready(function($)

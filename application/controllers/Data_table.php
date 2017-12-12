@@ -26,24 +26,24 @@ class Data_table extends CI_Controller
                        width=\"100%\">
                     <thead style=\"background-color: #2c2e2f;color: white\">
                            <tr>
-                            <th style=\"color: white\">Business</th>
-                            <th style=\"color: white\">SM Code</th>
-                            <th style=\"color: white\">RSM Code</th>
-                            <th style=\"color: white\">DSM Code</th>
-                            <th style=\"color: white\">PSO Code</th>
-                            <th style=\"color: white\">Employee Id</th>
-                            <th style=\"color: white\">PSO's Name</th>
-                            <th style=\"color: white\">Total Test</th>
-                            <th style=\"color: white\">Points</th>
-                            <th style=\"color: white\">Accuracy</th>
-                            <th style=\"color: white\">Action</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Bcode</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">SM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">RSM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">DSM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Employee Id</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO's Name</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/Assigned Test</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Achieved Points</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Percentage</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Action</th>
                             </tr>
                         </thead>";
                 foreach ($pexams as $pexam)
                 {
                     $output.="<tr class=\"color_wrapper small_spacer\">
                         <!-- ////////////////////////////////////////modal section//////////////////////////////////////// -->
-                        <td>$pexam[business_name]</td>
+                        <td>$pexam[business_code]</td>
                         <td>$pexam[sm_code]</td>
                         <td>$pexam[rsm_code]</td>
                         <td>$pexam[dsm_code]</td>
@@ -104,24 +104,24 @@ class Data_table extends CI_Controller
                        width=\"100%\">
                     <thead style=\"background-color: #2c2e2f;color: white\">
                            <tr>
-                            <th style=\"color: white\">Business</th>
-                            <th style=\"color: white\">SM Code</th>
-                            <th style=\"color: white\">RSM Code</th>
-                            <th style=\"color: white\">DSM Code</th>
-                            <th style=\"color: white\">PSO Code</th>
-                            <th style=\"color: white\">Employee Id</th>
-                            <th style=\"color: white\">PSO's Name</th>
-                            <th style=\"color: white\">Total Test</th>
-                            <th style=\"color: white\">Points</th>
-                            <th style=\"color: white\">Accuracy</th>
-                            <th style=\"color: white\">Action</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Bcode</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">SM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">RSM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">DSM Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO Code</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Employee Id</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO's Name</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/Assigned Test</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Achieved Points</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Percentage</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Action</th>
                             </tr>
                         </thead>";
             foreach ($pexams as $pexam)
             {
                 $output.="<tr class=\"color_wrapper small_spacer\">
                         <!-- ////////////////////////////////////////modal section//////////////////////////////////////// -->
-                        <td>$pexam[business_name]</td>
+                        <td>$pexam[business_code]</td>
                         <td>$pexam[sm_code]</td>
                         <td>$pexam[rsm_code]</td>
                         <td>$pexam[dsm_code]</td>

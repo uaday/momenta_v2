@@ -67,35 +67,23 @@
                        width="100%">
                     <thead style="background-color: #2c2e2f;color: white">
                     <tr>
-                        <th style="color: white">Image</th>
-                        <th style="color: white">Business</th>
-                        <th style="color: white">Name</th>
-                        <th style="color: white">Points</th>
-                        <th style="color: white">Stock</th>
-                        <th style="color: white">Exp Date</th>
-                        <th style="color: white">Status</th>
-                        <th style="color: white">Action</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Name</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Points</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Stock</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Exp Date</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Status</th>
+                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Image</th>
-                        <th>Business</th>
-                        <th>Name</th>
-                        <th>Points</th>
-                        <th>Stock</th>
-                        <th>Exp Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     <?php foreach ($incentives as $incentive) { ?>
                         <tr>
                             <td><img src="<?= $incentive['incentives_image'] ?>" class=" img-circle" alt=""
                                      height="50px" width="50px">
                             </td>
-                            <td><?= $incentive['business_name'] ?></td>
+                            <td><?= $incentive['business_code'] ?></td>
                             <td><?= $incentive['incentives_name'] ?></td>
                             <td><?= $incentive['incentives_point'] ?></td>
                             <td><?= $incentive['quantity'] ?></td>

@@ -56,7 +56,7 @@ class Find extends CI_Controller
         $output='';
         foreach ($result as $row)
         {
-            $output.="<option value='$row[pso_id]'>$row[pso_name]</option>";
+            $output.="<option value='$row[pso_id]'>$row[pso_name] ($row[renata_id])</option>";
         }
         echo $output;
     }

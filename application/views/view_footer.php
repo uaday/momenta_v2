@@ -12,7 +12,7 @@
 
         <!-- Add your copyright text here -->
         <div class="footer-text">
-            &copy; <?php echo date('Y')?> <p>Renata Limited. All Rights Reserved. Designed and Developed by <a target="_blank" style="text-decoration: none;" href="http://www.appinionbd.com/"> Appinion BD Limited.</a></p>
+            <p><strong>&copy; <?php echo date('Y')?></strong> <a href="https://renata-ltd.com/" target="_blank">Renata Limited.</a> All Rights Reserved. Designed and Developed by <a target="_blank" style="text-decoration: none;" href="http://www.appinionbd.com/"> Appinion BD Limited.</a></p>
         </div>
 
 
