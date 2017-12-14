@@ -5,7 +5,10 @@
  * Date: 11/07/2017
  * Time: 12:47 PM
  */
+$i=0;
 ?>
+<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link href="<?= base_url()?>assets/checkbox_table/css/select.dataTables.min.css"/>
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -54,23 +57,16 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="gift_request">
-
                     <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export" ><i class="fa fa-download"></i><span>Download Gift Request</span></a>
+<!--                    <button id="btnSelectedRows">-->
+<!--                        Get Selected Rows-->
+<!--                    </button>-->
+
                     <div class="table-responsive">
-                        <script type="text/javascript">
-                            jQuery(document).ready(function ($) {
-                                $("#example-1").dataTable({
-                                    aLengthMenu: [
-                                        [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
-                                    ]
-                                });
-                            });
-                        </script>
-                        <table id="example-1" class="table table-striped  table-responsive" cellspacing="0"
-                               width="100%">
+                        <table id="example" class="display" cellspacing="0" width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
-                                <th style="color: white; vertical-align: text-top;text-align: left"></th>
+                                <th ></th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
@@ -83,21 +79,21 @@
                             </thead>
                             <tfoot>
                             <tr>
-                                <th></th>
-                                <th>Incentive Image</th>
-                                <th>Incentive Name</th>
-                                <th>PSO Code</th>
-                                <th>Employee ID</th>
-                                <th>PSO Name</th>
-                                <th>Region</th>
-                                <th>Redemption Date</th>
-                                <th>Action</th>
+                                <td></td>
+                                <td>Image</td>
+                                <td>Incentive Name</td>
+                                <td>PSO Code</td>
+                                <td>Employee ID</td>
+                                <td>PSO Name</td>
+                                <td>Region</td>
+                                <td>Redemption Date</td>
+                                <td>Action</td>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <?php foreach ($booked as $book){?>
+                            <?php foreach ($booked as $book){ ?>
                                 <tr>
-                                    <td><input type="checkbox" class="cbr"></td>
+                                    <td ></td>
                                     <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
                                               height="50px" width="50px"></td>
                                     <td ><?php echo $book['incentives_name']?></td>
@@ -177,9 +173,33 @@
 
     </div>
 
+    <script src="<?= base_url()?>assets/checkbox_table/js/dataTables.select.min.js"></script>
 
+    <script>
+        var table;
+        $(document).ready(function() {
+            table = $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'multi'
+                }
+            });
+        });
 
-
+        $('#btnSelectedRows').on('click', function() {
+            alert('hello');
+            var tblData = table.rows('.selected').data();
+            var tmpData;
+            $.each(tblData, function(i, val) {
+                tmpData = tblData[i];
+                alert(tmpData);
+            });
+        })
+    </script>
 
     <!-- Main Footer -->
     <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
@@ -190,3 +210,4 @@
         echo $footer;
     } ?>
 </div>
+

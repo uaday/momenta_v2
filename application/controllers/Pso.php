@@ -89,6 +89,7 @@ class Pso extends CI_Controller
         $data['tbl_depot_depot_code']=$this->input->post('depot_code');
         $data['tbl_pso_user_type_pso_user_type_id']=$this->input->post('pso_type');
         $data['pso_password']=mt_rand(100000, 999999);
+        $data['pso_password']=md5($data['pso_password']);
         if ($this->form_validation->run('addpso'))
         {
             $number=mt_rand(100,999);
