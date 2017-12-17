@@ -7,8 +7,12 @@
  */
 $i=0;
 ?>
-<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<link href="<?= base_url()?>assets/checkbox_table/css/select.dataTables.min.css"/>
+<link href="https://cdn.datatables.net/v/dt/dt-1.10.12/se-1.2.0/datatables.min.css" rel="stylesheet"/>
+<link href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css"/>
+
+
+<!--<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>-->
+<!--<link href="--><?//= base_url()?><!--assets/checkbox_table/css/select.dataTables.min.css"/>-->
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -39,6 +43,16 @@ $i=0;
         </div>
 
     </div>
+    <?php if ($this->session->userdata('approve_booking')) { ?>
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong><?php echo $this->session->userdata('approve_booking'); ?></strong>
+        </div>
+        <?php $this->session->unset_userdata('approve_booking');
+    } ?>
 
 
     <div class="row">
@@ -63,6 +77,7 @@ $i=0;
 <!--                    </button>-->
 
                     <div class="table-responsive">
+                        <form name="frm-example" id="frm-example" action="<?= base_url()?>tar_shop/approve_booking_chunk" method="post"  >
                         <table id="example" class="display" cellspacing="0" width="100%">
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
@@ -93,7 +108,7 @@ $i=0;
                             <tbody>
                             <?php foreach ($booked as $book){ ?>
                                 <tr>
-                                    <td ></td>
+                                    <td ><?php echo $book['transection_id']?></td>
                                     <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
                                               height="50px" width="50px"></td>
                                     <td ><?php echo $book['incentives_name']?></td>
@@ -107,6 +122,13 @@ $i=0;
                             <?php } ?>
                             </tbody>
                         </table>
+
+                            <p class="form-group">
+                                <button type="submit" class="btn btn-primary" onclick="return approve_incentive_chunk()">Approve Selected</button>
+                            </p>
+
+                        </form>
+
                     </div>
 
                 </div>
@@ -173,33 +195,64 @@ $i=0;
 
     </div>
 
-    <script src="<?= base_url()?>assets/checkbox_table/js/dataTables.select.min.js"></script>
+<!--    <script src="--><?//= base_url()?><!--assets/checkbox_table/js/dataTables.select.min.js"></script>-->
+
+    <script src="https://cdn.datatables.net/v/dt/dt-1.10.12/se-1.2.0/datatables.min.js"></script>
+    <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js"></script>
+
 
     <script>
-        var table;
-        $(document).ready(function() {
-            table = $('#example').DataTable({
-                columnDefs: [{
-                    orderable: false,
-                    className: 'select-checkbox',
-                    targets: 0
-                }],
-                select: {
-                    style: 'multi'
-                }
+
+        function approve_incentive_chunk() {
+            var check = confirm('Are You Sure To Approve Selected Transaction');
+            if (check) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+
+        $(document).ready(function (){
+            var table = $('#example').DataTable({
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                'select': {
+                    'style': 'multi'
+                },
+                'order': [[1, 'asc']]
+            });
+
+
+            // Handle form submission event
+            $('#frm-example').on('submit', function(e){
+                var form = this;
+
+                var rows_selected = table.column(0).checkboxes.selected();
+
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function(index, rowId){
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
             });
         });
-
-        $('#btnSelectedRows').on('click', function() {
-            alert('hello');
-            var tblData = table.rows('.selected').data();
-            var tmpData;
-            $.each(tblData, function(i, val) {
-                tmpData = tblData[i];
-                alert(tmpData);
-            });
-        })
     </script>
+
+
 
     <!-- Main Footer -->
     <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->

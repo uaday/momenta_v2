@@ -93,6 +93,18 @@ class Tar_shop extends CI_Controller {
     {
         $transaction_id=$this->input->get('tar_id');
         $this->tar_shop_model->approve_transaction($transaction_id);
+        $this->session->set_userdata('approve_booking','Transaction successfully approved');
+        redirect(base_url() . 'tar_shop/track_incentive', 'refresh');
+    }
+
+    public function approve_booking_chunk()
+    {
+        $transaction_ids=$this->input->post('id');
+        foreach ($transaction_ids as $transaction_id)
+        {
+            $this->tar_shop_model->approve_transaction($transaction_id);
+        }
+        $this->session->set_userdata('approve_booking','Transaction successfully approved');
         redirect(base_url() . 'tar_shop/track_incentive', 'refresh');
     }
 
