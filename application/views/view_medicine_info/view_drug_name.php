@@ -96,7 +96,7 @@ $i = 0;
             } ?>
 
         </div>
-        <div class="modal fade" id="add_drug" role="dialog">
+        <div class="modal fade" id="add_drug" role="dialog" >
             <div class="modal-dialog">
 
                 <!-- Modal content-->

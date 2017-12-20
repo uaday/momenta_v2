@@ -88,8 +88,8 @@ class Pso extends CI_Controller
         $data['tbl_business_business_code']=$this->input->post('business_code');
         $data['tbl_depot_depot_code']=$this->input->post('depot_code');
         $data['tbl_pso_user_type_pso_user_type_id']=$this->input->post('pso_type');
-        $data['pso_password']=mt_rand(100000, 999999);
-        $data['pso_password']=md5($data['pso_password']);
+        $data['pso_password1']=mt_rand(100000, 999999);
+        $data['pso_password']=md5($data['pso_password1']);
         if ($this->form_validation->run('addpso'))
         {
             $number=mt_rand(100,999);
@@ -97,7 +97,7 @@ class Pso extends CI_Controller
             if($result=='1')
             {
                 $curl = curl_init();
-                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $data[pso_id]\nRenata Password: $data[pso_password]\nMomenta App Download Link: momenta.renata-ltd.com/download_app").'&msisdn=88'.$data['pso_phone'].'&csmsid='.$number.'App'.$data['renata_id'].'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
+                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $data[pso_id]\nRenata Password: $data[pso_password1]\nMomenta App Download Link: momenta.renata-ltd.com/download_app").'&msisdn=88'.$data['pso_phone'].'&csmsid='.$number.'App'.$data['renata_id'].'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
                 $resp = curl_exec($curl);
                 curl_close($curl);
             }

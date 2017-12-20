@@ -257,6 +257,29 @@
                     </ul>
                 </li>
                 <?php }?>
+
+                <li class="<?php if($this->session->userdata('main_menu')=='communication') echo "active opened"?>">
+                    <a href="#">
+                        <i class="fa fa-paper-plane fa-2x"></i>
+                        <span class="title">Communication Hub </span>
+                    </a>
+                    <ul>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='send_message') echo "active"?>">
+                            <a href="<?= base_url()?>Communication_hub/send_message">
+                                <span class="title">Send Message</span>
+                            </a>
+                        </li>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='view_message') echo "active"?>">
+                            <a href="<?= base_url()?>pso/manage_pso">
+                                <span class="title">View Message</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
                 <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">
                     <a href="#">
@@ -342,6 +365,8 @@
                     </ul>
                 </li>
                 <?php }?>
+
+
             </ul>
 
         </div>

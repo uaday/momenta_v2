@@ -465,7 +465,7 @@
                             <tbody>
                             <?php foreach ($dsms as $dsm) {?>
                                 <tr>
-                                    <td ><?php echo $dsm['business_code '] ?></td>
+                                    <td ><?php echo $dsm['business_code'] ?></td>
                                     <td ><?php echo $dsm['tbl_user_rsm_rsm_code'] ?></td>
                                     <td ><?php echo $dsm['dsm_code'] ?></td>
                                     <td ><?php echo $dsm['renata_id'] ?></td>
