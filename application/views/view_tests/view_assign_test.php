@@ -96,10 +96,10 @@
         </div>
         <br>
         <div class="row">
-            <div  class="col-md-offset-2 col-md-8">
+            <div  class="col-md-offset-1 col-md-10">
                 <div class=" col-md-4" id="hh1">
                     <div class="form-group">
-                        <label><strong>Region</strong></label><br>
+                        <label ><strong style="text-align: center">Region</strong></label><br>
                         <select style="width: 400px" name="region[]" class="example-selectAllJustVisible" id="region"
                                 multiple="multiple" onchange="region_pso_list();">
                             <?php foreach ($regions as $region) { ?>
@@ -172,21 +172,24 @@
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 200
+            maxHeight: 200,
+            buttonWidth: '240px'
 
         });
         $('.example-selectAllJustVisible1').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 200
+            maxHeight: 200,
+            buttonWidth: '240px'
 
         });
         $('.example-selectAllJustVisible2').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 200
+            maxHeight: 200,
+            buttonWidth: '240px'
 
         });
     });
@@ -195,3 +198,6 @@
 
 
 
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css">

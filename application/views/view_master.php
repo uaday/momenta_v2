@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/linecons/css/linecons.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
+
+
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/xenon-core.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/xenon-forms.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/xenon-components.css">
