@@ -138,6 +138,11 @@ class Pso_model extends CI_Model {
         $this->db->where('pso_id', $pso_renata_id);
         $this->db->update('tbl_user_pso', $data);
     }
+    public function get_psos()
+    {
+        $query = $this->db->get('tbl_user_pso');
+        return $query->result_array();
+    }
 
     
 }

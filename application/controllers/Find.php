@@ -48,6 +48,16 @@ class Find extends CI_Controller
         }
         echo $output;
     }
+    public function open_region_for_business()
+    {
+        $result=$this->test_model->get_region_by_business($this->input->post('business_code'));
+        $output='';
+        foreach ($result as $row)
+        {
+            $output.="<option value='$row[rsm_code]'>$row[region]($row[rsm_code])</option>";
+        }
+        echo $output;
+    }
     public function find_pso_by_types()
     {
         $region=implode(',',$this->input->POST('region'));

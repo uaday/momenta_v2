@@ -76,7 +76,7 @@
 
                         <div class="form-group">
                             <label class="control-label">Message Title</label>
-                            <input type="text" class="form-control" id="title" name="message_title" data-validate="required"
+                            <input type="text" class="form-control" id="message_title" name="message_title" data-validate="required"
                                    placeholder="Message title" data-message-required="Please fill up message title"/>
                         </div>
                         <div class="form-group">
@@ -121,7 +121,7 @@
                             <div class="col-sm-10">
                                 <script type="text/javascript">
                                     jQuery(document).ready(function ($) {
-                                        $("#business").selectBoxIt({
+                                        $("#universal_business").selectBoxIt({
                                             showFirstOption: false
                                         }).on('open', function () {
                                             // Adding Custom Scrollbar
@@ -130,7 +130,7 @@
                                     });
                                 </script>
 
-                                <select name="business" class="form-control business" id="business"
+                                <select name="universal_business" class="form-control universal_business" id="universal_business"
                                         onchange="gen_list(this.value, 'generic_name');">
                                     <option value="-1">Select Business</option>
                                     <?php foreach ($business as $bus) { ?>
@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="universal_button" class="btn btn-success">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                             <div class="col-sm-5">
                                 <script type="text/javascript">
                                     jQuery(document).ready(function ($) {
-                                        $("#business1").selectBoxIt({
+                                        $("#regional_business").selectBoxIt({
                                             showFirstOption: false
                                         }).on('open', function () {
                                             // Adding Custom Scrollbar
@@ -175,8 +175,8 @@
                                     });
                                 </script>
 
-                                <select name="business1" class="form-control business" id="business1"
-                                        onchange="gen_list(this.value, 'generic_name');">
+                                <select name="regional_business" class="form-control regional_business" id="regional_business"
+                                        onchange="find_regional_region();">
                                     <option value="-1">Select Business</option>
                                     <?php foreach ($business as $bus) { ?>
                                         <?php if ($this->session->userdata('business_code') == '00' && $bus['business_code'] != '00') { ?>
@@ -190,16 +190,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-5">
-                                <select style="width: 600px" name="region[]" class="example-selectAllJustVisible" id="region"
-                                        multiple="multiple" onchange="region_pso_list();" >
-                                    <?php foreach ($regions as $region) { ?>
-                                        <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
-                                    <?php } ?>
+                                <select style="width: 330px" name="regional_region[]"  class="example-selectAllJustVisible" id="regional_region"
+                                        multiple="multiple" >
                                 </select>
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="regional_button" class="btn btn-success">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -216,8 +213,8 @@
                     </div>
                     <div id="collapseThree-2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class="col-sm-4">
-                                <select style="width: 600px" name="region[]" class="example-selectAllJustVisible" id="region"
+                            <div class="col-sm-3">
+                                <select style="width: 600px" name="type_region[]" class="example-selectAllJustVisible1" id="region"
                                         multiple="multiple" onchange="region_pso_list();" >
                                     <?php foreach ($regions as $region) { ?>
                                         <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
@@ -225,24 +222,18 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <select style="width: 600px" name="region[]" class="example-selectAllJustVisible1" id="region"
-                                        multiple="multiple" onchange="region_pso_list();" >
-                                    <?php foreach ($regions as $region) { ?>
-                                        <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
-                                    <?php } ?>
+                                <select style="width: 600px" name="pso_type[]" class="example-selectAllJustVisible2" id="pso_type"
+                                        multiple="multiple" onchange="type_pso_list();" >
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <select style="width: 600px" name="region[]" class="example-selectAllJustVisible2" id="region"
-                                        multiple="multiple" onchange="region_pso_list();" >
-                                    <?php foreach ($regions as $region) { ?>
-                                        <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
-                                    <?php } ?>
+                                <select name="psos[]" id="psos" class="example-selectAllJustVisible2" multiple="multiple">
+
                                 </select>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-offset-1 col-sm-2">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="type_button" class="btn btn-success">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -258,7 +249,19 @@
                     </div>
                     <div id="collapseFour-2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <div class="col-sm-10">
+                                <select style="width: 600px" name="pso[]" class="example-selectAllJustVisible4" id="pso"
+                                        multiple="multiple" onchange="region_pso_list();" >
+                                    <?php foreach ($psos as $pso) { ?>
+                                        <option value="<?php echo $pso['pso_id'] ?>"><?php echo $pso['pso_name'] ?> (<?php echo $region['renata_id'] ?>)</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <button type="button" id="pso_button" class="btn btn-success">Send Message</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -280,8 +283,8 @@
             enableFiltering: true,
             includeSelectAllOption: true,
             selectAllJustVisible: false,
-            maxHeight: 200,
-            buttonWidth: '330px'
+            maxHeight: 250,
+            buttonWidth: '200px'
 
         });
         $('.example-selectAllJustVisible1').multiselect({
@@ -305,6 +308,14 @@
             includeSelectAllOption: true,
             selectAllJustVisible: false,
             maxHeight: 200,
+            buttonWidth: '200px'
+
+        });
+        $('.example-selectAllJustVisible4').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            selectAllJustVisible: false,
+            maxHeight: 150,
             buttonWidth: '200px'
 
         });

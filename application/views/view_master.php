@@ -1653,7 +1653,36 @@
 
     }
 
+    function find_regional_region()
+    {
+        $("#regional_region").multiselect();
+        var business_code=$('#regional_business').val();
+        if(business_code!='')
+        {
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {business_code: business_code},
+                    url: "<?php echo site_url('find/open_region_for_business')?>",
+                    success: function (result) {
+                        $("#regional_region").empty();
+                        $("#regional_region").multiselect("clearSelection");
+                        $("#regional_region").append(result);
+                        $("#regional_region").multiselect('rebuild');
 
 
+                    },
+                    error: function (result) {
+                        alert('POST failed.');
+                    }
+                }
+            )
+        }
+        else
+        {
+            $("#psos").val("<option value='-1'>No Result</option>");
+            $("#psos").multiselect('rebuild');
+        }
+    }
 
 </script>

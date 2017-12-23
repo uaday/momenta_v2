@@ -37,6 +37,7 @@ class Communication_hub extends CI_Controller {
     {
         $this->session->set_userdata('sub_menu','send_message');
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['regions'] = $this->pso_model->get_region();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
@@ -48,6 +49,8 @@ class Communication_hub extends CI_Controller {
     {
         $this->session->set_userdata('sub_menu','send_message');
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
+        $data['regions'] = $this->pso_model->get_region();
+        $data['psos'] = $this->pso_model->get_psos();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);

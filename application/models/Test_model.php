@@ -607,5 +607,14 @@ class Test_model extends CI_Model
         return $result;
     }
 
+    public function get_region_by_business($business_code)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_user_rsm');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_rsm.tbl_business_business_code','left');
+        $this->db->where('tbl_business.business_code ', $business_code);
+        return $this->db->get()->result_array();
+    }
+
 
 }
