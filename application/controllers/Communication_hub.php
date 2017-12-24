@@ -64,4 +64,59 @@ class Communication_hub extends CI_Controller {
         $this->load->view('view_footer');
     }
 
+    public function notification_push($token,$message_body,$message_title)
+    {
+        #API access key from Google API's Console
+        define( 'API_ACCESS_KEY', 'AAAAbk9Sb94:APA91bFmrdXbcxMkiD8o5LdHgY2aO9auqJpe0fwlIardXATHYYeGfeYIrS-RQbQ63EtrVlLql2KCI6_rav5jKh3kiZsht1Ev1u1BfH7fbo8srg_NbPAsQyx4NiFwuaWw25TQcF4acE8T' );
+        $registrationIds = $token;
+
+        #prep the bundle
+        $msg = array
+        (
+            'body' 	=> $message_body,
+            'title'	=> $message_title,
+            'icon'	=> 'myicon',/*Default Icon*/
+            'sound' => 'mySound'/*Default sound*/
+        );
+        $fields = array
+        (
+            'to'		=> $registrationIds,
+            'notification'	=> $msg
+        );
+
+        $headers = array
+        (
+            'Authorization: key=' . API_ACCESS_KEY,
+            'Content-Type: application/json'
+        );
+        #Send Reponse To FireBase Server
+        $ch = curl_init();
+        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        curl_setopt( $ch,CURLOPT_POST, true );
+        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        $result = curl_exec($ch );
+        curl_close( $ch );
+        return $result;
+    }
+    public function universal_assignment()
+    {
+        $message_title=$this->input->post('message_title');
+        $message_body=$this->input->post('message_body');
+        $sent_by=$this->input->post('sent_by');
+        $business_code=$this->input->post('business_code');
+        $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
+        echo $psos;
+        $message='{"message":"'.$message_body.'","sent_by":"'.$sent_by.'"}';
+        foreach ($psos as $pso)
+        {
+            $abc=notification_push($pso['token'],$message,$message_title);
+            echo 'hello';
+        }
+        //$this->Communication_hub_model->universal_assignment($message_title,$message_body,$sent_by);
+
+    }
+
 }

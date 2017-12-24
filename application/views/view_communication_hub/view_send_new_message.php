@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <button type="button" id="universal_button" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="universal_button" class="btn btn-success" onclick="universal_message()">Send Message</button>
                                 </div>
                             </div>
                         </div>

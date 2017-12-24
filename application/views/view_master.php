@@ -1685,4 +1685,42 @@
         }
     }
 
+    //UNIVERSAL MESSAGE
+    
+    function universal_message() {
+        var message_title=$('#message_title').val();
+        var message_body=$('#message_body').val();
+        var sent_by=$('#sent_by').val();
+        var business_code=$('#regional_business').val();
+        if(message_title=='')
+        {
+
+        }
+        else if(message_body=='')
+        {
+
+        }
+        else if(sent_by=='')
+        {
+
+        }
+        else
+        {
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {message_title:message_title,message_body: message_body,sent_by:sent_by,business_code:business_code},
+                    url: "<?php echo site_url('communication_hub/universal_assignment')?>",
+                    success: function (result) {
+                            alert(result);
+//                            test_id=result.substr(0,result.indexOf('<'));
+                    },
+                    error: function (result) {
+                        alert(result);
+                    }
+                }
+            )
+        }
+    }
+
 </script>
