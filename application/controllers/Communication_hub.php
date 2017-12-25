@@ -103,19 +103,44 @@ class Communication_hub extends CI_Controller {
     }
     public function universal_assignment()
     {
-        $message_title=$this->input->post('message_title');
-        $message_body=$this->input->post('message_body');
-        $sent_by=$this->input->post('sent_by');
+        $data['message_title']=$this->input->post('message_title');
+        $data['message_body']=$this->input->post('message_body');
+        $data['sent_by']=$this->input->post('sent_by');
+        $data['reference']='communication_hub';
+        $data['date']=date('Y-m-d');
+        $data['time']=date("h:i:s");
+        $data['status']='1';
         $business_code=$this->input->post('business_code');
         $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
-        echo $psos;
-        $message='{"message":"'.$message_body.'","sent_by":"'.$sent_by.'"}';
+        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
+        $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
-            $abc=notification_push($pso['token'],$message,$message_title);
-            echo 'hello';
+            $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+            $abc=$this->notification_push($pso['token'],$message,$data['message_title']);
         }
-        //$this->Communication_hub_model->universal_assignment($message_title,$message_body,$sent_by);
+        $this->session->set_userdata('send_message','Message Successfully Sent');
+
+    }
+    public function regional_assignment()
+    {
+        $data['message_title']=$this->input->post('message_title');
+        $data['message_body']=$this->input->post('message_body');
+        $data['sent_by']=$this->input->post('sent_by');
+        $data['reference']='communication_hub';
+        $data['date']=date('Y-m-d');
+        $data['time']=date("h:i:s");
+        $data['status']='1';
+        $region=implode(',',$this->input->POST('region'));
+        $psos = $this->communication_hub_model->get_pso_token_by_region($region);
+        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
+        $notification_id=$this->communication_hub_model->add_notification($data);
+        foreach ($psos as $pso)
+        {
+            $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+            $abc=$this->notification_push($pso['token'],$message,$data['message_title']);
+        }
+        $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
 

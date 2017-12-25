@@ -47,15 +47,15 @@
 
                 <div align="center">
 
-                    <?php if ($this->session->userdata('upload_data')) { ?>
+                    <?php if ($this->session->userdata('send_message')) { ?>
                         <div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Close</span>
                             </button>
-                            <strong><?php echo 'Upload Data Successful'; ?></strong>
+                            <strong><?php echo $this->session->userdata('send_message') ?></strong>
                         </div>
-                        <?php $this->session->unset_userdata('upload_data');
+                        <?php $this->session->unset_userdata('send_message');
                     } ?>
                     <?php if ($this->session->userdata('error')) { ?>
                         <div class="alert alert-danger">
@@ -196,7 +196,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <button type="button" id="regional_button" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="regional_button" class="btn btn-success" onclick="regional_message()">Send Message</button>
                                 </div>
                             </div>
                         </div>
