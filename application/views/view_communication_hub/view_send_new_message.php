@@ -233,7 +233,7 @@
                             </div>
                             <div class="col-sm-offset-1 col-sm-2">
                                 <div class="form-group">
-                                    <button type="button" id="type_button" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="type_button" class="btn btn-success" onclick="pso_type_message()">Send Message</button>
                                 </div>
                             </div>
                         </div>

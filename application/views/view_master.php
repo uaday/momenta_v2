@@ -1704,8 +1704,13 @@
         {
 
         }
+        else if(business_code==null)
+        {
+            alert('Please Select Business');
+        }
         else
         {
+            $('#universal_button').prop('disabled', true);
             $.ajax(
                 {
                     type: 'POST',
@@ -1738,8 +1743,57 @@
         {
 
         }
+        else if(region==null)
+        {
+            alert('Please Select Region');
+        }
         else
         {
+            $('#regional_button').prop('disabled', true);
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {message_title:message_title,message_body: message_body,sent_by:sent_by,region:region},
+                    url: "<?php echo site_url('communication_hub/regional_assignment')?>",
+                    success: function (result) {
+                        location.reload();
+                    },
+                    error: function (result) {
+                        alert(result);
+                    }
+                }
+            )
+        }
+    }
+    function pso_type_message() {
+        var message_title=$('#message_title').val();
+        var message_body=$('#message_body').val();
+        var sent_by=$('#sent_by').val();
+        var region=$('#regional_region').val();
+        var pso_type=$('#pso_type').val();
+        var psos=$('#psos').val();
+        if(message_title=='')
+        {
+
+        }
+        else if(message_body=='')
+        {
+
+        }
+        else if(sent_by=='')
+        {
+
+        }
+        else if(pso_type==null){
+            alert('Please Select PSO Type');
+        }
+        else if(psos==null)
+        {
+            alert('Please Select PSO');
+        }
+        else
+        {
+            $('#type_button').prop('disabled', true);
             $.ajax(
                 {
                     type: 'POST',
