@@ -249,12 +249,36 @@
                     </div>
                     <div id="collapseFour-2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class="col-sm-10">
+                            <div class="col-sm-5">
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function ($) {
+                                        $("#pso_business").selectBoxIt({
+                                            showFirstOption: false
+                                        }).on('open', function () {
+                                            // Adding Custom Scrollbar
+                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                        });
+                                    });
+                                </script>
+
+                                <select name="pso_business" class="form-control pso_business" id="pso_business"
+                                        onchange="get_pso_for_communication();">
+                                    <option value="-1">Select Business</option>
+                                    <?php foreach ($business as $bus) { ?>
+                                        <?php if ($this->session->userdata('business_code') == '00' && $bus['business_code'] != '00') { ?>
+                                            <option value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                        <?php } else { ?>
+                                            <?php if ($this->session->userdata('business_code') == $bus['business_code'] && $bus['business_code'] != '00') { ?>
+                                                <option value="<?= $bus['business_code'] ?>"><?= $bus['business_name'] ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
                                 <select style="width: 600px" name="pso[]" class="example-selectAllJustVisible4" id="pso"
                                         multiple="multiple" onchange="region_pso_list();" >
-                                    <?php foreach ($psos as $pso) { ?>
-                                        <option value="<?php echo $pso['pso_id'] ?>"><?php echo $pso['pso_name'] ?> (<?php echo $region['renata_id'] ?>)</option>
-                                    <?php } ?>
+
                                 </select>
                             </div>
                             <div class="col-sm-2">

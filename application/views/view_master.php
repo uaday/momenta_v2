@@ -1811,4 +1811,37 @@
         }
     }
 
+
+    function get_pso_for_communication() {
+
+        $("#pso").multiselect();
+        var business_code=$('#pso_business').val();
+        if(region!='')
+        {
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {business_code: business_code},
+                    url: "<?php echo site_url('find/find_pso_by_business')?>",
+                    success: function (result) {
+                        $("#pso").empty();
+                        $("#pso").multiselect("clearSelection");
+                        $("#pso").append(result);
+                        $("#pso").multiselect('rebuild');
+
+
+                    },
+                    error: function (result) {
+                        alert('POST failed.');
+                    }
+                }
+            )
+        }
+        else
+        {
+            $("#pso").val("<option value='-1'>No Result</option>");
+            $("#pso").multiselect('rebuild');
+        }
+    }
+
 </script>

@@ -133,6 +133,13 @@ class Pso_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+    public function get_pso_by_business($business_code)
+    {
+        $sql="SELECT * FROM tbl_user_pso p,tbl_business b WHERE  p.tbl_business_business_code=b.business_code AND b.business_code='$business_code' ORDER BY p.renata_id ASC ";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
     public function update_pso($data,$pso_renata_id)
     {
         $this->db->where('pso_id', $pso_renata_id);
