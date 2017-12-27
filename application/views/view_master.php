@@ -1797,10 +1797,11 @@
             $.ajax(
                 {
                     type: 'POST',
-                    data: {message_title:message_title,message_body: message_body,sent_by:sent_by,region:region},
-                    url: "<?php echo site_url('communication_hub/regional_assignment')?>",
+                    data: {message_title:message_title,message_body: message_body,sent_by:sent_by,psos:psos},
+                    url: "<?php echo site_url('communication_hub/types_assignment')?>",
                     success: function (result) {
                         location.reload();
+//                        alert(result)
                     },
                     error: function (result) {
                         alert(result);

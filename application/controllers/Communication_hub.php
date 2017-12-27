@@ -143,5 +143,29 @@ class Communication_hub extends CI_Controller {
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
+    public function types_assignment()
+    {
+        $data['message_title']=$this->input->post('message_title');
+        $data['message_body']=$this->input->post('message_body');
+        $data['sent_by']=$this->input->post('sent_by');
+        $data['reference']='communication_hub';
+        $data['date']=date('Y-m-d');
+        $data['time']=date("h:i:s");
+        $data['status']='1';
+        $psos=$this->input->POST('psos');
+        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
+        $notification_id=$this->communication_hub_model->add_notification($data);
+        foreach ($psos as $pso)
+        {
+            $pso_token = $this->communication_hub_model->get_pso_token_by_psos($pso);
+            if($pso_token)
+            {
+                $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
+                $abc=$this->notification_push($pso_token->token,$message,$data['message_title']);
+            }
+        }
+        $this->session->set_userdata('send_message','Message Successfully Sent');
+
+    }
 
 }

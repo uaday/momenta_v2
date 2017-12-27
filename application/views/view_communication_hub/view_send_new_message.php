@@ -227,7 +227,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <select name="psos[]" id="psos" class="example-selectAllJustVisible2" multiple="multiple">
+                                <select name="psos[]" id="psos" class="example-selectAllJustVisible3" multiple="multiple">
 
                                 </select>
                             </div>
