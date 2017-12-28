@@ -6,6 +6,8 @@ class Communication_hub extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        define( 'API_ACCESS_KEY', 'AAAApj6zYT4:APA91bG7kikxGt7fnXaZhq5t28FcYM85FbPjL8V8yXOpXy56nYP80U4jZibFkCZG6FmSsCiazdUbwwTavQ-agqT-gs_tJUPyM15nft6YqaRhgO_vrAOzxj9u2JtkIXc-W0Vi_QRGGkgA' );
+
         $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
 
@@ -67,7 +69,6 @@ class Communication_hub extends CI_Controller {
     public function notification_push($token,$message_body,$message_title)
     {
         #API access key from Google API's Console
-        define( 'API_ACCESS_KEY', 'AAAAbk9Sb94:APA91bFmrdXbcxMkiD8o5LdHgY2aO9auqJpe0fwlIardXATHYYeGfeYIrS-RQbQ63EtrVlLql2KCI6_rav5jKh3kiZsht1Ev1u1BfH7fbo8srg_NbPAsQyx4NiFwuaWw25TQcF4acE8T' );
         $registrationIds = $token;
 
         #prep the bundle
@@ -112,13 +113,13 @@ class Communication_hub extends CI_Controller {
         $data['status']='1';
         $business_code=$this->input->post('business_code');
         $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
-        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
         $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->notification_push($pso['token'],$message,$data['message_title']);
+            $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
+        echo $abc;
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
@@ -133,12 +134,11 @@ class Communication_hub extends CI_Controller {
         $data['status']='1';
         $region=implode(',',$this->input->POST('region'));
         $psos = $this->communication_hub_model->get_pso_token_by_region($region);
-        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
         $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->notification_push($pso['token'],$message,$data['message_title']);
+            $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
@@ -153,7 +153,6 @@ class Communication_hub extends CI_Controller {
         $data['time']=date("h:i:s");
         $data['status']='1';
         $psos=$this->input->POST('psos');
-        $message='{"message":"'.$data['message_body'].'","sent_by":"'.$data['sent_by'].'"}';
         $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
@@ -161,7 +160,32 @@ class Communication_hub extends CI_Controller {
             if($pso_token)
             {
                 $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                $abc=$this->notification_push($pso_token->token,$message,$data['message_title']);
+                $abc=$this->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
+            }
+        }
+        $this->session->set_userdata('send_message','Message Successfully Sent');
+
+    }
+    public function pso_assignment()
+    {
+        $data['message_title']=$this->input->post('message_title');
+        $data['message_body']=$this->input->post('message_body');
+        $data['sent_by']=$this->input->post('sent_by');
+        $data['reference']='communication_hub';
+        $data['date']=date('Y-m-d');
+        $data['time']=date("h:i:s");
+        $data['status']='1';
+        $psos=$this->input->POST('pso');
+        $notification_id=$this->communication_hub_model->add_notification($data);
+        foreach ($psos as $pso)
+        {
+            $pso_token = $this->communication_hub_model->get_pso_token_by_pso($pso);
+
+            if($pso_token)
+            {
+                print_r($pso_token);
+                $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
+                $abc=$this->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
             }
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');

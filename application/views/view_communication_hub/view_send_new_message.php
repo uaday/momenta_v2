@@ -277,13 +277,13 @@
                             </div>
                             <div class="col-sm-5">
                                 <select style="width: 600px" name="pso[]" class="example-selectAllJustVisible4" id="pso"
-                                        multiple="multiple" onchange="region_pso_list();" >
+                                        multiple="multiple"  >
 
                                 </select>
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <button type="button" id="pso_button" class="btn btn-success">Send Message</button>
+                                    <button type="button" id="pso_button" class="btn btn-success" onclick="pso_message()">Send Message</button>
                                 </div>
                             </div>
                         </div>

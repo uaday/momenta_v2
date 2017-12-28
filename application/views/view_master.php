@@ -1717,6 +1717,7 @@
                     data: {message_title:message_title,message_body: message_body,sent_by:sent_by,business_code:business_code},
                     url: "<?php echo site_url('communication_hub/universal_assignment')?>",
                     success: function (result) {
+//                        alert(result);
                         location.reload();
                     },
                     error: function (result) {
@@ -1841,6 +1842,46 @@
         {
             $("#pso").val("<option value='-1'>No Result</option>");
             $("#pso").multiselect('rebuild');
+        }
+    }
+    function pso_message() {
+
+        var message_title=$('#message_title').val();
+        var message_body=$('#message_body').val();
+        var sent_by=$('#sent_by').val();
+        var pso=$('#pso').val();
+        if(message_title=='')
+        {
+
+        }
+        else if(message_body=='')
+        {
+
+        }
+        else if(sent_by=='')
+        {
+
+        }
+        else if(pso==null)
+        {
+            alert('Please Select PSO');
+        }
+        else
+        {
+            $('#pso_button').prop('disabled', true);
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {message_title:message_title,message_body: message_body,sent_by:sent_by,pso:pso},
+                    url: "<?php echo site_url('communication_hub/pso_assignment')?>",
+                    success: function (result) {
+                        location.reload();
+                    },
+                    error: function (result) {
+                        alert(result);
+                    }
+                }
+            )
         }
     }
 
