@@ -1694,15 +1694,15 @@
         var business_code=$('#universal_business').val();
         if(message_title=='')
         {
-
+            document.getElementById("message_title1").className = "form-group has-error";
         }
         else if(message_body=='')
         {
-
+            document.getElementById("message_body1").className = "form-group has-error";
         }
         else if(sent_by=='')
         {
-
+            document.getElementById("sent_by1").className = "form-group has-error";
         }
         else if(business_code==null)
         {
@@ -1734,15 +1734,15 @@
         var region=$('#regional_region').val();
         if(message_title=='')
         {
-
+            document.getElementById("message_title1").className = "form-group has-error";
         }
         else if(message_body=='')
         {
-
+            document.getElementById("message_body1").className = "form-group has-error";
         }
         else if(sent_by=='')
         {
-
+            document.getElementById("sent_by1").className = "form-group has-error";
         }
         else if(region==null)
         {
@@ -1775,15 +1775,15 @@
         var psos=$('#psos').val();
         if(message_title=='')
         {
-
+            document.getElementById("message_title1").className = "form-group has-error";
         }
         else if(message_body=='')
         {
-
+            document.getElementById("message_body1").className = "form-group has-error";
         }
         else if(sent_by=='')
         {
-
+            document.getElementById("sent_by1").className = "form-group has-error";
         }
         else if(pso_type==null){
             alert('Please Select PSO Type');
@@ -1852,15 +1852,15 @@
         var pso=$('#pso').val();
         if(message_title=='')
         {
-
+            document.getElementById("message_title1").className = "form-group has-error";
         }
         else if(message_body=='')
         {
-
+            document.getElementById("message_body1").className = "form-group has-error";
         }
         else if(sent_by=='')
         {
-
+            document.getElementById("sent_by1").className = "form-group has-error";
         }
         else if(pso==null)
         {
@@ -1882,6 +1882,40 @@
                     }
                 }
             )
+        }
+    }
+
+    function message_title_check() {
+        var message_title=$('#message_title').val();
+        if(message_title=='')
+        {
+            document.getElementById("message_title1").className = "form-group has-error";
+        }
+        else
+        {
+            document.getElementById("message_title1").className = "form-group has-success";
+        }
+    }
+    function message_body_check() {
+        var message_body=$('#message_body').val();
+        if(message_body=='')
+        {
+            document.getElementById("message_body1").className = "form-group has-error";
+        }
+        else
+        {
+            document.getElementById("message_body1").className = "form-group has-success";
+        }
+    }
+    function message_sent_by_check() {
+        var sent_by=$('#sent_by').val();
+        if(sent_by=='')
+        {
+            document.getElementById("sent_by1").className = "form-group has-error";
+        }
+        else
+        {
+            document.getElementById("sent_by1").className = "form-group has-success";
         }
     }
 

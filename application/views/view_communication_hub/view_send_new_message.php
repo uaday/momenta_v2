@@ -74,20 +74,20 @@
 
                     <form onsubmit="return check_incentive()" action="<?php echo base_url() ?>tar_shop/add_incentive" method="post" enctype="multipart/form-data" class="validate">
 
-                        <div class="form-group">
+                        <div class="form-group" id="message_title1">
                             <label class="control-label">Message Title</label>
                             <input type="text" class="form-control" id="message_title" name="message_title" data-validate="required"
-                                   placeholder="Message title" data-message-required="Please fill up message title"/>
+                                   placeholder="Message title" data-message-required="Please fill up message title" onkeyup="message_title_check()"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="message_body1">
                             <label class="control-label">Message Body</label>
-                            <textarea name="message_body"  class="form-control description" cols="5" rows="5" id="message_body" data-validate="required" data-message-required="Please fill up message body"></textarea>
+                            <textarea name="message_body"  class="form-control description" cols="5" rows="5" id="message_body" data-validate="required" data-message-required="Please fill up message body" onkeyup="message_body_check()"></textarea>
 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="sent_by1">
                             <label class="control-label">Sender Name</label>
                             <input type="text" class="form-control" id="sent_by" name="sent_by" data-validate="required"
-                                   placeholder="Sender Name" data-message-required="Please fill up sender name"/>
+                                   placeholder="Sender Name" data-message-required="Please fill up sender name" onkeyup="message_sent_by_check()" />
                         </div>
 
 
