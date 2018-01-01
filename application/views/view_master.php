@@ -272,7 +272,7 @@
                             </a>
                         </li>
                         <li class="<?php if($this->session->userdata('sub_menu')=='view_message') echo "active"?>">
-                            <a href="<?= base_url()?>pso/manage_pso">
+                            <a href="<?= base_url()?>communication_hub/view_message">
                                 <span class="title">View Message</span>
                             </a>
                         </li>

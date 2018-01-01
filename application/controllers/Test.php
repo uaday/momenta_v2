@@ -129,9 +129,10 @@ class Test extends CI_Controller
         else {
             $global = $this->input->post('global');
             $id = $this->input->post('test_id');
+            $business_code = $this->input->post('business_code');
             $form_type = $this->input->post('form_type');
             if ($global == 'global') {
-                $this->test_model->set_global($id);
+                $this->test_model->set_global($id,$business_code);
             } else {
                 $region=$this->input->post('region');
                 $pso_type=$this->input->post('pso_type');

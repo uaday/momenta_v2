@@ -108,6 +108,7 @@ class Communication_hub extends CI_Controller {
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
         $data['reference']='communication_hub';
+        $data['user_id']=$this->session->userdata('employee_id');
         $data['date']=date('Y-m-d');
         $data['time']=date("h:i:s");
         $data['status']='1';
@@ -119,7 +120,6 @@ class Communication_hub extends CI_Controller {
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
             $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
-        echo $abc;
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
@@ -129,6 +129,7 @@ class Communication_hub extends CI_Controller {
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
         $data['reference']='communication_hub';
+        $data['user_id']=$this->session->userdata('employee_id');
         $data['date']=date('Y-m-d');
         $data['time']=date("h:i:s");
         $data['status']='1';
@@ -149,6 +150,7 @@ class Communication_hub extends CI_Controller {
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
         $data['reference']='communication_hub';
+        $data['user_id']=$this->session->userdata('employee_id');
         $data['date']=date('Y-m-d');
         $data['time']=date("h:i:s");
         $data['status']='1';
@@ -172,6 +174,7 @@ class Communication_hub extends CI_Controller {
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
         $data['reference']='communication_hub';
+        $data['user_id']=$this->session->userdata('employee_id');
         $data['date']=date('Y-m-d');
         $data['time']=date("h:i:s");
         $data['status']='1';
@@ -183,13 +186,30 @@ class Communication_hub extends CI_Controller {
 
             if($pso_token)
             {
-                print_r($pso_token);
                 $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
                 $abc=$this->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
             }
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
+    }
+    public function view_message()
+    {
+        $this->session->set_userdata('sub_menu','view_message');
+        $user_type=$this->session->userdata('user_type');
+        if($user_type=='1'||$user_type=='2')
+        {
+            $data['messages']=$this->communication_hub_model->show_all_messages();
+        }
+        else
+        {
+            $data['messages']=$this->communication_hub_model->show_all_user_messages($this->session->userdata('employee_id'));
+        }
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_communication_hub/view_message',$data,TRUE);
+        $this->load->view('view_master',$data);
     }
 
 }

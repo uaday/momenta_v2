@@ -59,9 +59,9 @@ class Test_model extends CI_Model
 
     }
 
-    public function set_global($id)
+    public function set_global($id,$business_code)
     {
-        $sql1 = "SELECT pso_id FROM tbl_user_pso";
+        $sql1 = "SELECT pso_id FROM tbl_user_pso WHERE tbl_business_business_code='$business_code' and status='1'";
         $this->db->query("set character_set_results='utf8'");
         $result = $this->db->query($sql1);
         $row = $result->result_array();

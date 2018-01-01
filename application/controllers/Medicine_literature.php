@@ -6,6 +6,7 @@ class Medicine_literature extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        define( 'API_ACCESS_KEY', 'AAAApj6zYT4:APA91bG7kikxGt7fnXaZhq5t28FcYM85FbPjL8V8yXOpXy56nYP80U4jZibFkCZG6FmSsCiazdUbwwTavQ-agqT-gs_tJUPyM15nft6YqaRhgO_vrAOzxj9u2JtkIXc-W0Vi_QRGGkgA' );
         $data['name'] = $this->session->userdata('name');
         $data['login_id'] = $this->session->userdata('login_id');
         $data['tincentives'] = $this->home_model->total_incentives();
@@ -30,6 +31,44 @@ class Medicine_literature extends CI_Controller
             redirect(base_url() . 'access_denied');
         }
     }
+
+    public function notification_push($token,$message_body,$message_title)
+    {
+        #API access key from Google API's Console
+        $registrationIds = $token;
+
+        #prep the bundle
+        $msg = array
+        (
+            'body' 	=> $message_body,
+            'title'	=> $message_title,
+            'icon'	=> 'myicon',/*Default Icon*/
+            'sound' => 'mySound'/*Default sound*/
+        );
+        $fields = array
+        (
+            'to'		=> $registrationIds,
+            'notification'	=> $msg
+        );
+
+        $headers = array
+        (
+            'Authorization: key=' . API_ACCESS_KEY,
+            'Content-Type: application/json'
+        );
+        #Send Reponse To FireBase Server
+        $ch = curl_init();
+        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        curl_setopt( $ch,CURLOPT_POST, true );
+        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        $result = curl_exec($ch );
+        curl_close( $ch );
+        return $result;
+    }
+
 
     public function index()
     {
@@ -79,8 +118,11 @@ class Medicine_literature extends CI_Controller
 
     public function drug_dse_version_upload()
     {
+        $business_code=$this->input->post('business11');
         $drug_id=$this->input->post('drug_id');
+        $doc_id=$this->input->post('doc_type11');
         $version_id = $this->input->post('version_id');
+        $version_idd = $this->input->post('version_idd');
         $point1 = $this->input->post('point1');
         $point2 = $this->input->post('point2');
         $point3 = $this->input->post('point3');
@@ -122,6 +164,29 @@ class Medicine_literature extends CI_Controller
         }
         if ($this->medicine_literature_model->insert_version_data($version_id, $point1, $point2, $point3, $image_test,$drug_id))
         {
+            $result1=$this->medicine_literature_model->find_drug_name_by_drug_id($drug_id);
+            $result2=$this->medicine_literature_model->find_doc_type_by_doc_type_id($doc_id);
+            if($version_idd=='0')
+            {
+                $data['message_title']=$result1['0']['drug_name'].': Detailing Pointer Update';
+                $data['message_body']='A new detailing pointer of '.$result1['0']['drug_name'].' drug has been added on '.date('F j\, Y').' for '.$result2['0']['type_name'].' doctor type.';
+                $data['sent_by']='Marketing Department';
+                $data['reference']='medicine_lit';
+                $data['user_id']=$this->session->userdata('employee_id');
+                $data['date']=date('Y-m-d');
+                $data['time']=date("h:i:s");
+                $data['status']='1';
+
+
+
+                $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
+                $notification_id=$this->communication_hub_model->add_notification($data);
+                foreach ($psos as $pso)
+                {
+                    $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                }
+            }
             $this->session->set_userdata('message1', 'Version Successfully Updated');
             redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
         }

@@ -82,6 +82,7 @@
 
     <form action="<?php echo base_url() ?>test/assign_test" accept-charset="utf-8" method="post">
         <input type="hidden" name="test_id" value="<?php echo $exam['0']['exam_id'] ?>">
+        <input type="hidden" name="business_code" value="<?php echo $exam['0']['business_code'] ?>">
         <input type="hidden" name="form_type" value="2">
         <div class="row">
             <div class="col-md-12">

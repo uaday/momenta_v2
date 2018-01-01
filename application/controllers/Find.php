@@ -219,7 +219,7 @@ class Find extends CI_Controller
 											});
 										
 									</script>";
-        echo "<select class='form-control doc_type' name=\"doc_type\" id='doc_type' onchange=\"version_find(this.value,'version');\">";
+        echo "<select class='form-control doc_type' name=\"doc_type11\" id='doc_type' onchange=\"version_find(this.value,'version');\">";
         echo "<option value='-1'>Select Doctor Type</option>";
         if($result)
         {
@@ -343,7 +343,7 @@ class Find extends CI_Controller
 											});
 										
 									</script>";
-        echo "<select class=\"form-control version1\" id=\"version1\" name='version_id' onchange=\"fill_data(this.value)\">";
+        echo "<select class=\"form-control version1\" id=\"version1\" name='version_idd' onchange=\"fill_data(this.value)\">";
         echo "<option value='-1'>Select Version</option>";
         echo "<option value='0'><span class='fa fa-plus'> New Version</span></option>";
         foreach ($result as $row)

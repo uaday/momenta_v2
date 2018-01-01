@@ -54,6 +54,21 @@ class Communication_hub_model extends CI_Model
         );
         $this->db->insert('tbl_notification_assign', $data);
     }
+    public function show_all_messages()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_notification');
+        $this->db->where('status', '1');
+        return $this->db->get()->result_array();
+    }
+    public function show_all_user_messages($user_id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_notification');
+        $this->db->where('user_id', $user_id);
+        $this->db->where('status', '1');
+        return $this->db->get()->result_array();
+    }
 
 
 

@@ -213,5 +213,20 @@ class Medicine_literature_model extends CI_Model {
         $this->db->query($sql1);
         return $result;
     }
+    public function find_drug_name_by_drug_id($drug_id)
+    {
+        $this->db->select('drug_name');
+        $this->db->from('tbl_drug');
+        $this->db->where('drug_id', $drug_id);
+        return $this->db->get()->result_array();
+    }
+    public function find_doc_type_by_doc_type_id($doc_type_id)
+    {
+        $this->db->select('type_name');
+        $this->db->from('tbl_doctor_type');
+        $this->db->where('doc_type_id', $doc_type_id);
+        return $this->db->get()->result_array();
+    }
+
 
 }

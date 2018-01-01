@@ -265,7 +265,7 @@
                                 });
                             </script>
 
-                            <select class="form-control business11" id="business11" onchange="gen_list1(this.value, 'generic_name11');">
+                            <select class="form-control business11" id="business11" name="business11" onchange="gen_list1(this.value, 'generic_name11');">
                                 <option value="-1">Select Business</option>
                                 <?php foreach ($business as $buss){?>
                                     <?php if($this->session->userdata('business_code')=='00'&& $buss['business_code']!='00'){?>
@@ -370,7 +370,7 @@
                                     });
                                 </script>
 
-                                <select class="form-control version1" name="version_id" id="version1" onchange="fill_data(this.value)">
+                                <select class="form-control version1" name="version_idd" id="version1" onchange="fill_data(this.value)">
                                     <option value="-1">Select Version</option>
                                 </select>
                             </div>
