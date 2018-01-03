@@ -74,6 +74,7 @@ class Bulk_data_model extends CI_Model
                     $insert_csv['pso_phone'] = $csv_line['9'];
                     $insert_csv['pso_designation'] = $csv_line['10'];
                     $insert_csv['pso_type'] = $csv_line['11'];
+
                     if ($k != 0) {
                         $d_check = array_search($insert_csv['pso_id'], $check_array);
                         if ($d_check > -1) {
