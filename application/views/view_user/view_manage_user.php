@@ -6,6 +6,7 @@
  * Time: 12:47 PM
  */
 ?>
+
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -113,6 +114,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="admin_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_admin_status_report" ><i class="fa fa-download"></i><span>Download Admin Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -166,6 +168,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="gm_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_gm_status_report" ><i class="fa fa-download"></i><span>Download GM Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -219,6 +222,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="marketing_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_marketing_status_report" ><i class="fa fa-download"></i><span>Download Marketing Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -272,6 +276,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="msd_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_msd_status_report" ><i class="fa fa-download"></i><span>Download MSD Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -325,6 +330,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="sm_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_sm_status_report" ><i class="fa fa-download"></i><span>Download SM Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -380,6 +386,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="rsm_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_rsm_status_report" ><i class="fa fa-download"></i><span>Download RSM Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -437,6 +444,7 @@
                     </div>
                 </div>
                 <div class="tab-pane " id="dsm_user">
+                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>user/export_dsm_status_report" ><i class="fa fa-download"></i><span>Download DSM Status Report</span></a>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -513,3 +521,4 @@
         echo $footer;
     } ?>
 </div>
+

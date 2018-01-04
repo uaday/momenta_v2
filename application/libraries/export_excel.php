@@ -34,7 +34,7 @@ class export_excel{
     }
 
     function writeRow($val) {
-        echo '<td style="border:1px #888 solid;color:#555;">'.$val.'</td>';              
+        echo '<td style="border:1px #888 solid;color:#555;">'.$val.'</td>';
     }
 
 }

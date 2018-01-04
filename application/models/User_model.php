@@ -425,5 +425,68 @@ class User_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+    public function get_admin_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '2');
+        return $this->db->get();
+
+    }
+    public function get_gm_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '7');
+        return $this->db->get();
+
+    }
+    public function get_marketing_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '3');
+        return $this->db->get();
+    }
+    public function get_msd_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->where('tbl_login.user_type', '8');
+        return $this->db->get();
+    }
+    public function get_sm_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_user_sm.sm_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_sm', 'tbl_user_sm.renata_id = tbl_login.renata_id');
+        $this->db->where('tbl_login.user_type', '4');
+        return $this->db->get();
+    }
+    public function get_rsm_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_user_sm.sm_code,tbl_user_rsm.rsm_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_rsm', 'tbl_user_rsm.renata_id = tbl_login.renata_id');
+        $this->db->join('tbl_user_sm', 'tbl_user_sm.sm_code = tbl_user_rsm.tbl_user_sm_sm_code');
+        $this->db->where('tbl_login.user_type', '5');
+        return $this->db->get();
+    }
+    public function get_dsm_status_report()
+    {
+        $this->db->select('tbl_business.business_code,tbl_user_dsm.tbl_user_rsm_rsm_code,tbl_user_dsm.dsm_code,tbl_login.renata_id,tbl_login.name,tbl_login.last_login_date,tbl_login.last_login_time');
+        $this->db->from('tbl_login');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.renata_id = tbl_login.renata_id');
+        $this->db->where('tbl_login.user_type', '6');
+        return $this->db->get();
+    }
+
 
 }
