@@ -78,6 +78,7 @@ $i = 0;
                                    class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-left btn-sm"><i
                                             class="fa fa-eye "></i> <span
                                             class="hidden-xs text-uppercase"> View Message</span></a>
+                                <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right btn-sm" href="<?php echo base_url()?>Communication_hub/export_assign_message/<?= $message['notification_id']?>" ><i class="fa fa-download"></i><span>Download Assign Report</span></a>
 
                             </td>
                         </tr>

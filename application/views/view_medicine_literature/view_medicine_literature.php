@@ -85,7 +85,7 @@
                                 });
                             </script>
 
-                            <select class="form-control business" id="business" onchange="gen_list(this.value, 'generic_name');">
+                            <select class="form-control business" name="business" id="business" onchange="gen_list(this.value, 'generic_name');">
                                 <option value="-1">Select Business</option>
                                 <?php foreach ($business as $bus){?>
                                     <?php if($this->session->userdata('business_code')=='00'&& $bus['business_code']!='00'){?>

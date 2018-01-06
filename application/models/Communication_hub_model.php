@@ -70,6 +70,18 @@ class Communication_hub_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    public function get_assign_message($notification_id)
+    {
+        $this->db->select('tbl_notification.message_title,tbl_notification.sent_by,tbl_notification.date,tbl_user_pso.renata_id,tbl_user_pso.pso_id,tbl_user_pso.pso_name,tbl_user_rsm.region');
+        $this->db->from('tbl_notification');
+        $this->db->join('tbl_notification_assign', 'tbl_notification_assign.tbl_notification_notification_id = tbl_notification.notification_id');
+        $this->db->join('tbl_user_pso', 'tbl_user_pso.pso_id = tbl_notification_assign.tbl_user_pso_pso_id');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.dsm_code = tbl_user_pso.tbl_user_dsm_dsm_code');
+        $this->db->join('tbl_user_rsm', 'tbl_user_rsm.rsm_code = tbl_user_dsm.tbl_user_rsm_rsm_code');
+        $this->db->where('tbl_notification.notification_id', $notification_id);
+        return $this->db->get();
+    }
+
 
 
 }

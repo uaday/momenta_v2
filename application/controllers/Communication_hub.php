@@ -212,4 +212,12 @@ class Communication_hub extends CI_Controller {
         $this->load->view('view_master',$data);
     }
 
+    public function export_assign_message($notification_id=0)
+    {
+
+        $result=$this->communication_hub_model->get_assign_message($notification_id);
+        $this->export_excel->to_excel($result,'List Of notification assignment');
+        redirect(base_url() . 'communication_hub/view_message', 'refresh');
+    }
+
 }

@@ -46,6 +46,10 @@ class Medicine_literature extends CI_Controller
 
     public function drug_dse_upload()
     {
+        $business_code=$this->input->post('business');
+        $drug_id=$this->input->post('drug_id');
+        $upload_type=$this->input->post('upload_file_type');
+
         if (isset($_FILES["pdf"]["name"])) {
             if ($_POST['upload_file_type'] == '3') {
                 $uploadPath = 'upload/drug_image';
@@ -66,6 +70,41 @@ class Medicine_literature extends CI_Controller
                 }
 
                 if ($this->medicine_literature_model->insert($lnk, $_POST['upload_file_type'], $_POST['drug_id'])) {
+
+                    $result1 = $this->medicine_literature_model->find_drug_name_by_drug_id($drug_id);
+
+                    if($upload_type=='1')
+                    {
+                        $data['message_title'] = $result1['0']['drug_name'] . ': Full Book Update';
+                    }
+                    else if($upload_type=='2')
+                    {
+                        $data['message_title'] = $result1['0']['drug_name'] . ': Feature & Benefit Update';
+                    }
+                    else
+                    {
+                        $data['message_title'] = $result1['0']['drug_name'] . ': Drug Image Update';
+                    }
+                    $data['message_body'] = 'Full book of ' . $result1['0']['drug_name'] . ' drug has been added on ' . date('F j\, Y') . '.' ;
+                    $data['sent_by'] = 'Marketing Department';
+                    $data['reference'] = 'medicine_lit';
+                    $data['user_id'] = $this->session->userdata('employee_id');
+                    $data['date'] = date('Y-m-d');
+                    $data['time'] = date("h:i:s");
+                    $data['status'] = '1';
+
+                    $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
+                    $notification_id = $this->communication_hub_model->add_notification($data);
+                    foreach ($psos as $pso) {
+                        $this->communication_hub_model->assign_notification($notification_id, $pso['pso_id']);
+                        $abc = $this->notification_push($pso['token'], $data['message_body'], $data['message_title']);
+                    }
+
+
+
+
+
+
                     $this->session->set_userdata('message', 'Upload Successful');
                     redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
                 }
@@ -126,7 +165,7 @@ class Medicine_literature extends CI_Controller
             $result2 = $this->medicine_literature_model->find_doc_type_by_doc_type_id($doc_id);
 
             $data['message_title'] = $result1['0']['drug_name'] . ': Detailing Pointer Update';
-            $data['message_body'] = 'A new detailing pointer of ' . $result1['0']['drug_name'] . ' drug has been added on ' . date('F j\, Y') . ' for ' . $result2['0']['type_name'] . ' doctor type.';
+            $data['message_body'] = 'Detailing pointer of ' . $result1['0']['drug_name'] . ' drug has been added on ' . date('F j\, Y') . ' for ' . $result2['0']['type_name'] . ' doctor type.';
             $data['sent_by'] = 'Marketing Department';
             $data['reference'] = 'medicine_lit';
             $data['user_id'] = $this->session->userdata('employee_id');

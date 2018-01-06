@@ -31,9 +31,9 @@ class Data_table extends CI_Controller
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">RSM Code</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">DSM Code</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO Code</th>
-                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Employee Id</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">RF Id</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO's Name</th>
-                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/Assigned Test</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/<br/>Assigned Test</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Achieved Points</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Percentage</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Action</th>
@@ -109,9 +109,9 @@ class Data_table extends CI_Controller
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">RSM Code</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">DSM Code</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO Code</th>
-                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Employee Id</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">RF Id</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">PSO's Name</th>
-                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/Assigned Test</th>
+                            <th style=\"color: white; vertical-align: text-top;text-align: left\">Appeared/<br/>Assigned Test</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Achieved Points</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Percentage</th>
                             <th style=\"color: white; vertical-align: text-top;text-align: left\">Action</th>

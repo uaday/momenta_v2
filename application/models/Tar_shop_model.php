@@ -95,15 +95,15 @@ class Tar_shop_model extends CI_Model {
         $b_code=$this->session->userdata('business_code');
         if($b_code=='01')
         {
-            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
         }
         else if($b_code=='02')
         {
-            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
         }
         else
         {
-            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC";
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
         }
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
@@ -114,15 +114,15 @@ class Tar_shop_model extends CI_Model {
         $b_code=$this->session->userdata('business_code');
         if($b_code=='01')
         {
-            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='01' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ORDER BY h.approval_date DESC,r.region ASC,p.renata_id ASC";
         }
         else if($b_code=='02')
         {
-            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE i.tbl_business_business_code='02' AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ORDER BY h.approval_date DESC,r.region ASC,p.renata_id ASC";
         }
         else
         {
-            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ";
+            $sql="SELECT p.*,t.*,i.*,h.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_incentives_history h,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND h.tbl_incentives_transection_transection_id=t.transection_id AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id ORDER BY h.approval_date DESC,r.region ASC,p.renata_id ASC";
         }
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
