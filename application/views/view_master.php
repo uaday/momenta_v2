@@ -1138,7 +1138,7 @@
             $('.option2').val('');
             $('.option3').val('');
             $('.option4').val('');
-            $('.ans').val('-1');
+            $('#answer').val('-1');
 
             if (i == 1) {
                 $.ajax(

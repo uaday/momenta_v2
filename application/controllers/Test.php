@@ -130,7 +130,6 @@ class Test extends CI_Controller
             $global = $this->input->post('global');
             $id = $this->input->post('test_id');
             $business_code = $this->input->post('business_code');
-            $form_type = $this->input->post('form_type');
             if ($global == 'global') {
                 $this->test_model->set_global($id,$business_code);
             } else {
@@ -162,14 +161,7 @@ class Test extends CI_Controller
                     $this->test_model->set_pso_type($id,$pso_type_list);
                 }
             }
-            if($form_type=='1')
-            {
-                $this->session->set_userdata('create_test', 'Create Test Successful');
-            }
-            else
-            {
-                $this->session->set_userdata('assign_test', 'Test Successfully Assign');
-            }
+            $this->session->set_userdata('assign_test', 'Test Successfully Assign');
 //            redirect(base_url() . 'test/create_test', 'refresh');
             redirect(base_url() . 'test/manage_test', 'refresh');
         }
@@ -387,7 +379,7 @@ class Test extends CI_Controller
             $pass_marks = $this->input->post('pass_marks');
             $result = $this->test_model->update_exam($business,$exam_id, $exam_name,$exam_suggestion,$exp_date, $exam_marks, $exam_time, $exam_type, $pass_marks);
             $this->session->set_userdata('update_exam', 'Exam info update successful');
-            redirect(base_url() . 'test/view_edit_exam_ques/' . $exam_id, 'refresh');
+            redirect(base_url() . 'test/manage_test/', 'refresh');
         }
     }
 

@@ -100,7 +100,7 @@
                             <div class="label label-danger"><strong>Error</strong></div>
                         </div>
                         <div class="well well-lg">
-                            <?php $i=1; if($this->session->userdata('duplicate'))foreach ($this->session->userdata('duplicate') as $dd){echo $i++;?>: Duplicate <strong><?php echo $dd;?></strong> Renata Employee Id Please Check Manually<br><?php } $this->session->unset_userdata('duplicate')?>
+                            <?php $i=1; if($this->session->userdata('duplicate'))foreach ($this->session->userdata('duplicate') as $dd){echo $i++;?>: Duplicate <strong><?php echo $dd;?></strong> Renata Employee ID; Please Check Manually<br><?php } $this->session->unset_userdata('duplicate');if($this->session->userdata('duplicate_pso_code'))foreach ($this->session->userdata('duplicate_pso_code') as $dd_pso_code){echo $i++;?>: Duplicate <strong><?php echo $dd_pso_code;?></strong> PSO Code; Please Check Manually<br><?php } $this->session->unset_userdata('duplicate_pso_code')?>
                         </div>
 
                     </form>

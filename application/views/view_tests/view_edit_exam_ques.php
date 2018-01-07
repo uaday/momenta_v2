@@ -42,6 +42,27 @@ $exam['0']['exp_date'] = $exp_date[1].'/'.$exp_date[2].'/'.$exp_date[0];
 
     </div>
 
+    <?php if ($this->session->userdata('delete_question')) { ?>
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong><?php echo $this->session->userdata('delete_question'); ?></strong>
+        </div>
+        <?php $this->session->unset_userdata('delete_question');
+    } ?>
+    <?php if ($this->session->userdata('update_question')) { ?>
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong><?php echo $this->session->userdata('update_question'); ?></strong>
+        </div>
+        <?php $this->session->unset_userdata('update_question');
+    } ?>
+
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">

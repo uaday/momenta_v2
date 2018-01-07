@@ -52,6 +52,47 @@
                 </a>
             </div>
         </div>
+        <?php if ($this->session->userdata('active_incentives')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('active_incentives'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('active_incentives');
+        } ?>
+        <?php if ($this->session->userdata('inactive_incentives')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('inactive_incentives'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('inactive_incentives');
+        } ?>
+        <?php if ($this->session->userdata('delete_incentives')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('delete_incentives'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('delete_incentives');
+        } ?>
+        <?php if ($this->session->userdata('update_incentives')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('update_incentives'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('update_incentives');
+        } ?>
+
         <div class="panel-body">
             <div class="table-responsive">
                 <script type="text/javascript">
@@ -95,12 +136,12 @@
                             <?php } ?>
                             <td>
                                 <?php if ($incentive['status'] == '1') { ?>
-                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=0"
+                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&incentives_name=<?= $incentive['incentives_name']?>&status=0"
                                        title="Inactive" >
                                         <i class="fa-thumbs-o-down fa-2x"></i>
                                     </a>
                                 <?php } else { ?>
-                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&status=1"
+                                    <a href="<?php echo base_url() ?>tar_shop/change_status?incentives_id=<?php echo  $incentive['incentives_id']?>&incentive_name=<?= $incentive['incentives_name']?>&status=1"
                                        title="active" >
                                         <i class="fa-thumbs-o-up fa-2x"></i>
                                     </a>

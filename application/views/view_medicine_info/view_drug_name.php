@@ -177,7 +177,7 @@ $i = 0;
                                     <input id="pm_name" name="pm_name" type="text" placeholder="Product Manager Name"
                                            class="form-control">
                                 </div>
-                                <p style="float: right" class="help-block">Ex: Mr.Khayrul Islam</p>
+                                <p style="float: right" class="help-block">Ex: Mr.John Doe</p>
                             </div>
                             <div class="form-group">
                                 <label class="text-bold">Product Manager Phone Number</label>
@@ -189,7 +189,7 @@ $i = 0;
                                            placeholder="Phone Number"
                                            data-mask="phone"/>
                                 </div>
-                                <p style="float: right" class="help-block">Ex: 183 587 9587</p>
+                                <p style="float: right" class="help-block">Ex: 183 344 5566</p>
                             </div>
                         </div>
 
@@ -334,7 +334,7 @@ $i = 0;
                                                            placeholder="Product Manager Name"
                                                            class="form-control" value="<?= $drug['pm_name'] ?>">
                                                 </div>
-                                                <p style="float: right" class="help-block">Ex: Mr.Khayrul Islam</p>
+                                                <p style="float: right" class="help-block">Ex: Mr.John Doe</p>
                                             </div>
                                             <div class="form-group">
                                                 <label class="text-bold">Product Manager Phone Number</label>
@@ -348,7 +348,7 @@ $i = 0;
                                                            data-mask="phone"
                                                            value="<?= substr($drug['pm_phone'], 1, 10) ?>"/>
                                                 </div>
-                                                <p style="float: right" class="help-block">Ex: 183 587 9587</p>
+                                                <p style="float: right" class="help-block">Ex: 183 344 5566</p>
                                             </div>
                                         </div>
 

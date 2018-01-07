@@ -207,18 +207,17 @@
                 <div class="form-group">
                     <label class="control-label text-success">Answer</label>
                     <script type="text/javascript">
-                        jQuery(document).ready(function ($) {
+
                             $("#answer").selectBoxIt({
                                 showFirstOption: true
                             }).on('open', function () {
                                 // Adding Custom Scrollbar
                                 $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
                             });
-                        });
                     </script>
 
                     <select name="answer" class="form-control ans" id="answer">
-                        <option value="-1">Select answer</option>
+                        <option selected="selected" value="-1">Select answer</option>
                         <option value="a">Option one</option>
                         <option value="b">Option two</option>
                         <option value="c">Option three</option>

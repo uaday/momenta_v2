@@ -54,6 +54,56 @@
             </div>
             <?php $this->session->unset_userdata('create_test');
         } ?>
+        <?php if ($this->session->userdata('publish_exam')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('publish_exam'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('publish_exam');
+        } ?>
+        <?php if ($this->session->userdata('unpublish_exam')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('unpublish_exam'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('unpublish_exam');
+        } ?>
+        <?php if ($this->session->userdata('assign_test')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('assign_test'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('assign_test');
+        } ?>
+        <?php if ($this->session->userdata('delete_exams')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('delete_exams'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('delete_exams');
+        } ?>
+        <?php if ($this->session->userdata('update_exam')) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong><?php echo $this->session->userdata('update_exam'); ?></strong>
+            </div>
+            <?php $this->session->unset_userdata('update_exam');
+        } ?>
         <div class="panel-body">
             <div class="table-responsive">
                 <script type="text/javascript">

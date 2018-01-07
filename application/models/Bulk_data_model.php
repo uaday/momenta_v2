@@ -29,7 +29,7 @@ class Bulk_data_model extends CI_Model
             if($this->db->query($sql2))
             {
                 $curl = curl_init();
-                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $pso_id\nRenata Password: $pso_password\nMomenta App Download Link: momenta.renata-ltd.com/download_app").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_renata_id.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
+                curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $pso_id\nRenata Password: $pso_password\nMomenta App Download Link: https://goo.gl/DMyhq1").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_renata_id.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
                 // curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("We are scheduled to go live with Momenta on September 18, 2017. Please uninstall your existing app if you had it before. Stay tuned!").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_renata_id.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
                 $resp = curl_exec($curl);
                 if($resp)
@@ -49,7 +49,9 @@ class Bulk_data_model extends CI_Model
     public function upload_pso_file()
     {
         $check_array = array();
+        $check_array_pso_code = array();
         $duplicate = array();
+        $duplicate_pso_code = array();
         $allowed = array('csv');
         $filename = $_FILES['pso_bulk']['name'];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -77,10 +79,15 @@ class Bulk_data_model extends CI_Model
 
                     if ($k != 0) {
                         $d_check = array_search($insert_csv['pso_id'], $check_array);
+                        $d_check_pso_code = array_search($insert_csv['renata_id'], $check_array_pso_code);
                         if ($d_check > -1) {
                             array_push($duplicate, $insert_csv['pso_id']);
+                        }
+                        if ($d_check_pso_code > -1) {
+                            array_push($duplicate_pso_code, $insert_csv['renata_id']);
                         } else {
                             array_push($check_array, $insert_csv['pso_id']);
+                            array_push($check_array_pso_code, $insert_csv['renata_id']);
                             $val11 = substr($insert_csv['b_code'], 0, 1);
                             if ($val11 != 0) {
                                 $insert_csv['b_code'] = '0' . $insert_csv['b_code'];
@@ -117,6 +124,7 @@ class Bulk_data_model extends CI_Model
             }
             fclose($fp) or die("can't close file");
             $this->session->set_userdata('duplicate', $duplicate);
+            $this->session->set_userdata('duplicate_pso_code', $duplicate_pso_code);
             $data['success'] = "success";
             return $data;
         }

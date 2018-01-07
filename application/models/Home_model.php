@@ -92,9 +92,10 @@ class Home_model extends CI_Model {
     }
     public function get_exam_status()
     {
+        $this_date=date('Y');
         $sql="SELECT month(ea.date) month,count(CASE WHEN ea.exam_status=1 THEN 1 END) as plus,count(CASE WHEN e.pass_marks<=(ea.marks*100)/e.exam_marks AND ea.exam_status=1 THEN ea.assign_id END) as total_pass,
         count(CASE WHEN e.pass_marks>(ea.marks*100)/e.exam_marks AND ea.exam_status=1 THEN ea.assign_id END) as total_fail FROM tbl_exam_assign ea,tbl_exam e where e.exam_id=ea.tbl_exam_exam_id AND
-         YEAR(ea.date)='2017' GROUP BY Month(ea.date)";
+         YEAR(ea.date)=$this_date GROUP BY Month(ea.date)";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

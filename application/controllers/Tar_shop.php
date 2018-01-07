@@ -137,7 +137,16 @@ class Tar_shop extends CI_Controller {
     public function change_status()
     {
         $incentives_id=$this->input->get('incentives_id');
+        $incentives_name=$this->input->get('incentives_name');
         $status=$this->input->get('status');
+        if($status=='0')
+        {
+            $this->session->set_userdata('inactive_incentives',$incentives_name.' Incentive successfully inactive');
+        }
+        else
+        {
+            $this->session->set_userdata('active_incentives',$incentives_name.' Incentive successfully Active');
+        }
         $result=$this->tar_shop_model->update_status($incentives_id,$status);
         redirect(base_url() . 'tar_shop/manage_incentives', 'refresh');
     }
@@ -146,7 +155,7 @@ class Tar_shop extends CI_Controller {
     {
         $incentives_id=$this->input->get('incentives_id');
         $result=$this->tar_shop_model->delete_incentives($incentives_id);
-        $this->session->set_userdata('delete_incentives','Incentive Deleted');
+        $this->session->set_userdata('delete_incentives','Incentive Successfully Deleted');
         redirect(base_url() . 'tar_shop/manage_incentives', 'refresh');
     }
 
@@ -199,7 +208,7 @@ class Tar_shop extends CI_Controller {
 
         if($result=='1')
         {
-            $this->session->set_userdata('update_incentives','Incentive Updated');
+            $this->session->set_userdata('update_incentives','Incentive Successfully Updated');
             redirect(base_url() . 'tar_shop/manage_incentives', 'refresh');
         }
 
