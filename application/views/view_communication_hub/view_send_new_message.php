@@ -214,18 +214,21 @@
                     <div id="collapseThree-2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="col-sm-3">
-                                <select style="width: 600px" name="type_region[]" class="example-selectAllJustVisible1" id="region"
-                                        multiple="multiple" onchange="region_pso_list();" >
-                                    <?php foreach ($regions as $region) { ?>
-                                        <option value="<?php echo $region['rsm_code'] ?>"><?php echo $region['region'] ?> (<?php echo $region['rsm_code'] ?>)</option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
                                 <select style="width: 600px" name="pso_type[]" class="example-selectAllJustVisible2" id="pso_type"
-                                        multiple="multiple" onchange="type_pso_list();" >
+                                        multiple="multiple"  onchange="type_region_list();">
+                                    <?php foreach ($types as $type){?>
+                                        <option value="<?php echo $type['pso_user_type_id']?>"><?= $type['pso_user_type_name']?></option>
+                                    <?php }?>
                                 </select>
                             </div>
+
+                            <div class="col-sm-3">
+                                <select style="width: 600px" name="type_region[]" class="example-selectAllJustVisible1" id="region"
+                                        multiple="multiple" onchange="type_pso_list();"  >
+
+                                </select>
+                            </div>
+
                             <div class="col-sm-3">
                                 <select name="psos[]" id="psos" class="example-selectAllJustVisible3" multiple="multiple">
 

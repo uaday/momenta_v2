@@ -86,6 +86,14 @@ class Pso_model extends CI_Model {
         return $result->result_array();
     }
 
+    public function get_region_by_pso_type($pso_type)
+    {
+        $sql="SELECT DISTINCT r.rsm_code,r.region FROM tbl_user_pso p,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code AND d.tbl_user_rsm_rsm_code=r.rsm_code and p.tbl_pso_user_type_pso_user_type_id IN($pso_type)";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
+
     public function get_depot1()
     {
         $sql="SELECT * FROM tbl_depot";

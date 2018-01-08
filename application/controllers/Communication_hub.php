@@ -52,6 +52,7 @@ class Communication_hub extends CI_Controller {
         $this->session->set_userdata('sub_menu','send_message');
         $data['business'] = $this->medicine_literature_model->getAllbusiness();
         $data['regions'] = $this->pso_model->get_region();
+        $data['types'] = $this->pso_model->get_pso_type();
         $data['psos'] = $this->pso_model->get_psos();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);

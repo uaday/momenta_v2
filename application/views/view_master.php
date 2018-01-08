@@ -1621,7 +1621,7 @@
         $("#psos").multiselect();
         var pso_type=$('#pso_type').val();
         var region=$('#region').val();
-        if(pso_type!=null)
+        if(region!=null)
         {
             $.ajax(
                 {
@@ -1669,6 +1669,39 @@
                         $("#regional_region").multiselect("clearSelection");
                         $("#regional_region").append(result);
                         $("#regional_region").multiselect('rebuild');
+
+
+                    },
+                    error: function (result) {
+                        alert('POST failed.');
+                    }
+                }
+            )
+        }
+        else
+        {
+            $("#psos").val("<option value='-1'>No Result</option>");
+            $("#psos").multiselect('rebuild');
+        }
+    }
+
+
+    function type_region_list()
+    {
+        $("#region").multiselect();
+        var pso_type=$('#pso_type').val();
+        if(pso_type!='')
+        {
+            $.ajax(
+                {
+                    type: 'POST',
+                    data: {pso_type: pso_type},
+                    url: "<?php echo site_url('find/find_region_by_pso_type')?>",
+                    success: function (result) {
+                        $("#region").empty();
+                        $("#region").multiselect("clearSelection");
+                        $("#region").append(result);
+                        $("#region").multiselect('rebuild');
 
 
                     },
