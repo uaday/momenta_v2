@@ -119,10 +119,15 @@ class Pso_model extends CI_Model {
 
     public function select_all_pso()
     {
-        $sql="SELECT p.renata_id AS renata_id,p.pso_id AS pso_id,p.pso_name AS pso_name,p.pso_phone AS pso_phone,d.depot_name AS depot_name,ur.region AS region,b.business_name,b.business_code FROM tbl_user_pso p,tbl_depot d,tbl_user_dsm ud,tbl_user_rsm ur,tbl_business b WHERE   p.tbl_user_dsm_dsm_code=ud.dsm_code  AND ud.tbl_user_rsm_rsm_code=ur.rsm_code AND b.business_code=p.tbl_business_business_code AND p.tbl_depot_depot_code=d.depot_code ORDER BY p.renata_id";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('tbl_user_pso.renata_id as renata_id,tbl_user_pso.pso_id as pso_id,tbl_user_pso.pso_name as pso_name,tbl_user_pso.pso_phone as pso_phone,tbl_user_rsm.region as region,tbl_business.business_name,tbl_business.business_code,tbl_depot.depot_name as depot_name');
+        $this->db->from('tbl_user_pso');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.dsm_code = tbl_user_pso.tbl_user_dsm_dsm_code','left');
+        $this->db->join('tbl_user_rsm', 'tbl_user_rsm.rsm_code = tbl_user_dsm.tbl_user_rsm_rsm_code','left');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_pso.tbl_business_business_code','left');
+        $this->db->join('tbl_depot', 'tbl_depot.depot_code = tbl_user_pso.tbl_depot_depot_code','left');
+        $this->db->order_by("tbl_user_pso.renata_id",'ASC');
+        return $this->db->get()->result_array();
+
     }
     public function update_password($pso_id,$pso_password)
     {
@@ -157,6 +162,15 @@ class Pso_model extends CI_Model {
     {
         $query = $this->db->get('tbl_user_pso');
         return $query->result_array();
+    }
+
+    public function dsm_code_missing()
+    {
+        $this->db->select('tbl_user_pso.renata_id as renata_id,tbl_user_pso.pso_id as pso_id');
+        $this->db->from('tbl_user_pso');
+        $this->db->join('tbl_user_dsm', 'tbl_user_dsm.dsm_code = tbl_user_pso.tbl_user_dsm_dsm_code','left');
+        $this->db->where('tbl_user_dsm.dsm_code is null');
+        return $this->db->get()->result_array();
     }
 
     

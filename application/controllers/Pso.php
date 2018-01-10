@@ -52,6 +52,7 @@ class Pso extends CI_Controller
     {
         $this->session->set_userdata('sub_menu','manage_pso');
         $data['psos'] = $this->pso_model->select_all_pso();
+        $data['miss_dsms'] = $this->pso_model->dsm_code_missing();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);

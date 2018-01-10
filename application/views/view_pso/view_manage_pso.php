@@ -108,6 +108,18 @@ $i=0;
                 </div>
                 <?php $this->session->unset_userdata('confirm_add_pso');}?>
 
+            <?php if (isset($miss_dsms)) {
+                foreach ($miss_dsms as $miss_dsm){
+                ?>
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo "<span class='text-danger'>".$miss_dsm['pso_id']."</span>".' PSO DSM code is invalid please check manually' ?> </strong>
+                </div>
+                <?php } }?>
+
         </div>
 
         <div class="panel-body">
