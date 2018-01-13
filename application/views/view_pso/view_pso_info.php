@@ -97,7 +97,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">PSO Phone Number</label>
-                    <input type="text" class="form-control" id="pm_phone_update" name="pso_phone"  value="<?= substr($pso['0']['pso_phone'], 1, 10) ?>"  data-mask="phone" placeholder="Enter PSO Phone Number" data-validate="required" data-message-required="Please fill up  PSO Phone Number"/>
+                    <input max="9999999999" type="number" class="form-control" id="pm_phone_update" name="pso_phone"  value="<?= substr($pso['0']['pso_phone'], 1, 10) ?>"   placeholder="Enter PSO Phone Number" data-validate="required" data-message-required="Please fill up  PSO Phone Number"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">PSO Designation</label>
