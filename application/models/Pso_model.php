@@ -173,5 +173,14 @@ class Pso_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+    public function pso_code_duplicate()
+    {
+        $this->db->select('pso_id,renata_id,COUNT(renata_id) AS dup_id');
+        $this->db->from('tbl_user_pso');
+        $this->db->group_by('renata_id');
+        $this->db->having('COUNT(renata_id) > 1');
+        return $this->db->get()->result_array();
+    }
+
     
 }

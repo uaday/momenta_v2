@@ -111,12 +111,24 @@ $i=0;
             <?php if (isset($miss_dsms)) {
                 foreach ($miss_dsms as $miss_dsm){
                 ?>
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $miss_dsm['pso_id'].' PSO DSM code is invalid please check manually' ?> </strong>
+                </div>
+                <?php } }?>
+
+            <?php if (isset($pso_code_duplicates)) {
+                foreach ($pso_code_duplicates as $code_duplicate){
+                ?>
                 <div class="alert alert-warning">
                     <button type="button" class="close" data-dismiss="alert">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    <strong><?php echo "<span class='text-danger'>".$miss_dsm['pso_id']."</span>".' PSO DSM code is invalid please check manually' ?> </strong>
+                    <strong><?php echo $code_duplicate['renata_id'].' PSO code has been assigned to '.$code_duplicate['dup_id'].' number of PSO(s)'?> </strong>
                 </div>
                 <?php } }?>
 
