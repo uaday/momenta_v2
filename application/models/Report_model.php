@@ -15,6 +15,16 @@ class Report_model extends CI_Model {
         $result = $this->db->query($sql);
         return $result->result_array();
     }
+    public function find_pso_test_report($exam_id)
+    {
+        $sql="SELECT s.sm_code,r.rsm_code,r.region,d.dsm_code,p.renata_id,p.pso_id,p.pso_name,(CASE WHEN e.exam_status= 1 THEN 'Yes' ELSE 'No' END) AS attended,
+              e.marks,ex.exam_marks,ROUND(((e.marks/ex.exam_marks)*100)) AS accuracy FROM tbl_user_pso p,tbl_exam ex,tbl_exam_assign e,tbl_user_sm s,
+              tbl_user_rsm r,tbl_user_dsm d  WHERE ex.exam_id=e.tbl_exam_exam_id AND s.sm_code=r.tbl_user_sm_sm_code AND  
+              r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code AND p.pso_id=e.tbl_pso_pso_id AND ex.exam_id='$exam_id' ";
+        $this->db->query("set character_set_results='utf8'");
+        $result = $this->db->query($sql);
+        return $result->result_array();
+    }
 
 
 

@@ -30,5 +30,16 @@ class Report extends CI_Controller {
         $data['main_content'] =$this->parser->parse('view_access_denied',$data,TRUE);
         $this->load->view('view_master',$data);
     }
+    public function pso_test_report($exam_id=0)
+    {
+        $data['report'] = $this->report_model->find_pso_test_report($exam_id);
+        echo json_encode($data['report']);
+        exit();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_access_denied',$data,TRUE);
+        $this->load->view('view_master',$data);
+    }
 
 }
