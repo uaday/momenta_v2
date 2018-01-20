@@ -210,7 +210,7 @@
                 <?php if($this->session->userdata('user_type')!='8'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='test') echo "active opened "?>">
                     <a href="#">
-                        <i class="fa fa-graduation-cap"></i>
+                        <i class="fa fa-graduation-cap fa-2x"></i>
                         <span class="title">Testing Center</span>
                     </a>
                     <ul>
@@ -279,8 +279,36 @@
                     </ul>
                 </li>
 
-
-
+                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
+                <li class="<?php if($this->session->userdata('main_menu')=='report') echo "active opened"?>">
+                    <a href="#">
+                        <i class="fa fa-file-text-o fa-2x"></i>
+                        <span class="title">Report </span>
+                    </a>
+                    <ul>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='regional_test_report') echo "active"?>">
+                            <a href="<?= base_url()?>report/regional_report">
+                                <span class="title">Regional Test Report</span>
+                            </a>
+                        </li>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='pso_test_report') echo "active"?>">
+                            <a href="<?= base_url()?>communication_hub/view_message">
+                                <span class="title">PSO Test Report</span>
+                            </a>
+                        </li>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='pso_test_report_dump') echo "active"?>">
+                            <a href="<?= base_url()?>Communication_hub/send_message">
+                                <span class="title">PSO Test Report Dump</span>
+                            </a>
+                        </li>
+                        <li class="<?php if($this->session->userdata('sub_menu')=='all_test_report_dump') echo "active"?>">
+                            <a href="<?= base_url()?>report/all_test_report_dump">
+                                <span class="title">All Test Report</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <?php }?>
 
                 <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">

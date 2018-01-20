@@ -616,5 +616,13 @@ class Test_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    public function all_test_report()
+    {
+        $this->db->select('tbl_exam.*');
+        $this->db->from('tbl_exam');
+        $this->db->order_by("tbl_exam.exam_name",'ASC');
+        return $this->db->get()->result_array();
+    }
+
 
 }
