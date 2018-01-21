@@ -22,12 +22,22 @@ class Report extends CI_Controller {
     }
     public function regional_report()
     {
-
+        $this->session->set_userdata('sub_menu','regional_test_report');
         $data['tests'] = $this->test_model->all_test_report();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
         $data['main_content'] =$this->parser->parse('view_report/view_regional_report',$data,TRUE);
+        $this->load->view('view_master',$data);
+    }
+    public function pso_report()
+    {
+        $this->session->set_userdata('sub_menu','pso_test_report');
+        $data['tests'] = $this->test_model->all_test_report();
+        $data['hero_header'] = TRUE;
+        $data['footer'] = $this->load->view('view_footer', '', TRUE);
+        $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
+        $data['main_content'] =$this->parser->parse('view_report/view_pso_test_report',$data,TRUE);
         $this->load->view('view_master',$data);
     }
     public function regional_test_report($exam_id=0)
@@ -45,37 +55,37 @@ class Report extends CI_Controller {
     public function pso_test_report($exam_id=0)
     {
         $this->session->set_userdata('sub_menu','pso_test_report');
-        $data['report'] = $this->report_model->find_pso_test_report($exam_id);
-        echo json_encode($data['report']);
-        exit();
+        $data['reports'] = $this->report_model->find_pso_test_report($exam_id);
+//        echo json_encode($data['reports']);
+//        exit();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
-        $data['main_content'] =$this->parser->parse('view_access_denied',$data,TRUE);
+        $data['main_content'] =$this->parser->parse('view_report/view_pso_test_report_download',$data,TRUE);
         $this->load->view('view_master',$data);
     }
     public function pso_test_report_dump()
     {
         $this->session->set_userdata('sub_menu','pso_test_report_dump');
-        $data['report'] = $this->report_model->find_pso_test_report_dump();
-        echo json_encode($data['report']);
-        exit();
+        $data['reports'] = $this->report_model->find_pso_test_report_dump();
+//        echo json_encode($data['report']);
+//        exit();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
-        $data['main_content'] =$this->parser->parse('view_access_denied',$data,TRUE);
+        $data['main_content'] =$this->parser->parse('view_report/view_pso_test_report_dump_download',$data,TRUE);
         $this->load->view('view_master',$data);
     }
     public function all_test_report_dump()
     {
         $this->session->set_userdata('sub_menu','all_test_report_dump');
-        $data['report'] = $this->report_model->find_test_bulk();
-        echo json_encode($data['report']);
-        exit();
+        $data['reports'] = $this->report_model->find_test_bulk();
+//        echo json_encode($data['reports']);
+//        exit();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
-        $data['main_content'] =$this->parser->parse('view_access_denied',$data,TRUE);
+        $data['main_content'] =$this->parser->parse('view_report/view_all_test_report_dump_download',$data,TRUE);
         $this->load->view('view_master',$data);
     }
 

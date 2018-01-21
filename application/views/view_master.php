@@ -292,12 +292,12 @@
                             </a>
                         </li>
                         <li class="<?php if($this->session->userdata('sub_menu')=='pso_test_report') echo "active"?>">
-                            <a href="<?= base_url()?>communication_hub/view_message">
+                            <a href="<?= base_url()?>report/pso_report">
                                 <span class="title">PSO Test Report</span>
                             </a>
                         </li>
                         <li class="<?php if($this->session->userdata('sub_menu')=='pso_test_report_dump') echo "active"?>">
-                            <a href="<?= base_url()?>Communication_hub/send_message">
+                            <a href="<?= base_url()?>report/pso_test_report_dump">
                                 <span class="title">PSO Test Report Dump</span>
                             </a>
                         </li>
