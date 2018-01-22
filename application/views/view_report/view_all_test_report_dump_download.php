@@ -116,14 +116,14 @@ $i=0;
                         <th colspan="8">Momenta exam Result</th>
                     </tr>
                     <tr>
-                        <th>#</th>
-                        <th>Exam Name</th>
-                        <th>Region</th>
-                        <th>Duration</th>
-                        <th>Exam Marks</th>
-                        <th>Pass Marks</th>
-                        <th>Exp Date</th>
-                        <th>Assign Date</th>
+                        <th style="vertical-align: text-top;text-align: left">#</th>
+                        <th style="vertical-align: text-top;text-align: left">Exam Name</th>
+                        <th style="vertical-align: text-top;text-align: left">Region</th>
+                        <th style="vertical-align: text-top;text-align: left">Duration</th>
+                        <th style="vertical-align: text-top;text-align: left">Exam Marks</th>
+                        <th style="vertical-align: text-top;text-align: left">Pass Marks</th>
+                        <th style="vertical-align: text-top;text-align: left">Exp Date</th>
+                        <th style="vertical-align: text-top;text-align: left">Assign Date</th>
                     </tr>
                     </thead>
                     <tbody>

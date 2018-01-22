@@ -6,7 +6,7 @@
  * Time: 12:01 PM
  */
 ?>
-<title> Report</title>
+<title> PSO Test Report</title>
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -14,8 +14,8 @@
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">All Test</h1>
-            <p class="description">All Test For Regional Report</p>
+            <h1 class="title">PSO Test Report</h1>
+            <p class="description">All Report For PSO Test</p>
         </div>
 
 
@@ -31,7 +31,7 @@
                 </li>
                 <li class="active">
 
-                    <strong>Regional Report</strong>
+                    <strong>PSO Test Report</strong>
                 </li>
             </ol>
 
@@ -137,7 +137,7 @@
                                 <td><label class=" text-success">Published</label></td>
                             <?php }?>
                             <td>
-                                <a title="Report" href="<?php echo base_url() ?>report/pso_test_report/<?php echo $test['exam_id'] ?>"><i class="fa fa-file-excel-o"></i></a>
+                                <a title="Report" href="<?php echo base_url() ?>report/pso_test_report?exam_id=<?php echo $test['exam_id'] ?>&&exam_name=<?php echo $test['exam_name'] ?>"><i class="fa fa-file-excel-o"></i></a>
                             </td>
                         </tr>
                     <?php } ?>

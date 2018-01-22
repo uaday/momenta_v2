@@ -1,4 +1,4 @@
-<?php
+ style="vertical-align: text-top;text-align: left"<?php
 /**
  * Created by PhpStorm.
  * User: Sudipta Ghosh
@@ -121,18 +121,18 @@ $i=0;
                         <th colspan="13">Momenta exam Result</th>
                     </tr>
                     <tr>
-                        <th>#</th>
-                        <th>SM Code</th>
-                        <th>RSM Code</th>
-                        <th>Region</th>
-                        <th>DSM Code</th>
-                        <th>PSO Code</th>
-                        <th>Renata ID</th>
-                        <th>PSO Name</th>
-                        <th>Total Test Assign</th>
-                        <th>Total Appeared Test</th>
-                        <th>Total Obtained Point</th>
-                        <th>Total Point</th>
+                        <th style="vertical-align: text-top;text-align: left">#</th>
+                        <th style="vertical-align: text-top;text-align: left">SM Code</th>
+                        <th style="vertical-align: text-top;text-align: left">RSM Code</th>
+                        <th style="vertical-align: text-top;text-align: left">Region</th>
+                        <th style="vertical-align: text-top;text-align: left">DSM Code</th>
+                        <th style="vertical-align: text-top;text-align: left">PSO Code</th>
+                        <th style="vertical-align: text-top;text-align: left">Renata ID</th>
+                        <th style="vertical-align: text-top;text-align: left">PSO Name</th>
+                        <th style="vertical-align: text-top;text-align: left">Total Test Assign</th>
+                        <th style="vertical-align: text-top;text-align: left">Total Appeared Test</th>
+                        <th style="vertical-align: text-top;text-align: left">Total Obtained Point</th>
+                        <th style="vertical-align: text-top;text-align: left">Total Point</th>
                     </tr>
                     </thead>
                     <tbody>

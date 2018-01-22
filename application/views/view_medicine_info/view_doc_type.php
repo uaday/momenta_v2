@@ -30,7 +30,7 @@ $i = 0;
                     <a href="#"><i class="fa-medkit"></i>Medicine Info</a>
                 </li>
                 <li class="active">
-                    <strong>Generic Name</strong>
+                    <strong>Doctor Type</strong>
                 </li>
             </ol>
 
@@ -41,7 +41,7 @@ $i = 0;
     <!-- Basic Setup -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">All Generic Name</h3>
+            <h3 class="panel-title">All Doctor Type</h3>
         </div>
         <div align="center">
             <?php if ($this->session->userdata('delete_pso_exams') == 'Pso Test Delete Successful') { ?>

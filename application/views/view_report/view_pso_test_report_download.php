@@ -13,7 +13,7 @@ $i=0;
 //$a_sum=$a_sum+round(($report['attend']/($report['attend']+$report['nattend']))*100);$na_sum=$na_sum+round(($report['nattend']/($report['attend']+$report['nattend']))*100);
 //$p_sum=$p_sum+$report['tpass'];$f_sum=$f_sum+$report['tfail'];
 ?>
-<title> Report</title>
+<title> :PSO Test Report(<?= $exam_name?> Test)</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -24,8 +24,8 @@ $i=0;
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">All Test</h1>
-            <p class="description">All Test For Regional Report</p>
+            <h1 class="title">PSO Test Report</h1>
+            <p class="description">All PSO Test Report</p>
         </div>
 
 
@@ -39,9 +39,13 @@ $i=0;
 
                     <a href="#">Report</a>
                 </li>
+                <li>
+
+                    <a href="#">PSO Test Report</a>
+                </li>
                 <li class="active">
 
-                    <strong>Regional Report</strong>
+                    <strong>PSO Test Report Download</strong>
                 </li>
             </ol>
 
@@ -122,18 +126,18 @@ $i=0;
                         <th colspan="13">Momenta exam Result</th>
                     </tr>
                     <tr>
-                        <th>#</th>
-                        <th>SM Code</th>
-                        <th>RSM Code</th>
-                        <th>Region</th>
-                        <th>DSM Code</th>
-                        <th>PSO Code</th>
-                        <th>Renata ID</th>
-                        <th>PSO Name</th>
-                        <th>Attended</th>
-                        <th>PSO Marks</th>
-                        <th>Exam Marks</th>
-                        <th>Accuracy</th>
+                        <th  style="vertical-align: text-top;text-align: left">#</th>
+                        <th style="vertical-align: text-top;text-align: left">SM Code</th>
+                        <th style=" vertical-align: text-top;text-align: left">RSM Code</th>
+                        <th style=" vertical-align: text-top;text-align: left">Region</th>
+                        <th style=" vertical-align: text-top;text-align: left">DSM Code</th>
+                        <th style=" vertical-align: text-top;text-align: left">PSO Code</th>
+                        <th style=" vertical-align: text-top;text-align: left">Renata ID</th>
+                        <th style=" vertical-align: text-top;text-align: left">PSO Name</th>
+                        <th style=" vertical-align: text-top;text-align: left">Attended</th>
+                        <th style=" vertical-align: text-top;text-align: left">PSO Marks</th>
+                        <th style=" vertical-align: text-top;text-align: left">Exam Marks</th>
+                        <th style=" vertical-align: text-top;text-align: left">Accuracy</th>
                     </tr>
                     </thead>
                     <tbody>
