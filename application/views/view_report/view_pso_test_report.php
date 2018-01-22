@@ -6,7 +6,7 @@
  * Time: 12:01 PM
  */
 ?>
-
+<title> Report</title>
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->

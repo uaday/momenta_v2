@@ -137,7 +137,7 @@
                                 <td><label class=" text-success">Published</label></td>
                             <?php }?>
                             <td>
-                                <a title="Report" href="<?php echo base_url() ?>report/regional_test_report/<?php echo $test['exam_id'] ?>"><i class="fa fa-file-excel-o"></i></a>
+                                <a title="Report" href="<?php echo base_url() ?>report/regional_test_report?exam_id=<?php echo $test['exam_id'] ?>&&exam_name=<?php echo $test['exam_name'] ?>"><i class="fa fa-file-excel-o"></i></a>
                             </td>
                         </tr>
                     <?php } ?>

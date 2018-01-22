@@ -7,7 +7,7 @@
  */
 $i=0;
 ?>
-
+<title> All Test Report Dump</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -19,7 +19,7 @@ $i=0;
 
         <div class="title-env">
             <h1 class="title">All Test</h1>
-            <p class="description">All Test For Regional Report</p>
+            <p class="description">All Test Report</p>
         </div>
 
 
@@ -35,7 +35,7 @@ $i=0;
                 </li>
                 <li class="active">
 
-                    <strong>Regional Report</strong>
+                    <strong>All Test Report</strong>
                 </li>
             </ol>
 

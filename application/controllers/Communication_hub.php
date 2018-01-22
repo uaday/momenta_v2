@@ -6,11 +6,9 @@ class Communication_hub extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        define( 'API_ACCESS_KEY', 'AAAApj6zYT4:APA91bG7kikxGt7fnXaZhq5t28FcYM85FbPjL8V8yXOpXy56nYP80U4jZibFkCZG6FmSsCiazdUbwwTavQ-agqT-gs_tJUPyM15nft6YqaRhgO_vrAOzxj9u2JtkIXc-W0Vi_QRGGkgA' );
 
         $data['name']=$this->session->userdata('name');
         $data['login_id']=$this->session->userdata('login_id');
-
         $data['tincentives']=$this->home_model->total_incentives();
         $data['texam']=$this->home_model->total_exam();
         $user_type=$this->session->userdata('user_type');
@@ -67,42 +65,7 @@ class Communication_hub extends CI_Controller {
         $this->load->view('view_footer');
     }
 
-    public function notification_push($token,$message_body,$message_title)
-    {
-        #API access key from Google API's Console
-        $registrationIds = $token;
 
-        #prep the bundle
-        $msg = array
-        (
-            'body' 	=> $message_body,
-            'title'	=> $message_title,
-            'icon'	=> 'myicon',/*Default Icon*/
-            'sound' => 'mySound'/*Default sound*/
-        );
-        $fields = array
-        (
-            'to'		=> $registrationIds,
-            'notification'	=> $msg
-        );
-
-        $headers = array
-        (
-            'Authorization: key=' . API_ACCESS_KEY,
-            'Content-Type: application/json'
-        );
-        #Send Reponse To FireBase Server
-        $ch = curl_init();
-        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
-        curl_setopt( $ch,CURLOPT_POST, true );
-        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
-        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
-        $result = curl_exec($ch );
-        curl_close( $ch );
-        return $result;
-    }
     public function universal_assignment()
     {
         $data['message_title']=$this->input->post('message_title');
@@ -119,7 +82,7 @@ class Communication_hub extends CI_Controller {
         foreach ($psos as $pso)
         {
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+            $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
@@ -140,7 +103,7 @@ class Communication_hub extends CI_Controller {
         foreach ($psos as $pso)
         {
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+            $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
@@ -163,7 +126,7 @@ class Communication_hub extends CI_Controller {
             if($pso_token)
             {
                 $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                $abc=$this->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
+                $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
             }
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
@@ -188,7 +151,7 @@ class Communication_hub extends CI_Controller {
             if($pso_token)
             {
                 $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                $abc=$this->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
+                $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
             }
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');

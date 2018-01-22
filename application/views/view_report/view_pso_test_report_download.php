@@ -13,7 +13,7 @@ $i=0;
 //$a_sum=$a_sum+round(($report['attend']/($report['attend']+$report['nattend']))*100);$na_sum=$na_sum+round(($report['nattend']/($report['attend']+$report['nattend']))*100);
 //$p_sum=$p_sum+$report['tpass'];$f_sum=$f_sum+$report['tfail'];
 ?>
-
+<title> Report</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -176,7 +176,6 @@ $i=0;
 
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/pdfmake.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/vfs_fonts.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/buttons.print.min.js"></script>

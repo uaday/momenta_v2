@@ -303,7 +303,7 @@
                         </li>
                         <li class="<?php if($this->session->userdata('sub_menu')=='all_test_report_dump') echo "active"?>">
                             <a href="<?= base_url()?>report/all_test_report_dump">
-                                <span class="title">All Test Report</span>
+                                <span class="title">All Test Report Dump</span>
                             </a>
                         </li>
                     </ul>

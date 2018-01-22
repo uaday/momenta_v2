@@ -13,10 +13,9 @@ $i=0;
 //$a_sum=$a_sum+round(($report['attend']/($report['attend']+$report['nattend']))*100);$na_sum=$na_sum+round(($report['nattend']/($report['attend']+$report['nattend']))*100);
 //$p_sum=$p_sum+$report['tpass'];$f_sum=$f_sum+$report['tfail'];
 ?>
+<title> PSO Test Report Dump</title>
 
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
-
-
 <div class="main-content">
 
     <!-- User Info, Notifications and Menu Bar -->
@@ -24,8 +23,8 @@ $i=0;
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">All Test</h1>
-            <p class="description">All Test For Regional Report</p>
+            <h1 class="title">PSO Test Report Dump</h1>
+            <p class="description">All Test For PSO(s) Report</p>
         </div>
 
 
@@ -41,7 +40,7 @@ $i=0;
                 </li>
                 <li class="active">
 
-                    <strong>Regional Report</strong>
+                    <strong>PSO Test Report Dump</strong>
                 </li>
             </ol>
 

@@ -6,7 +6,6 @@ class Medicine_literature extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        define('API_ACCESS_KEY', 'AAAApj6zYT4:APA91bG7kikxGt7fnXaZhq5t28FcYM85FbPjL8V8yXOpXy56nYP80U4jZibFkCZG6FmSsCiazdUbwwTavQ-agqT-gs_tJUPyM15nft6YqaRhgO_vrAOzxj9u2JtkIXc-W0Vi_QRGGkgA');
         $data['name'] = $this->session->userdata('name');
         $data['login_id'] = $this->session->userdata('login_id');
         $data['tincentives'] = $this->home_model->total_incentives();
@@ -97,14 +96,8 @@ class Medicine_literature extends CI_Controller
                     $notification_id = $this->communication_hub_model->add_notification($data);
                     foreach ($psos as $pso) {
                         $this->communication_hub_model->assign_notification($notification_id, $pso['pso_id']);
-                        $abc = $this->notification_push($pso['token'], $data['message_body'], $data['message_title']);
+                        $abc = $this->send_notification->notification_push($pso['token'], $data['message_body'], $data['message_title']);
                     }
-
-
-
-
-
-
                     $this->session->set_userdata('message', 'Upload Successful');
                     redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
                 }
@@ -127,7 +120,6 @@ class Medicine_literature extends CI_Controller
         $point2 = $this->input->post('point2');
         $point3 = $this->input->post('point3');
         $image_test = $this->input->post('image_test');
-
 
         $uploadPath = 'upload/drug_des_files';
         $config['upload_path'] = $uploadPath;
@@ -177,49 +169,13 @@ class Medicine_literature extends CI_Controller
             $notification_id = $this->communication_hub_model->add_notification($data);
             foreach ($psos as $pso) {
                 $this->communication_hub_model->assign_notification($notification_id, $pso['pso_id']);
-                $abc = $this->notification_push($pso['token'], $data['message_body'], $data['message_title']);
+                $abc = $this->send_notification->notification_push($pso['token'], $data['message_body'], $data['message_title']);
             }
             $this->session->set_userdata('message1', 'Version Successfully Updated');
             redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
         }
     }
 
-    public function notification_push($token, $message_body, $message_title)
-    {
-        #API access key from Google API's Console
-        $registrationIds = $token;
-
-        #prep the bundle
-        $msg = array
-        (
-            'body' => $message_body,
-            'title' => $message_title,
-            'icon' => 'myicon',/*Default Icon*/
-            'sound' => 'mySound'/*Default sound*/
-        );
-        $fields = array
-        (
-            'to' => $registrationIds,
-            'notification' => $msg
-        );
-
-        $headers = array
-        (
-            'Authorization: key=' . API_ACCESS_KEY,
-            'Content-Type: application/json'
-        );
-        #Send Reponse To FireBase Server
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
-    }
 
     public function all_literature()
     {

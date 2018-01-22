@@ -13,7 +13,7 @@ $i=0;
 //$a_sum=$a_sum+round(($report['attend']/($report['attend']+$report['nattend']))*100);$na_sum=$na_sum+round(($report['nattend']/($report['attend']+$report['nattend']))*100);
 //$p_sum=$p_sum+$report['tpass'];$f_sum=$f_sum+$report['tfail'];
 ?>
-
+<title> :<?= $exam_name?> Test Report</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -24,8 +24,8 @@ $i=0;
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">All Test</h1>
-            <p class="description">All Test For Regional Report</p>
+            <h1 class="title"><?= $exam_name?> Test Report</h1>
+            <p class="description">Report for <?= $exam_name?> Test</p>
         </div>
 
 
@@ -41,7 +41,7 @@ $i=0;
                 </li>
                 <li class="active">
 
-                    <strong>Regional Report</strong>
+                    <strong>Exam Report</strong>
                 </li>
             </ol>
 
@@ -52,7 +52,7 @@ $i=0;
     <!-- Basic Setup -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">All Test</h3>
+            <h3 class="panel-title"><?= $exam_name?> Test</h3>
         </div>
         <?php if ($this->session->userdata('create_test')) { ?>
             <div class="alert alert-success">

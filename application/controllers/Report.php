@@ -40,9 +40,12 @@ class Report extends CI_Controller {
         $data['main_content'] =$this->parser->parse('view_report/view_pso_test_report',$data,TRUE);
         $this->load->view('view_master',$data);
     }
-    public function regional_test_report($exam_id=0)
+    public function regional_test_report()
     {
+        $exam_id=$this->input->get('exam_id');
+        $exam_name=$this->input->get('exam_name');
         $this->session->set_userdata('sub_menu','regional_test_report');
+        $data['exam_name']=$exam_name;
         $data['reports'] = $this->report_model->find_exam_report_by_exam($exam_id);
 //        echo json_encode($data['report']);
 //        exit();
