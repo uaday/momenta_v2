@@ -279,7 +279,7 @@
                     </ul>
                 </li>
 
-                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
+
                 <li class="<?php if($this->session->userdata('main_menu')=='report') echo "active opened"?>">
                     <a href="#">
                         <i class="fa fa-file-text-o fa-2x"></i>
@@ -308,7 +308,7 @@
                         </li>
                     </ul>
                 </li>
-                <?php }?>
+
 
                 <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='pso') echo "active opened "?>">

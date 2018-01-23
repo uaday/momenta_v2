@@ -119,7 +119,7 @@ $i=0;
                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                     <thead>
                     <tr>
-                        <th colspan="6">Momenta exam Result</th>
+                        <th colspan="6">Momenta Exam Result</th>
                     </tr>
                     <tr>
                         <th>#</th>
@@ -168,8 +168,9 @@ $i=0;
 </div>
 
 <script src="<?= base_url()?>assets/jquery-datatable/jquery.dataTables.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">-->
 
-<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/jszip.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/pdfmake.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/vfs_fonts.js"></script>

@@ -13,7 +13,9 @@ $i=0;
 //$a_sum=$a_sum+round(($report['attend']/($report['attend']+$report['nattend']))*100);$na_sum=$na_sum+round(($report['nattend']/($report['attend']+$report['nattend']))*100);
 //$p_sum=$p_sum+$report['tpass'];$f_sum=$f_sum+$report['tfail'];
 ?>
-<title> :PSO Test Report(<?= $exam_name?> Test)</title>
+
+
+<title>: PSO Test Report(<?= $exam_name?> Test)</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -123,7 +125,7 @@ $i=0;
                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                     <thead>
                     <tr>
-                        <th colspan="13">Momenta exam Result</th>
+                        <th colspan="13">Momenta Exam Result</th>
                     </tr>
                     <tr>
                         <th  style="vertical-align: text-top;text-align: left">#</th>
@@ -178,10 +180,15 @@ $i=0;
 
 <script src="<?= base_url()?>assets/jquery-datatable/jquery.dataTables.js"></script>
 
-<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/jszip.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/vfs_fonts.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
 <script src="<?= base_url()?>assets/tables/jquery-datatable.js"></script>
+
+<script>
+    $('.buttons-copy').hide();
+    $('.buttons-print').hide();
+</script>

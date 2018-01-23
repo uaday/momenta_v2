@@ -35,6 +35,7 @@ class Home extends CI_Controller {
 
     public function index()
     {
+
         $this->session->set_userdata('sub_menu','home');
         $data['tincentives']=$this->home_model->total_incentives();
         $data['texam']=$this->home_model->total_exam();

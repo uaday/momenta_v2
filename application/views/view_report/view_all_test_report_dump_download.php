@@ -7,7 +7,7 @@
  */
 $i=0;
 ?>
-<title> All Test Report Dump</title>
+<title>: All Test Report Dump</title>
 <link href="<?= base_url()?>assets/csss/style.css" rel="stylesheet">
 
 
@@ -113,7 +113,7 @@ $i=0;
                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                     <thead>
                     <tr>
-                        <th colspan="8">Momenta exam Result</th>
+                        <th colspan="8">Momenta Exam Result</th>
                     </tr>
                     <tr>
                         <th style="vertical-align: text-top;text-align: left">#</th>
@@ -160,7 +160,7 @@ $i=0;
 
 <script src="<?= base_url()?>assets/jquery-datatable/jquery.dataTables.js"></script>
 
-<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="<?= base_url()?>assets/jquery-datatable/extensions/export/dataTables.buttons.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/jszip.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/pdfmake.min.js"></script>
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/vfs_fonts.js"></script>
@@ -168,3 +168,8 @@ $i=0;
 <script src="<?= base_url()?>assets/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
 <script src="<?= base_url()?>assets/tables/jquery-datatable.js"></script>
+
+<script>
+    $('.buttons-copy').hide();
+    $('.buttons-print').hide();
+</script>
