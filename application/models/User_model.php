@@ -216,6 +216,7 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
+        $this->db->join('tbl_user_marketing', 'tbl_user_marketing.renata_id = tbl_login.renata_id');
         $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '3');
         return $this->db->get()->result_array();
@@ -225,6 +226,7 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
+        $this->db->join('tbl_user_msd', 'tbl_user_msd.renata_id = tbl_login.renata_id');
         $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '8');
         return $this->db->get()->result_array();
@@ -234,6 +236,7 @@ class User_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('tbl_login');
+        $this->db->join('tbl_user_gm', 'tbl_user_gm.renata_id = tbl_login.renata_id');
         $this->db->join('tbl_business', 'tbl_business.business_code = tbl_login.tbl_business_business_code');
         $this->db->where('tbl_login.user_type', '7');
         return $this->db->get()->result_array();
