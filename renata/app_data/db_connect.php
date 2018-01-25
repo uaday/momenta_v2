@@ -5,7 +5,7 @@ class Db_connect
 	public $hostname='localhost';
 	public $username='root';
 	public $password='';
-	public $dbname='renata_sells_app_db_v2';
+	public $dbname='migratation_db_1';
     public $conn;
 	public function __construct()
     {
