@@ -48,7 +48,7 @@ class Login extends CI_Controller
                 {
                     $this->login_model-> update_login_status($renata_id);
                     $this->session->set_userdata('login_message','1');
-                    $sess_data = array('login' => true, 'employee_id'=>$result[0]->renata_id,'name' => $result[0]->name, 'login_id' => $result[0]->login_id,'user_type'=>$result[0]->user_type,'change_pass_status'=>$result[0]->change_pass_status,'business_code'=>$result[0]->tbl_business_business_code);
+                    $sess_data = array('login' => true, 'employee_id'=>$result[0]->renata_id,'name' => $result[0]->name, 'login_id' => $result[0]->login_id,'user_type'=>$result[0]->user_type,'change_pass_status'=>$result[0]->change_pass_status,'business_code'=>$result[0]->tbl_business_business_code,'designation'=>$result[0]->designation);
                     $this->session->set_userdata($sess_data);
                     if($this->session->userdata('change_pass_status')==0)
                         {
@@ -83,7 +83,7 @@ class Login extends CI_Controller
     }
     public function logout()
     {
-        $data=array('login'=>'','name'=>'','login_id'=>'','user_type'=>'','employee_id'=>'','change_pass_status'=>'','business_code'=>'');
+        $data=array('login'=>'','name'=>'','login_id'=>'','user_type'=>'','employee_id'=>'','change_pass_status'=>'','business_code'=>'','designation'=>'');
         $this->session->unset_userdata($data);
         $this->session->sess_destroy();
         redirect(base_url().'login');

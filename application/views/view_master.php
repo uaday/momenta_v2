@@ -21,7 +21,7 @@
 
     <title>Momenta</title>
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/linecons/css/linecons.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
@@ -74,7 +74,7 @@
                             <span class="user-status is-online"></span>
                         </h3>
 
-                        <p class="user-title">Web Developer</p>
+                        <p class="user-title"><?= $this->session->userdata('designation')?></p>
 
                         <div class="user-links">
 <!--                            <a href="extra-profile.html" class="btn btn-primary">Edit Profile</a>-->

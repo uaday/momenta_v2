@@ -18,7 +18,7 @@ if(mysqli_query($conn,$sql1))
 		if(mysqli_query($conn,$sql2))
 		{
 			$curl = curl_init();
-			curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $pso_id\nRenata Password: $pso_password\nMomenta App Download Link: momenta.renata-ltd.com/Momenta_v1/download_app").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_renata_id.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
+			curl_setopt_array($curl, array( CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => 'http://sms.sslwireless.com/pushapi/dynamic/server.php?user=RenataPharmaceuticals&pass=92o<8H52&sid=Momenta&sms='.urlencode("Your Renata App Id: $pso_id\nRenata Password: $pso_password\nMomenta App Download Link: https://goo.gl/pKK3A1").'&msisdn=88'.$pso_phone.'&csmsid='.$number.'App'.$pso_renata_id.'',CURLOPT_USERAGENT => 'Sample cURL Request' ));
             $resp = curl_exec($curl);
             if($resp)
             {
