@@ -2,8 +2,10 @@
 
 class Med_info_model extends CI_Model
 {
-    public function add_gen_name($bcode,$gen_name)
+    public function add_gen_name($bcode1,$gen_name1)
     {
+        $bcode = $this->db->escape_str($bcode1);
+        $gen_name = $this->db->escape_str($gen_name1);
         $sql="INSERT INTO tbl_drug_generic_name(gen_name,tbl_business_business_code) VALUES (N'$gen_name',N'$bcode')";
         $this->db->query($sql);
     }

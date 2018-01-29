@@ -129,6 +129,19 @@ class Medicine_literature_model extends CI_Model {
 
     public function get_new_version_id($doc_type,$drug_id)
     {
+        $sql_d="SELECT drug_image FROM tbl_drug_des WHERE tbl_drug_drug_id='$drug_id'";
+        $this->db->query("set character_set_results='utf8'");
+        $query=$this->db->query($sql_d);
+        if ($query->num_rows() > 0)
+        {
+
+        }
+        else
+        {
+            $sql_dd="INSERT INTO tbl_drug_des(tbl_drug_drug_id,create_drug_date,create_drug_time) VALUES(N'$drug_id',CURRENT_DATE,CURRENT_TIME )";
+            $this->db->query($sql_dd);
+        }
+
         $sql="SELECT version_id from tbl_drug_detail_version WHERE  tbl_doctor_type_doc_type_id=N'$doc_type' AND tbl_drug_drug_id=N'$drug_id' ORDER BY version_id DESC limit 1";
         $query=$this->db->query($sql);
         if ($query->num_rows() > 0)
@@ -177,7 +190,16 @@ class Medicine_literature_model extends CI_Model {
 
     public function getAllMed()
     {
-        $sql='SELECT * FROM tbl_drug d,tbl_drug_des dd WHERE d.drug_id=dd.tbl_drug_drug_id';
+        $business_code=$this->session->userdata('business_code');
+        if($business_code=='00')
+        {
+            $sql='SELECT * FROM tbl_drug d,tbl_drug_des dd WHERE d.drug_id=dd.tbl_drug_drug_id';
+        }
+        else
+        {
+            $sql="SELECT * FROM tbl_drug d,tbl_drug_des dd WHERE d.drug_id=dd.tbl_drug_drug_id AND d.tbl_business_business_code='$business_code'";
+        }
+
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();

@@ -58,6 +58,7 @@
                     <thead style="background-color: #2c2e2f;color: white">
                 <tr>
                     <th style="color: white; vertical-align: top;text-align: left">Drug Image</th>
+                    <th style="color: white; vertical-align: top;text-align: left">Business Code</th>
                     <th style="color: white; vertical-align: top;text-align: left">Drug Name</th>
                     <th style="color: white; vertical-align: top;text-align: left">Last Update Date</th>
                     <th style="color: white; vertical-align: top;text-align: left">View documents</th>
@@ -68,6 +69,7 @@
                 <tr>
                     <td><img src="{drug_image}" class="img-responsive img-circle" alt="" height="50px" width="50px">
                     </td>
+                    <td>{tbl_business_business_code}</td>
                     <td>{drug_name}</td>
                     <td>{create_drug_date}</td>
                     <td><a style="border-radius: 10px" target="_blank" class="btn btn-gray"

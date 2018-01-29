@@ -44,10 +44,6 @@ class Home extends CI_Controller {
         $data['tpso']=$this->home_model->total_pso($user_type,$employee_id);
         $data['tdrug']=$this->home_model->total_drug();
         $data['exam_assigns']=$this->home_model->get_exam_status();
-        $data['drugs']=$this->home_model->getSixMed();
-        $data['tests']=$this->home_model->getSixTest();
-        $data['sliders']=$this->home_model->loadSlider();
-        $data['incentives']=$this->home_model->getSixIncentive();
         $data['hero_header'] = TRUE;
         $data['footer'] = $this->load->view('view_footer', '', TRUE);
         $data['user_profile'] = $this->load->view('view_top_user_profile', '', TRUE);
