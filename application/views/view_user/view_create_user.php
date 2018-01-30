@@ -21,11 +21,11 @@
 
             <ol class="breadcrumb bc-1">
                 <li>
-                    <a href="<?= base_url()?>"><i class="fa-home"></i>Home</a>
+                    <a href="<?= base_url() ?>"><i class="fa-home"></i>Home</a>
                 </li>
                 <li>
 
-                    <a href="<?php echo base_url()?>user">USER</a>
+                    <a href="<?php echo base_url() ?>user">USER</a>
                 </li>
                 <li class="active">
 
@@ -45,23 +45,35 @@
         </div>
 
 
-        <div align="center">
-            <?php if ($this->session->userdata('user_add')) { ?>
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong><?php echo $this->session->userdata('user_add'); ?></strong>
-                </div>
-                <?php $this->session->unset_userdata('user_add');
-            } ?>
-
+        <div class="row">
+            <div align="center">
+                <?php if ($this->session->userdata('add_user')) { ?>
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <strong><?php echo $this->session->userdata('add_user') ?></strong>
+                    </div>
+                    <?php $this->session->unset_userdata('add_user');
+                } ?>
+                <?php if ($this->session->userdata('user_add')) { ?>
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <strong><?php echo $this->session->userdata('user_add') ?></strong>
+                    </div>
+                    <?php $this->session->unset_userdata('user_add');
+                } ?>
+            </div>
         </div>
 
         <div class="panel-body">
 
-            <form action="<?php echo base_url() ?>user/add_new_user" method="post" onsubmit="return create_user()" class="validate" enctype="multipart/form-data">
+            <form action="<?php echo base_url() ?>user/add_new_user" method="post" onsubmit="return create_user()"
+                  class="validate" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="control-label">User Name</label>
                     <input type="text" class="form-control" id="user_name" name="user_name" data-validate="required"
@@ -70,7 +82,8 @@
                 <div class="form-group">
                     <label class="control-label">Renata Employee ID</label>
                     <input type="text" class="form-control" id="renata_id" name="renata_id" data-validate="required"
-                           placeholder="Enter Renata Employee ID" data-message-required="Please fill up  Renata Employee ID"/>
+                           placeholder="Enter Renata Employee ID"
+                           data-message-required="Please fill up  Renata Employee ID"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">USER Type</label>
@@ -99,23 +112,27 @@
 
                 <div id="dsm_code" style="display: none" class="form-group">
                     <label class="control-label">DSM Code</label>
-                    <input type="text" class="form-control" name="dsm_code"   id="dsm_code1"
-                           placeholder="Enter DSM Code" data-validate="required" data-message-required="Please fill up  DSM Code"/>
+                    <input type="text" class="form-control" name="dsm_code" id="dsm_code1"
+                           placeholder="Enter DSM Code" data-validate="required"
+                           data-message-required="Please fill up  DSM Code"/>
                 </div>
                 <div id="rsm_code" style="display: none" class="form-group">
                     <label class="control-label">RSM Code</label>
-                    <input  type="text" class="form-control" name="rsm_code"   id="rsm_code1"
-                           placeholder="Enter RSM Code" data-validate="required" data-message-required="Please fill up  RSM Code"/>
+                    <input type="text" class="form-control" name="rsm_code" id="rsm_code1"
+                           placeholder="Enter RSM Code" data-validate="required"
+                           data-message-required="Please fill up  RSM Code"/>
                 </div>
                 <div id="sm_code" style="display: none" class="form-group">
                     <label class="control-label">SM Code</label>
-                    <input  type="text" class="form-control" name="sm_code"   id="sm_code1"
-                           placeholder="Enter SM Code" data-validate="required" data-message-required="Please fill up  SM Code"/>
+                    <input type="text" class="form-control" name="sm_code" id="sm_code1"
+                           placeholder="Enter SM Code" data-validate="required"
+                           data-message-required="Please fill up  SM Code"/>
                 </div>
-                <div  class="form-group">
+                <div class="form-group">
                     <label class="control-label">Designation</label>
                     <input type="text" class="form-control" id="designation" name="designation" data-validate="required"
-                           placeholder="Enter USER Designation" data-message-required="Please fill up  USER Designation"/>
+                           placeholder="Enter USER Designation"
+                           data-message-required="Please fill up  USER Designation"/>
                 </div>
                 <div id="region" style="display: none" class="form-group">
                     <label class="control-label">Region</label>
@@ -145,13 +162,11 @@
                 <div id="depot_code" style="display: none" class="form-group">
                     <label class="text-bold">Depot Name</label>
                     <script type="text/javascript">
-                        jQuery(document).ready(function($)
-                        {
+                        jQuery(document).ready(function ($) {
                             $("#depot_code1").select2({
                                 placeholder: 'Select your Depot...',
                                 allowClear: true
-                            }).on('select2-open', function()
-                            {
+                            }).on('select2-open', function () {
                                 // Adding Custom Scrollbar
                                 $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
                             });
