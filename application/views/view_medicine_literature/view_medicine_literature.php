@@ -189,7 +189,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success" id="save_btn1">Save</button>
 <!--                            <button type="reset" class="btn btn-white">Reset</button>-->
                         </div>
 
@@ -415,7 +415,7 @@
                         </div>
 
                         <div class="form-group ">
-                            <button type="submit" class="btn btn-success ">Save</button>
+                            <button type="submit" class="btn btn-success " id="save_btn">Save</button>
 <!--                            <button type="reset" class="btn btn-white">Reset</button>-->
                             <a onclick="return delete_version();" id="version_delete" style="visibility: hidden" class="btn btn-danger btn-icon btn-icon-standalone btn-sm">
                                 <i class="fa-trash"></i>

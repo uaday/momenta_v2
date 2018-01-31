@@ -1044,8 +1044,13 @@
             return false;
         }
         else {
+            $('#save_btn1').prop('disabled', true);
             return true;
         }
+    }
+    function test_assign() {
+        $('#test_assign_btn').prop('disabled', true);
+        return true;
     }
     function check_upload_version() {
 
@@ -1070,6 +1075,7 @@
             return false;
         }
         else {
+            $('#save_btn').prop('disabled', true);
             return true;
         }
     }

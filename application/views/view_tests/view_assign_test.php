@@ -80,7 +80,7 @@
         <h3 class="text-center text-bold text-gray">Exam Assign</h3><br>
     </div>
 
-    <form action="<?php echo base_url() ?>test/assign_test" accept-charset="utf-8" method="post">
+    <form action="<?php echo base_url() ?>test/assign_test" onsubmit="return test_assign()" accept-charset="utf-8" method="post">
         <input type="hidden" name="test_id" value="<?php echo $exam['0']['exam_id'] ?>">
         <input type="hidden" name="business_code" value="<?php echo $exam['0']['business_code'] ?>">
         <input type="hidden" name="form_type" value="2">
@@ -146,7 +146,7 @@
         <br>
         <div class="row">
             <div class="text-center col-md-offset-4 col-md-4">
-                <input id="singlebutton" type="submit" class="btn btn-block btn-blue"
+                <input id="test_assign_btn" type="submit" class="btn btn-block btn-blue"
                        value="Submit">
             </div>
         </div>

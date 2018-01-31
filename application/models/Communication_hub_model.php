@@ -40,6 +40,20 @@ class Communication_hub_model extends CI_Model
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+    public function get_pso_token_by_pso_type($pso_type_list)
+    {
+        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t,tbl_pso_user_type ut WHERE  p.pso_id=t.tbl_user_pso_pso_id AND p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list)";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
+    public function get_pso_token_by_pso_type_region($pso_type_list,$region)
+    {
+        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t,tbl_pso_user_type ut,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code and d.tbl_user_rsm_rsm_code=r.rsm_code AND  p.pso_id=t.tbl_user_pso_pso_id AND p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list) AND r.rsm_code in($region)";
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
     public function add_notification($data)
     {
         $this->db->insert('tbl_notification', $data);

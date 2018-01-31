@@ -122,7 +122,7 @@ class Test extends CI_Controller
 
     public function assign_test()
     {
-
+        ini_set('max_input_vars','3000' );
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         }
@@ -130,8 +130,28 @@ class Test extends CI_Controller
             $global = $this->input->post('global');
             $id = $this->input->post('test_id');
             $business_code = $this->input->post('business_code');
+
+            $result1 = $this->test_model->edit_test_info_by_exam_id($id);
+            $data['message_title'] = $result1['0']['exam_name'] . ' Test Assigned';
+            $data['message_body'] = $result1['0']['exam_name'].' test has been assigned to you on '. date('F j\, Y') . '. The exam will be expired on ' . date('F j\, Y',strtotime($result1['0']['exp_date'])) . '. Good luck.';
+            $data['sent_by'] = 'Marketing Department';
+            $data['reference'] = 'testing_center';
+            $data['user_id'] = $this->session->userdata('employee_id');
+            $data['date'] = date('Y-m-d');
+            $data['time'] = date("h:i:s");
+            $data['status'] = '1';
+
+            $notification_id=$this->communication_hub_model->add_notification($data);
+
+
             if ($global == 'global') {
                 $this->test_model->set_global($id,$business_code);
+                $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
+                foreach ($psos as $pso)
+                {
+                    $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                }
             } else {
                 $region=$this->input->post('region');
                 $pso_type=$this->input->post('pso_type');
@@ -142,6 +162,12 @@ class Test extends CI_Controller
                 {
                     foreach ($psos as $row) {
                         $this->test_model->set_psos($id, $row);
+                        $pso_token = $this->communication_hub_model->get_pso_token_by_pso($row);
+                        if($pso_token)
+                        {
+                            $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
+                            $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
+                        }
                     }
                 }
                 else if($region && $pso_type)
@@ -149,18 +175,39 @@ class Test extends CI_Controller
                     $region_list=implode(',',$region);
                     $pso_type_list=implode(',',$pso_type);
                     $this->test_model->set_region_pso_type($id, $region_list,$pso_type_list);
+                    $psos = $this->communication_hub_model->get_pso_token_by_pso_type_region($pso_type_list,$region_list);
+                    foreach ($psos as $pso)
+                    {
+                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
                 }
                 else if($region)
                 {
                     $region_list=implode(',',$region);
                     $this->test_model->set_region($id, $region_list);
+                    $psos = $this->communication_hub_model->get_pso_token_by_region($region_list);
+                    foreach ($psos as $pso)
+                    {
+                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
                 }
                 else if($pso_type)
                 {
                     $pso_type_list=implode(',',$pso_type);
                     $this->test_model->set_pso_type($id,$pso_type_list);
+                    $psos = $this->communication_hub_model->get_pso_token_by_pso_type($pso_type_list);
+                    foreach ($psos as $pso)
+                    {
+                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
                 }
             }
+
+
+
             $this->session->set_userdata('assign_test', 'Test Successfully Assign');
 //            redirect(base_url() . 'test/create_test', 'refresh');
             redirect(base_url() . 'test/manage_test', 'refresh');
@@ -174,6 +221,8 @@ class Test extends CI_Controller
             redirect(base_url() . 'access_denied');
         }
         else {
+            $test_name=$this->input->post('testName');
+            $exp_date=$this->input->post('exp_date');
             $ques=$this->input->post('ques');
             $option1=$this->input->post('option1');
             $option2=$this->input->post('option2');
@@ -189,6 +238,9 @@ class Test extends CI_Controller
             {
                 $this->test_model->save_test_with_ques($id,$ques,$option1,$option2,$option3,$option4,$answer);
             }
+
+
+
 
             $this->session->set_userdata('create_test', 'Create Test Successful');
 
