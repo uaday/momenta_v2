@@ -48,7 +48,7 @@ class Tar_shop extends CI_Controller {
     }
     public function add_incentive()
     {
-
+        $pso_token=array();
         $data['tbl_business_business_code']=$this->input->post('business');
         $data['incentives_name']=$this->input->post('title');
         $data['incentives_description']=$this->input->post('description');
@@ -80,6 +80,29 @@ class Tar_shop extends CI_Controller {
         }
         if($result=='1')
         {
+            $data1['message_title'] = 'New Incentive: '.$data['incentives_name'];
+            $data1['message_body'] = 'A new incentive, named '.$data['incentives_name'].' has been released in Renata Shop on '. date('F j\, Y') . '. Redeem it for '.$data['incentives_point'].' points. So HURRY!!!';
+            $data1['sent_by'] = 'Marketing Department';
+            $data1['reference'] = 'renata_shop';
+            $data1['user_id'] = $this->session->userdata('employee_id');
+            $data1['date'] = date('Y-m-d');
+            $data1['time'] = date("h:i:s");
+            $data1['status'] = '1';
+            $notification_id=$this->communication_hub_model->add_notification($data1);
+
+            $psos = $this->communication_hub_model->get_pso_token_by_business($data['tbl_business_business_code']);
+
+            foreach ($psos as $pso)
+            {
+                array_push($pso_token,$pso['token']);
+                $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+            }
+            $reg_ids=array_chunk($pso_token,1000);
+            foreach ($reg_ids as $reg_id)
+            {
+                $abc=$this->send_notification->notification_push($reg_id,$data1['message_body'],$data1['message_title']);
+            }
+
             $this->session->set_userdata('create_incentive','Incentive created successfully');
             redirect(base_url() . 'renata_shop/create_incentive', 'refresh');
         }

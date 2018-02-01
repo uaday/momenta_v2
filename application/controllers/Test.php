@@ -122,7 +122,7 @@ class Test extends CI_Controller
 
     public function assign_test()
     {
-        ini_set('max_input_vars','3000' );
+        $pso_token=array();
         if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
             redirect(base_url() . 'access_denied');
         }
@@ -147,10 +147,16 @@ class Test extends CI_Controller
             if ($global == 'global') {
                 $this->test_model->set_global($id,$business_code);
                 $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
+
                 foreach ($psos as $pso)
                 {
+                    array_push($pso_token,$pso['token']);
                     $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-                    $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                }
+                $reg_ids=array_chunk($pso_token,1000);
+                foreach ($reg_ids as $reg_id)
+                {
+                    $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
                 }
             } else {
                 $region=$this->input->post('region');
@@ -160,15 +166,19 @@ class Test extends CI_Controller
 
                 if($psos)
                 {
-                    foreach ($psos as $row) {
-                        $this->test_model->set_psos($id, $row);
-                        $pso_token = $this->communication_hub_model->get_pso_token_by_pso($row);
-                        if($pso_token)
-                        {
-                            $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                            $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
-                        }
+                    foreach ($psos as $pso)
+                    {
+                        $this->test_model->set_psos($id, $pso);
+                        $pso_details = $this->communication_hub_model->get_pso_token_by_psos($pso);
+                        array_push($pso_token,$pso_details->token);
+                        $this->communication_hub_model->assign_notification($notification_id,$pso_details->pso_id);
                     }
+                    $reg_ids=array_chunk($pso_token,1000);
+                    foreach ($reg_ids as $reg_id)
+                    {
+                        $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
+                    }
+
                 }
                 else if($region && $pso_type)
                 {
@@ -178,8 +188,13 @@ class Test extends CI_Controller
                     $psos = $this->communication_hub_model->get_pso_token_by_pso_type_region($pso_type_list,$region_list);
                     foreach ($psos as $pso)
                     {
+                        array_push($pso_token,$pso['token']);
                         $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
+                    $reg_ids=array_chunk($pso_token,1000);
+                    foreach ($reg_ids as $reg_id)
+                    {
+                        $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
                     }
                 }
                 else if($region)
@@ -189,8 +204,13 @@ class Test extends CI_Controller
                     $psos = $this->communication_hub_model->get_pso_token_by_region($region_list);
                     foreach ($psos as $pso)
                     {
+                        array_push($pso_token,$pso['token']);
                         $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
+                    $reg_ids=array_chunk($pso_token,1000);
+                    foreach ($reg_ids as $reg_id)
+                    {
+                        $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
                     }
                 }
                 else if($pso_type)
@@ -200,8 +220,13 @@ class Test extends CI_Controller
                     $psos = $this->communication_hub_model->get_pso_token_by_pso_type($pso_type_list);
                     foreach ($psos as $pso)
                     {
+                        array_push($pso_token,$pso['token']);
                         $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-                        $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+                    }
+                    $reg_ids=array_chunk($pso_token,1000);
+                    foreach ($reg_ids as $reg_id)
+                    {
+                        $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
                     }
                 }
             }

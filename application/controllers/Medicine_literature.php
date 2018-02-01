@@ -45,6 +45,7 @@ class Medicine_literature extends CI_Controller
 
     public function drug_dse_upload()
     {
+        $pso_token=array();
         $business_code=$this->input->post('business');
         $drug_id=$this->input->post('drug_id');
         $upload_type=$this->input->post('upload_file_type');
@@ -94,9 +95,15 @@ class Medicine_literature extends CI_Controller
 
                     $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
                     $notification_id = $this->communication_hub_model->add_notification($data);
-                    foreach ($psos as $pso) {
-                        $this->communication_hub_model->assign_notification($notification_id, $pso['pso_id']);
-                        $abc = $this->send_notification->notification_push($pso['token'], $data['message_body'], $data['message_title']);
+                    foreach ($psos as $pso)
+                    {
+                        array_push($pso_token,$pso['token']);
+                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    }
+                    $reg_ids=array_chunk($pso_token,1000);
+                    foreach ($reg_ids as $reg_id)
+                    {
+                        $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
                     }
                     $this->session->set_userdata('message', 'Upload Successful');
                     redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');
@@ -111,6 +118,7 @@ class Medicine_literature extends CI_Controller
 
     public function drug_dse_version_upload()
     {
+        $pso_token=array();
         $business_code = $this->input->post('business11');
         $drug_id = $this->input->post('drug_id');
         $doc_id = $this->input->post('doc_type11');
@@ -167,9 +175,15 @@ class Medicine_literature extends CI_Controller
 
             $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
             $notification_id = $this->communication_hub_model->add_notification($data);
-            foreach ($psos as $pso) {
-                $this->communication_hub_model->assign_notification($notification_id, $pso['pso_id']);
-                $abc = $this->send_notification->notification_push($pso['token'], $data['message_body'], $data['message_title']);
+            foreach ($psos as $pso)
+            {
+                array_push($pso_token,$pso['token']);
+                $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+            }
+            $reg_ids=array_chunk($pso_token,1000);
+            foreach ($reg_ids as $reg_id)
+            {
+                $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
             }
             $this->session->set_userdata('message1', 'Version Successfully Updated');
             redirect(base_url() . 'medicine_literature/update_medicine_literature', 'refresh');

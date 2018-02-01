@@ -68,6 +68,7 @@ class Communication_hub extends CI_Controller {
 
     public function universal_assignment()
     {
+        $pso_token=array();
         $data['message_title']=$this->input->post('message_title');
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
@@ -77,12 +78,17 @@ class Communication_hub extends CI_Controller {
         $data['time']=date("h:i:s");
         $data['status']='1';
         $business_code=$this->input->post('business_code');
-        $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
         $notification_id=$this->communication_hub_model->add_notification($data);
+        $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
         foreach ($psos as $pso)
         {
+            array_push($pso_token,$pso['token']);
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
+        }
+        $reg_ids=array_chunk($pso_token,1000);
+        foreach ($reg_ids as $reg_id)
+        {
+            $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
@@ -100,16 +106,24 @@ class Communication_hub extends CI_Controller {
         $region=implode(',',$this->input->POST('region'));
         $psos = $this->communication_hub_model->get_pso_token_by_region($region);
         $notification_id=$this->communication_hub_model->add_notification($data);
+        $pso_token=array();
         foreach ($psos as $pso)
         {
+            array_push($pso_token,$pso['token']);
             $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
-            $abc=$this->send_notification->notification_push($pso['token'],$data['message_body'],$data['message_title']);
         }
+        $reg_ids=array_chunk($pso_token,1000);
+        foreach ($reg_ids as $reg_id)
+        {
+            $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
+        }
+
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
     public function types_assignment()
     {
+        $pso_token=array();
         $data['message_title']=$this->input->post('message_title');
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
@@ -122,18 +136,21 @@ class Communication_hub extends CI_Controller {
         $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
-            $pso_token = $this->communication_hub_model->get_pso_token_by_psos($pso);
-            if($pso_token)
-            {
-                $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
-            }
+            $pso_details = $this->communication_hub_model->get_pso_token_by_psos($pso);
+            array_push($pso_token,$pso_details->token);
+            $this->communication_hub_model->assign_notification($notification_id,$pso_details->pso_id);
+        }
+        $reg_ids=array_chunk($pso_token,1000);
+        foreach ($reg_ids as $reg_id)
+        {
+            $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 
     }
     public function pso_assignment()
     {
+        $pso_token=array();
         $data['message_title']=$this->input->post('message_title');
         $data['message_body']=$this->input->post('message_body');
         $data['sent_by']=$this->input->post('sent_by');
@@ -146,13 +163,14 @@ class Communication_hub extends CI_Controller {
         $notification_id=$this->communication_hub_model->add_notification($data);
         foreach ($psos as $pso)
         {
-            $pso_token = $this->communication_hub_model->get_pso_token_by_pso($pso);
-
-            if($pso_token)
-            {
-                $this->communication_hub_model->assign_notification($notification_id,$pso_token->pso_id);
-                $abc=$this->send_notification->notification_push($pso_token->token,$data['message_body'],$data['message_title']);
-            }
+            $pso_details = $this->communication_hub_model->get_pso_token_by_psos($pso);
+            array_push($pso_token,$pso_details->token);
+            $this->communication_hub_model->assign_notification($notification_id,$pso_details->pso_id);
+        }
+        $reg_ids=array_chunk($pso_token,1000);
+        foreach ($reg_ids as $reg_id)
+        {
+            $abc=$this->send_notification->notification_push($reg_id,$data['message_body'],$data['message_title']);
         }
         $this->session->set_userdata('send_message','Message Successfully Sent');
 

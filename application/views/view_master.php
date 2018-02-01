@@ -1784,7 +1784,7 @@
                     data: {message_title:message_title,message_body: message_body,sent_by:sent_by,business_code:business_code},
                     url: "<?php echo site_url('communication_hub/universal_assignment')?>",
                     success: function (result) {
-//                        alert(result);
+//                        console.log(result);
                         location.reload();
                     },
                     error: function (result) {

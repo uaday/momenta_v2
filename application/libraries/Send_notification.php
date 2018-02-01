@@ -10,6 +10,7 @@ class Send_notification{
     function notification_push($token,$message_body,$message_title)
     {
         #API access key from Google API's Console
+
         $registrationIds = $token;
 
         #prep the bundle
@@ -22,7 +23,7 @@ class Send_notification{
         );
         $fields = array
         (
-            'to'		=> $registrationIds,
+            'registration_ids'		=> $registrationIds,
             'notification'	=> $msg
         );
 
