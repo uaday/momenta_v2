@@ -141,10 +141,19 @@ class Pso_model extends CI_Model {
     }
     public function select_pso_by_pso_id($pso_id)
     {
-        $sql="SELECT * FROM tbl_user_pso p,tbl_depot d,tbl_business b,tbl_pso_user_type t WHERE t.pso_user_type_id=p.tbl_pso_user_type_pso_user_type_id AND p.tbl_depot_depot_code=d.depot_code AND p.tbl_business_business_code=b.business_code AND p.pso_id='$pso_id'";
-        $this->db->query("set character_set_results='utf8'");
-        $result=$this->db->query($sql);
-        return $result->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_user_pso');
+        $this->db->join('tbl_business', 'tbl_business.business_code = tbl_user_pso.tbl_business_business_code','left');
+        $this->db->join('tbl_pso_user_type', 'tbl_pso_user_type.pso_user_type_id = tbl_user_pso.tbl_pso_user_type_pso_user_type_id','left');
+        $this->db->join('tbl_depot', 'tbl_depot.depot_code = tbl_user_pso.tbl_depot_depot_code','left');
+        $this->db->where("tbl_user_pso.pso_id",$pso_id);
+        return $this->db->get()->result_array();
+
+//
+//        $sql="SELECT * FROM tbl_user_pso p,tbl_depot d,tbl_business b,tbl_pso_user_type t WHERE t.pso_user_type_id=p.tbl_pso_user_type_pso_user_type_id AND p.tbl_depot_depot_code=d.depot_code AND p.tbl_business_business_code=b.business_code AND p.pso_id='$pso_id'";
+//        $this->db->query("set character_set_results='utf8'");
+//        $result=$this->db->query($sql);
+//        return $result->result_array();
     }
     public function get_pso_by_business($business_code)
     {
