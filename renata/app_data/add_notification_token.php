@@ -6,24 +6,24 @@ $pso_id=$_GET['pso_id'];
 $token=$_GET['token'];
 
 
-$sql1="SELECT notification_token_id FROM tbl_notification_token WHERE tbl_user_pso_pso_id='$pso_id'";
-$result1=mysqli_query($conn,$sql1);
-if($result1)
+$sql_tok="SELECT notification_token_id FROM tbl_notification_token WHERE token='$token'";
+$result_tok=mysqli_query($conn,$sql_tok);
+if($result_tok)
 {
-    $row=mysqli_num_rows($result1);
+    $row_tok=mysqli_num_rows($result_tok);
 }
 else{
-    $row='-1';
+    $row_tok='-1';
 }
 
-if($row>0)
+if($row_tok>0)
 {
-    $sql2="UPDATE tbl_notification_token SET token='$token' WHERE tbl_user_pso_pso_id='$pso_id'";
+    $sql_del="DELETE FROM tbl_notification_token WHERE token='$token'";
+    mysqli_query($conn,$sql_del);
 }
-else
-{
-    $sql2="INSERT INTO tbl_notification_token(token,tbl_user_pso_pso_id) VALUES('$token','$pso_id')";
-}
+
+
+$sql2="INSERT INTO tbl_notification_token(token,tbl_user_pso_pso_id) VALUES('$token','$pso_id')";
 if(mysqli_query($conn,$sql2))
 {
     $output="{'response'".':'."'ok'}";

@@ -1824,6 +1824,7 @@
                     data: {message_title:message_title,message_body: message_body,sent_by:sent_by,region:region},
                     url: "<?php echo site_url('communication_hub/regional_assignment')?>",
                     success: function (result) {
+                        //console.log(result);
                         location.reload();
                     },
                     error: function (result) {

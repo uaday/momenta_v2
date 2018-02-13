@@ -148,10 +148,12 @@ class Test extends CI_Controller
                 $this->test_model->set_global($id,$business_code);
                 $psos = $this->communication_hub_model->get_pso_token_by_business($business_code);
 
-                foreach ($psos as $pso)
-                {
-                    array_push($pso_token,$pso['token']);
-                    $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                foreach ($psos as $pso) {
+                    $pso_details = $this->communication_hub_model->get_pso_token_by_psos(trim($pso['pso_id']));
+                    foreach ($pso_details as $pso_detail) {
+                        array_push($pso_token, $pso_detail['token']);
+                    }
+                    $this->communication_hub_model->assign_notification($notification_id,trim($pso['pso_id']));
                 }
                 $reg_ids=array_chunk($pso_token,1000);
                 foreach ($reg_ids as $reg_id)
@@ -170,8 +172,10 @@ class Test extends CI_Controller
                     {
                         $this->test_model->set_psos($id, $pso);
                         $pso_details = $this->communication_hub_model->get_pso_token_by_psos($pso);
-                        array_push($pso_token,$pso_details->token);
-                        $this->communication_hub_model->assign_notification($notification_id,$pso_details->pso_id);
+                        foreach ($pso_details as $pso_detail) {
+                            array_push($pso_token, $pso_detail['token']);
+                        }
+                        $this->communication_hub_model->assign_notification($notification_id, $pso_details['0']['pso_id']);
                     }
                     $reg_ids=array_chunk($pso_token,1000);
                     foreach ($reg_ids as $reg_id)
@@ -186,10 +190,12 @@ class Test extends CI_Controller
                     $pso_type_list=implode(',',$pso_type);
                     $this->test_model->set_region_pso_type($id, $region_list,$pso_type_list);
                     $psos = $this->communication_hub_model->get_pso_token_by_pso_type_region($pso_type_list,$region_list);
-                    foreach ($psos as $pso)
-                    {
-                        array_push($pso_token,$pso['token']);
-                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    foreach ($psos as $pso) {
+                        $pso_details = $this->communication_hub_model->get_pso_token_by_psos(trim($pso['pso_id']));
+                        foreach ($pso_details as $pso_detail) {
+                            array_push($pso_token, $pso_detail['token']);
+                        }
+                        $this->communication_hub_model->assign_notification($notification_id,trim($pso['pso_id']));
                     }
                     $reg_ids=array_chunk($pso_token,1000);
                     foreach ($reg_ids as $reg_id)
@@ -202,10 +208,12 @@ class Test extends CI_Controller
                     $region_list=implode(',',$region);
                     $this->test_model->set_region($id, $region_list);
                     $psos = $this->communication_hub_model->get_pso_token_by_region($region_list);
-                    foreach ($psos as $pso)
-                    {
-                        array_push($pso_token,$pso['token']);
-                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    foreach ($psos as $pso) {
+                        $pso_details = $this->communication_hub_model->get_pso_token_by_psos(trim($pso['pso_id']));
+                        foreach ($pso_details as $pso_detail) {
+                            array_push($pso_token, $pso_detail['token']);
+                        }
+                        $this->communication_hub_model->assign_notification($notification_id,trim($pso['pso_id']));
                     }
                     $reg_ids=array_chunk($pso_token,1000);
                     foreach ($reg_ids as $reg_id)
@@ -218,10 +226,12 @@ class Test extends CI_Controller
                     $pso_type_list=implode(',',$pso_type);
                     $this->test_model->set_pso_type($id,$pso_type_list);
                     $psos = $this->communication_hub_model->get_pso_token_by_pso_type($pso_type_list);
-                    foreach ($psos as $pso)
-                    {
-                        array_push($pso_token,$pso['token']);
-                        $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+                    foreach ($psos as $pso) {
+                        $pso_details = $this->communication_hub_model->get_pso_token_by_psos(trim($pso['pso_id']));
+                        foreach ($pso_details as $pso_detail) {
+                            array_push($pso_token, $pso_detail['token']);
+                        }
+                        $this->communication_hub_model->assign_notification($notification_id,trim($pso['pso_id']));
                     }
                     $reg_ids=array_chunk($pso_token,1000);
                     foreach ($reg_ids as $reg_id)

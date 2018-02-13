@@ -92,10 +92,12 @@ class Tar_shop extends CI_Controller {
 
             $psos = $this->communication_hub_model->get_pso_token_by_business($data['tbl_business_business_code']);
 
-            foreach ($psos as $pso)
-            {
-                array_push($pso_token,$pso['token']);
-                $this->communication_hub_model->assign_notification($notification_id,$pso['pso_id']);
+            foreach ($psos as $pso) {
+                $pso_details = $this->communication_hub_model->get_pso_token_by_psos(trim($pso['pso_id']));
+                foreach ($pso_details as $pso_detail) {
+                    array_push($pso_token, $pso_detail['token']);
+                }
+                $this->communication_hub_model->assign_notification($notification_id,trim($pso['pso_id']));
             }
             $reg_ids=array_chunk($pso_token,1000);
             foreach ($reg_ids as $reg_id)

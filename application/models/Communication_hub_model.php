@@ -14,7 +14,7 @@ class Communication_hub_model extends CI_Model
 
     public function get_pso_token_by_business($business_code)
     {
-        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t WHERE p.pso_id=t.tbl_user_pso_pso_id AND p.tbl_business_business_code='$business_code'";
+        $sql="SELECT p.pso_id FROM tbl_user_pso p WHERE  p.tbl_business_business_code='$business_code'";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
@@ -24,32 +24,32 @@ class Communication_hub_model extends CI_Model
         $sql="SELECT t.tbl_user_pso_pso_id as pso_id,t.token as token FROM tbl_notification_token t WHERE t.tbl_user_pso_pso_id='$pso_id'";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
-        return $result->row();
+        return $result->result_array();
     }
     public function get_pso_token_by_pso($pso_id)
     {
         $sql="SELECT t.tbl_user_pso_pso_id as pso_id,t.token as token FROM tbl_notification_token t WHERE t.tbl_user_pso_pso_id='$pso_id'";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
-        return $result->row();
+        return $result->result_array();
     }
     public function get_pso_token_by_region($region)
     {
-        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code and d.tbl_user_rsm_rsm_code=r.rsm_code AND p.pso_id=t.tbl_user_pso_pso_id AND r.rsm_code in($region)";
+        $sql="SELECT p.pso_id FROM tbl_user_pso p,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code and d.tbl_user_rsm_rsm_code=r.rsm_code  AND r.rsm_code IN ($region)";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
     }
     public function get_pso_token_by_pso_type($pso_type_list)
     {
-        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t,tbl_pso_user_type ut WHERE  p.pso_id=t.tbl_user_pso_pso_id AND p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list)";
+        $sql="SELECT p.pso_id FROM tbl_user_pso p,tbl_pso_user_type ut WHERE   p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list)";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
     }
     public function get_pso_token_by_pso_type_region($pso_type_list,$region)
     {
-        $sql="SELECT p.pso_id,t.token as token FROM tbl_user_pso p,tbl_notification_token t,tbl_pso_user_type ut,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code and d.tbl_user_rsm_rsm_code=r.rsm_code AND  p.pso_id=t.tbl_user_pso_pso_id AND p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list) AND r.rsm_code in($region)";
+        $sql="SELECT p.pso_id FROM tbl_user_pso p,tbl_pso_user_type ut,tbl_user_dsm d,tbl_user_rsm r WHERE p.tbl_user_dsm_dsm_code=d.dsm_code and d.tbl_user_rsm_rsm_code=r.rsm_code  AND p.tbl_pso_user_type_pso_user_type_id=ut.pso_user_type_id AND ut.pso_user_type_id in($pso_type_list) AND r.rsm_code in($region)";
         $this->db->query("set character_set_results='utf8'");
         $result=$this->db->query($sql);
         return $result->result_array();
