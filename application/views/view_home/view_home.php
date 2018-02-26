@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-sm-3">
-
+            <a href="<?= base_url()?>medicine_literature/view_all_medicine_literature">
             <div class="xe-widget xe-counter" data-count=".num" data-from="0" data-to="<?= $tdrug['0']['total_d']?>" data-suffix="" data-duration="2">
                 <div class="xe-icon">
                     <i class="fa fa-flask"></i>
@@ -26,10 +26,11 @@
                     <span>Literature</span>
                 </div>
             </div>
+            </a>
 
         </div>
         <div class="col-sm-3">
-
+            <a href="<?= base_url()?>pso/manage_pso">
             <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="0" data-to="<?= $tpso['0']['total_p']?>" data-suffix="" data-duration="3" data-easing="false">
                 <div class="xe-icon">
                     <i class="fa fa-users"></i>
@@ -39,10 +40,11 @@
                     <span>PSO</span>
                 </div>
             </div>
+            </a>
 
         </div>
         <div class="col-sm-3">
-
+            <a href="<?= base_url()?>test/manage_test">
             <div class="xe-widget xe-counter xe-counter-info" data-count=".num" data-from="0" data-to="<?= $texam['0']['total_e']?>" data-duration="4" data-easing="true">
                 <div class="xe-icon">
                     <i class="fa-file-text-o"></i>
@@ -52,10 +54,10 @@
                     <span>Tests</span>
                 </div>
             </div>
-
+            </a>
         </div>
         <div class="col-sm-3">
-
+            <a href="<?= base_url()?>renata_shop/manage_incentive">
             <div class="xe-widget xe-counter xe-counter-red" data-count=".num" data-from="0" data-to="<?= $tincentives['0']['total_i']?>" data-prefix="" data-suffix="" data-duration="5" data-easing="true" data-delay="1">
                 <div class="xe-icon">
                     <i class="fa fa-gift"></i>
@@ -65,6 +67,7 @@
                     <span>Offers</span>
                 </div>
             </div>
+            </a>
 
         </div>
     </div>

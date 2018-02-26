@@ -122,6 +122,15 @@
                                 Terms of Service
                             </a>
                         </li>
+                        <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'){?>
+                            <li>
+                                <a target="_blank" href="http://isms.sslwireless.com/home.php?m=3&l=2">
+                                    <i class="fa-angle-right"></i>
+                                    SMS Counter
+                                </a>
+                            </li>
+                        <?php }?>
+
                     </ul>
                 </div>
 
