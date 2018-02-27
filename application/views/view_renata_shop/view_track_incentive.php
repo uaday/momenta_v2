@@ -71,65 +71,118 @@ $i=0;
 
             <div class="tab-content">
                 <div class="tab-pane active" id="gift_request">
-                    <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export" ><i class="fa fa-download"></i><span>Download Gift Request</span></a>
 <!--                    <button id="btnSelectedRows">-->
 <!--                        Get Selected Rows-->
 <!--                    </button>-->
 
-                    <div class="table-responsive">
-                        <form name="frm-example" id="frm-example" action="<?= base_url()?>tar_shop/approve_booking_chunk" method="post"  >
-                        <table id="example" class="display" cellspacing="0" width="100%">
-                            <thead style="background-color: #2c2e2f;color: white">
-                            <tr>
-                                <th ></th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Redemption Date</th>
-                                <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <td></td>
-                                <td>Image</td>
-                                <td>Incentive Name</td>
-                                <td>PSO Code</td>
-                                <td>Employee ID</td>
-                                <td>PSO Name</td>
-                                <td>Region</td>
-                                <td>Redemption Date</td>
-                                <td>Action</td>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            <?php foreach ($booked as $book){ ?>
+                    <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='8'){?>
+                        <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export" ><i class="fa fa-download"></i><span>Download Gift Request</span></a>
+                        <div class="table-responsive">
+                            <form name="frm-example" id="frm-example" action="<?= base_url()?>tar_shop/approve_booking_chunk" method="post"  >
+                                <table id="example" class="display" cellspacing="0" width="100%">
+                                    <thead style="background-color: #2c2e2f;color: white">
+                                    <tr>
+                                        <th ></th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Redemption Date</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td>Image</td>
+                                        <td>Incentive Name</td>
+                                        <td>PSO Code</td>
+                                        <td>Employee ID</td>
+                                        <td>PSO Name</td>
+                                        <td>Region</td>
+                                        <td>Redemption Date</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php foreach ($booked as $book){ ?>
+                                        <tr>
+                                            <td ><?php echo $book['transection_id']?></td>
+                                            <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
+                                                      height="50px" width="50px"></td>
+                                            <td ><?php echo $book['incentives_name']?></td>
+                                            <td ><?php echo $book['renata_id']?></td>
+                                            <td ><?php echo $book['pso_id']?></td>
+                                            <td ><?php echo $book['pso_name']?></td>
+                                            <td ><?php echo $book['region']?></td>
+                                            <td ><?php echo $book['redeem_date']?></td>
+                                            <td ><a href="<?php echo base_url()?>tar_shop/approve_booking?tar_id=<?php echo $book['transection_id']?>" onclick="return approve_transaction();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                </table>
+
+                                <p class="form-group">
+                                    <button type="submit" class="btn btn-primary" onclick="return approve_incentive_chunk()">Approve Selected</button>
+                                </p>
+
+                            </form>
+
+                        </div>
+                    <?php } else if($this->session->userdata('user_type')=='4'||$this->session->userdata('user_type')=='5'||$this->session->userdata('user_type')=='6') {?>
+                        <div class="table-responsive">
+                            <script type="text/javascript">
+                                jQuery(document).ready(function ($) {
+                                    $("#example-3").dataTable({
+                                        aLengthMenu: [
+                                            [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
+                                        ]
+                                    });
+                                });
+                            </script>
+                            <table id="example-3" class="table table-striped  table-responsive" cellspacing="0"
+                                   width="100%">
+                                <thead style="background-color: #2c2e2f;color: white">
                                 <tr>
-                                    <td ><?php echo $book['transection_id']?></td>
-                                    <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
-                                              height="50px" width="50px"></td>
-                                    <td ><?php echo $book['incentives_name']?></td>
-                                    <td ><?php echo $book['renata_id']?></td>
-                                    <td ><?php echo $book['pso_id']?></td>
-                                    <td ><?php echo $book['pso_name']?></td>
-                                    <td ><?php echo $book['region']?></td>
-                                    <td ><?php echo $book['redeem_date']?></td>
-                                    <td ><a href="<?php echo base_url()?>tar_shop/approve_booking?tar_id=<?php echo $book['transection_id']?>" onclick="return approve_transaction();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Redemption Date</th>
                                 </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
-
-                            <p class="form-group">
-                                <button type="submit" class="btn btn-primary" onclick="return approve_incentive_chunk()">Approve Selected</button>
-                            </p>
-
-                        </form>
-
-                    </div>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">PSO Name</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Region</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Redemption Date</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <?php foreach ($booked as $book){ ?>
+                                    <tr>
+                                        <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
+                                                  height="50px" width="50px"></td>
+                                        <td ><?php echo $book['incentives_name']?></td>
+                                        <td ><?php echo $book['renata_id']?></td>
+                                        <td ><?php echo $book['pso_id']?></td>
+                                        <td ><?php echo $book['pso_name']?></td>
+                                        <td ><?php echo $book['region']?></td>
+                                        <td ><?php echo $book['redeem_date']?></td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php }?>
 
                 </div>
 

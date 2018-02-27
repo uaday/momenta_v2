@@ -109,6 +109,27 @@ class Tar_shop_model extends CI_Model {
         $result=$this->db->query($sql);
         return $result->result_array();
     }
+
+    public function show_all_user_booked_incentive()
+    {
+        $renata_id=$this->session->userdata('employee_id');
+        $user_type=$this->session->userdata('user_type');
+        if($user_type=='04')
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE  s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND s.renata_id='$renata_id' AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
+        }
+        else if($user_type=='05')
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE AND s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND r.renata_id='$renata_id' AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
+        }
+        else if($user_type=='06')
+        {
+            $sql="SELECT p.*,t.*,i.*,r.region FROM tbl_incentives_transection t,tbl_user_pso p,tbl_incentives i,tbl_user_sm s,tbl_user_rsm r,tbl_user_dsm d WHERE  s.sm_code=r.tbl_user_sm_sm_code AND r.rsm_code=d.tbl_user_rsm_rsm_code AND d.dsm_code=p.tbl_user_dsm_dsm_code  AND p.pso_id=t.tbl_pso_pso_id AND i.incentives_id=t.tbl_incentives_incentives_id AND d.renata_id='$renata_id' AND  booked_incentive='1' AND t.approve!='1' ORDER BY t.redeem_date DESC,r.region ASC,p.renata_id ASC";
+        }
+        $this->db->query("set character_set_results='utf8'");
+        $result=$this->db->query($sql);
+        return $result->result_array();
+    }
     public function show_all_incentive_history()
     {
         $b_code=$this->session->userdata('business_code');

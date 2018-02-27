@@ -106,14 +106,14 @@
                                         customizeText: function (){
                                             return this.valueText  + " %";
                                         }
-                                    }, color: "#0e62c7" },
+                                    }, color: "#68b828" },
                                     { valueField: "fail",
                                         name: "Fail Status",label: {
                                         visible: true,
                                         customizeText: function (){
                                             return this.valueText  + " %";
                                         }
-                                    }, color: "#2c2e2f" }
+                                    }, color: "#d5080f" }
                                 ],
                                 argumentAxis: {
                                     label: {

@@ -25,7 +25,7 @@ class Medicine_literature extends CI_Controller
             redirect(base_url() . 'login');
         }
 
-        if ($this->session->userdata('user_type') != '1' && $this->session->userdata('user_type') != '2' && $this->session->userdata('user_type') != '3') {
+        if ($this->session->userdata('user_type') == '8' ) {
             redirect(base_url() . 'access_denied');
         }
     }

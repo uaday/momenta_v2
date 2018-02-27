@@ -196,18 +196,20 @@
                         <span class="title">Home</span>
                     </a>
                 </li>
-                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'){?>
+                <?php if($this->session->userdata('user_type')!='8'){?>
                 <li class="<?php if($this->session->userdata('main_menu')=='medicine_literature') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-book fa-2x"></i>
                         <span class="title">Medicine Literature</span>
                     </a>
                     <ul>
+                        <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'){?>
                         <li  class="<?php if($this->session->userdata('sub_menu')=='medicine_literature_update') echo "active "?>">
                             <a href="<?php echo base_url()?>medicine_literature/update_medicine_literature">
                                 <span class="title">Update Medicine Literature</span>
                             </a>
                         </li>
+                            <?php }?>
                         <li class="<?php if($this->session->userdata('sub_menu')=='view_all_medicine_literature') echo "active "?>">
                             <a href="<?php echo base_url()?>medicine_literature/view_all_medicine_literature">
                                 <span class="title">View Medicine Literature</span>

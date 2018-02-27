@@ -37,7 +37,11 @@ class Tar_shop extends CI_Controller {
     public function track_incentive()
     {
         $this->session->set_userdata('sub_menu','track_incentive');
-        $data['booked']=$this->tar_shop_model->show_all_booked_incentive();
+        if($this->session->userdata('user_type')=='4'||$this->session->userdata('user_type')=='5'||$this->session->userdata('user_type')=='6') {
+            $data['booked']=$this->tar_shop_model->show_all_user_booked_incentive();
+        }else{
+            $data['booked']=$this->tar_shop_model->show_all_booked_incentive();
+        }
         $data['history']=$this->tar_shop_model->show_all_incentive_history();
 
         $data['hero_header'] = TRUE;
