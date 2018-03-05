@@ -320,7 +320,7 @@ class User extends CI_Controller
         $renata_id = $this->input->get('renata_id');
         $user_type = $this->input->get('user_type');
         $this->user_model->reset_password($renata_id);
-        $this->session->set_userdata('reset_password', "User Password reset Successful");
+        $this->session->set_userdata('reset_password', $renata_id." User Password reset Successful");
         redirect(base_url() . 'user/manage_user','refresh');
     }
 

@@ -622,6 +622,7 @@ class Test_model extends CI_Model
         if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2') {
             $this->db->select('tbl_exam.*');
             $this->db->from('tbl_exam');
+            $this->db->where('tbl_exam.status ', '1');
             $this->db->order_by("tbl_exam.exam_name", 'ASC');
             return $this->db->get()->result_array();
         }
@@ -630,6 +631,7 @@ class Test_model extends CI_Model
             $this->db->select('tbl_exam.*');
             $this->db->from('tbl_exam');
             $this->db->where('tbl_exam.tbl_business_business_code ', $business_code);
+            $this->db->where('tbl_exam.status ', '1');
             $this->db->order_by("tbl_exam.exam_name", 'ASC');
             return $this->db->get()->result_array();
         }

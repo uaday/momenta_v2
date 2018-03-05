@@ -7,8 +7,8 @@
  */
 $i=0;
 ?>
-<link href="https://cdn.datatables.net/v/dt/dt-1.10.12/se-1.2.0/datatables.min.css" rel="stylesheet"/>
-<link href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css"/>
+<link href="<?= base_url()?>assets/css/datatablecheckbox/datatables.min.css" rel="stylesheet"/>
+<link href="<?= base_url()?>assets/css/datatablecheckbox/dataTables.checkboxes.css" rel="stylesheet"/>
 
 
 <!--<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>-->
@@ -84,6 +84,7 @@ $i=0;
                                     <tr>
                                         <th ></th>
                                         <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                        <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
                                         <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
                                         <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
                                         <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
@@ -97,6 +98,7 @@ $i=0;
                                     <tr>
                                         <td></td>
                                         <td>Image</td>
+                                        <td>Bcode</td>
                                         <td>Incentive Name</td>
                                         <td>PSO Code</td>
                                         <td>Employee ID</td>
@@ -112,6 +114,7 @@ $i=0;
                                             <td ><?php echo $book['transection_id']?></td>
                                             <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
                                                       height="50px" width="50px"></td>
+                                            <td ><?php echo $book['tbl_business_business_code']?></td>
                                             <td ><?php echo $book['incentives_name']?></td>
                                             <td ><?php echo $book['renata_id']?></td>
                                             <td ><?php echo $book['pso_id']?></td>
@@ -147,6 +150,7 @@ $i=0;
                                 <thead style="background-color: #2c2e2f;color: white">
                                 <tr>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
@@ -158,6 +162,7 @@ $i=0;
                                 <tfoot>
                                 <tr>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Image</th>
+                                    <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
                                     <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
@@ -171,6 +176,7 @@ $i=0;
                                     <tr>
                                         <td ><img src="<?= $book['incentives_image'] ?>" class=" img-circle" alt=""
                                                   height="50px" width="50px"></td>
+                                        <td ><?php echo $book['tbl_business_business_code']?></td>
                                         <td ><?php echo $book['incentives_name']?></td>
                                         <td ><?php echo $book['renata_id']?></td>
                                         <td ><?php echo $book['pso_id']?></td>
@@ -187,8 +193,9 @@ $i=0;
                 </div>
 
                 <div class="tab-pane" id="gift_history">
-
+                    <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='8'){?>
                     <a   class="btn btn-primary btn-icon btn-icon-standalone btn-icon-standalone-right" href="<?php echo base_url()?>tar_shop/export_history" ><i class="fa fa-download"></i><span>Download Gift History</span></a>
+                    <?php }?>
                     <div class="table-responsive">
                         <script type="text/javascript">
                             jQuery(document).ready(function ($) {
@@ -204,6 +211,7 @@ $i=0;
                             <thead style="background-color: #2c2e2f;color: white">
                             <tr>
                                 <th style="color: white; vertical-align: text-top;text-align: left">Incentive Image</th>
+                                <th style="color: white; vertical-align: text-top;text-align: left">Bcode</th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">Incentive Name</th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">PSO Code</th>
                                 <th style="color: white; vertical-align: text-top;text-align: left">Employee ID</th>
@@ -215,6 +223,7 @@ $i=0;
                             <tfoot>
                             <tr>
                                 <th>Incentive Image</th>
+                                <th>Bcode</th>
                                 <th>Incentive Name</th>
                                 <th>PSO Code</th>
                                 <th>Employee ID</th>
@@ -228,6 +237,7 @@ $i=0;
                                 <tr>
                                     <td ><img src="<?= $his['incentives_image'] ?>" class=" img-circle" alt=""
                                               height="50px" width="50px"></td>
+                                    <td ><?php echo $his['tbl_business_business_code']?></td>
                                     <td ><?php echo $his['incentives_name']?></td>
                                     <td ><?php echo $his['renata_id']?></td>
                                     <td ><?php echo $his['pso_id']?></td>
@@ -250,8 +260,9 @@ $i=0;
 
 <!--    <script src="--><?//= base_url()?><!--assets/checkbox_table/js/dataTables.select.min.js"></script>-->
 
-    <script src="https://cdn.datatables.net/v/dt/dt-1.10.12/se-1.2.0/datatables.min.js"></script>
-    <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js"></script>
+    <script src="<?= base_url()?>assets/js/datatablecheckbox/datatables.min.js"></script>
+    <script src="<?= base_url()?>assets/js/datatablecheckbox/dataTables.checkboxes.min.js"></script>
+<!--    <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js"></script>-->
 
 
     <script>

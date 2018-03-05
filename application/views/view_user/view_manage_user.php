@@ -79,6 +79,15 @@
                     <strong><?php echo $this->session->userdata('update_user') ?></strong>
                 </div>
                 <?php $this->session->unset_userdata('update_user'); }?>
+            <?php if($this->session->userdata('reset_password')) { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong><?php echo $this->session->userdata('reset_password') ?></strong>
+                </div>
+                <?php $this->session->unset_userdata('reset_password'); }?>
 
         </div>
     </div>

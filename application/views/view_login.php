@@ -21,7 +21,7 @@
 
     <link rel="icon" href="<?php echo base_url() ?>/assets/images/icon/momenta_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/linecons/css/linecons.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">

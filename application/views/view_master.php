@@ -245,13 +245,14 @@
                     </ul>
                 </li>
                 <?php }?>
-                <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'||$this->session->userdata('user_type')=='8'){?>
+                <?php if($this->session->userdata('user_type')!='7'){?>
                 <li  class="<?php if($this->session->userdata('main_menu')=='renata_shop') echo "active opened "?>">
                     <a href="#">
                         <i class="fa fa-gift fa-2x"></i>
                         <span class="title">Renata Shop</span>
                     </a>
                     <ul>
+                        <?php if($this->session->userdata('user_type')=='1'||$this->session->userdata('user_type')=='2'||$this->session->userdata('user_type')=='3'||$this->session->userdata('user_type')=='8'){?>
                         <li class="<?php if($this->session->userdata('sub_menu')=='create_incentive') echo "active "?>">
                             <a href="<?= base_url()?>renata_shop/create_incentive">
                                 <span class="title">Create Incentive</span>
@@ -262,6 +263,7 @@
                                 <span class="title">Manage Incentive</span>
                             </a>
                         </li>
+                        <?php }?>
                         <li class="<?php if($this->session->userdata('sub_menu')=='track_incentive') echo "active "?>">
                             <a href="<?= base_url()?>renata_shop/track_incentive">
                                 <span class="title">Track Incentive</span>
